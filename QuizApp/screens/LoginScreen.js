@@ -10,8 +10,11 @@ import {
   View,
   TextInput,
   Button,
+  NavigatorIOS,
 } from 'react-native';
 import base from '../Config/base.js';
+import { Navigator } from 'react-navigation';
+import HomeScreen from './HomeScreen';
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -33,9 +36,7 @@ export default class LoginScreen extends React.Component {
            });
 
            setTimeout(() => {
-               this.props.navigator.push({
-                   name: "Home"
-               })
+             this.props.navigation.navigate('Home')
            }, 1500);
 
        } catch (error) {
@@ -45,7 +46,7 @@ export default class LoginScreen extends React.Component {
        }
    }
   render() {
-      console.log(this.props.navigator);
+      console.log(this.props.component);
     return (
       <TouchableWithoutFeedback style={styles.container}>
         <View>

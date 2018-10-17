@@ -36,9 +36,7 @@ export default class SignUpScreen extends React.Component {
              });
 
              setTimeout(() => {
-                 this.props.navigator.push({
-                     name: "Home"
-                 })
+               this.props.navigation.navigate('Home')
              }, 1500);
 
          } catch (error) {
@@ -49,7 +47,7 @@ export default class SignUpScreen extends React.Component {
 
      }
   render() {
-  
+
     return (
       <TouchableWithoutFeedback style={styles.container}>
         <View>
