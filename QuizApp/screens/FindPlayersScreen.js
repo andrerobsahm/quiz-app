@@ -18,16 +18,15 @@ export default class FindPlayersScreen extends React.Component {
   constructor(props){
   super(props);
   this.state={
-    emails:'',
+    emails:[],
   }
   }
      async allplayers() {
          try {
-             await base.database().ref('users').on('value').then(function(snapshot) {
-               this.setState({
-                 emails: snapshot.val()
-               })
-             });
+             await base.database().ref('users').on('value', (data) =>{
+                   this.state.emails
+               console.log(data.toJSON());
+             })
 
          } catch (error) {
              this.setState({
@@ -49,17 +48,33 @@ export default class FindPlayersScreen extends React.Component {
            <Text style={styles.response}>{this.state.response}</Text>
           </View>
           <View>
-          {this.state.emails.map((email,keys) =>
-            {
-              return (email.email)
-            }
-          )}
-
+          {this._RandomRender()}
           </View>
         </View>
       </TouchableWithoutFeedback>
     );
   }
+}
+
+
+_RandomRender() {
+  if (this.state.emails >= 2) {
+        return (
+          <View>
+          ({this.state.emails.map((email,keys) =>
+            {
+          {email.email}
+        )
+      }
+    })
+          </View>
+        )
+  } else {
+      (   <View>
+            hej hej
+          </View>
+        )
+    }
 }
 
 const styles = StyleSheet.create({

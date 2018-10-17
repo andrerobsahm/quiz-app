@@ -33,7 +33,6 @@ export default class SignUpScreen extends React.Component {
              base.database().ref('users').push(
                {
                  email: this.state.email,
-
                });
 
 
