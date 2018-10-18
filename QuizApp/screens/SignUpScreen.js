@@ -18,9 +18,11 @@ export default class SignUpScreen extends React.Component {
   constructor(props) {
      super(props);
      this.state = {
-         email: "",
-         password: "",
-         response: ""
+         email: '',
+         username: '',
+         password: '',
+         response: '',
+         loggedin: ''
      };
 
      this.signup = this.signup.bind(this);
@@ -33,6 +35,8 @@ export default class SignUpScreen extends React.Component {
              base.database().ref('users').push(
                {
                  email: this.state.email,
+                 username: this.state.username,
+                 loggedin: true,
                });
 
 
@@ -59,6 +63,11 @@ export default class SignUpScreen extends React.Component {
           <TextInput
             placeholder='enter email'
             onChangeText={(email) => this.setState({email})}
+            autoCapitalize="none"
+          />
+          <TextInput
+            placeholder='enter username'
+            onChangeText={(username) => this.setState({username})}
             autoCapitalize="none"
           />
           <TextInput

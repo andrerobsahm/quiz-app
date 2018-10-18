@@ -48,7 +48,6 @@ export default class FindPlayersScreen extends React.Component {
            <Text style={styles.response}>{this.state.response}</Text>
           </View>
           <View>
-          {this._RandomRender()}
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -57,25 +56,25 @@ export default class FindPlayersScreen extends React.Component {
 }
 
 
-_RandomRender() {
-  if (this.state.emails >= 2) {
-        return (
-          <View>
-          ({this.state.emails.map((email,keys) =>
-            {
-          {email.email}
-        )
-      }
-    })
-          </View>
-        )
-  } else {
-      (   <View>
-            hej hej
-          </View>
-        )
-    }
-}
+// _RandomRender() {
+//   if (this.state.emails >= 2) {
+//         return (
+//           <View>
+//           ({this.state.emails.map((email,keys) =>
+//             {
+//           {email.email}
+//         )
+//       }
+//     })
+//           </View>
+//         )
+//   } else {
+//       (   <View>
+//             hej hej
+//           </View>
+//         )
+//     }
+// }
 
 const styles = StyleSheet.create({
   container: {
