@@ -19,24 +19,24 @@ export default class FindPlayersScreen extends React.Component {
   super(props);
   this.state={
     emails:[],
+    response: ''
   }
   }
      async allplayers() {
          try {
-             await base.database().ref('users').on('value', (data) =>{
-                   this.state.emails
-               console.log(data.toJSON());
-             })
+             await base.database().ref('users').orderByChild('loggedin').equalTo(true).on('value').then(function(snapshot) {
+              console.log(snapshot.child('username').val());
+            });
 
          } catch (error) {
-             this.setState({
-                 response: error.toString()
-             })
+             // this.setState({
+             //     response: error.toString()
+             // })
          }
 
      }
   render() {
-
+console.log(this.state.emails);
     return (
       <TouchableWithoutFeedback style={styles.container}>
         <View>
@@ -47,6 +47,15 @@ export default class FindPlayersScreen extends React.Component {
           <View>
            <Text style={styles.response}>{this.state.response}</Text>
           </View>
+          {this.state.emails.map((email, key) => {
+          return (
+            <View>
+            <Text style={styles.response}>{email}</Text>
+
+            </View>
+        );}
+
+        )}
           <View>
           </View>
         </View>
@@ -55,26 +64,6 @@ export default class FindPlayersScreen extends React.Component {
   }
 }
 
-
-// _RandomRender() {
-//   if (this.state.emails >= 2) {
-//         return (
-//           <View>
-//           ({this.state.emails.map((email,keys) =>
-//             {
-//           {email.email}
-//         )
-//       }
-//     })
-//           </View>
-//         )
-//   } else {
-//       (   <View>
-//             hej hej
-//           </View>
-//         )
-//     }
-// }
 
 const styles = StyleSheet.create({
   container: {
