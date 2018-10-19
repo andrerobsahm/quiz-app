@@ -20,7 +20,10 @@ export default class AnswersButton extends Component {
   render() {
     return(
       <View>
-      <TouchableHighlight onPress={this._onAnswerPress} style={[{backgroundColor:this.state.backgroundColor}, ...styles.buttoncontainer]}>
+      <TouchableHighlight
+        underlayColor={this.state.backgroundColor}
+        onPress={this._onAnswerPress}
+        style={[{backgroundColor:this.state.backgroundColor}, ...styles.buttoncontainer]}>
         <Text>
           hej hej
         </Text>
