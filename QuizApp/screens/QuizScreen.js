@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
-
+import AnswersButton from '../components/AnswersButton/AnswersButton';
 class QuestionList extends Component {
   state = {
     questions: []
@@ -39,6 +39,7 @@ class QuestionList extends Component {
       <View key={key} style={styles.questionContainer}>
         <Text style={styles.category}>{question.category}</Text>
         <Text style={styles.question}>{question.question}</Text>
+        <AnswersButton />
       </View>
     ));
   }
