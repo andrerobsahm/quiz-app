@@ -25,7 +25,7 @@ export default class AnswersButton extends Component {
         onPress={this._onAnswerPress}
         style={[{backgroundColor:this.state.backgroundColor}, ...styles.buttoncontainer]}>
         <Text>
-          hej hej
+          {this.props.answers}
         </Text>
         </TouchableHighlight>
       </View>
