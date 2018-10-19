@@ -35,8 +35,8 @@ class QuestionList extends Component {
   };
 
   renderQuestions() {
-    return this.state.questions.map(question => (
-      <View style={styles.questionContainer}>
+    return this.state.questions.map((question, key) => (
+      <View key={key} style={styles.questionContainer}>
         <Text style={styles.category}>{question.category}</Text>
         <Text style={styles.question}>{question.question}</Text>
       </View>

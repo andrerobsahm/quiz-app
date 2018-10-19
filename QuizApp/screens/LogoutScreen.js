@@ -21,19 +21,12 @@ export default class LogoutScreen extends React.Component {
      super(props);
      this.state = {
        response: '',
-       loggedin: ''
      }
      this.logout = this.logout.bind(this);
-     base.database().ref(`users/${this.state.username}`).update(
-       {
-         loggedin: false,
-       });
    }
    async logout() {
-
            try {
-
-               await firebase.auth().signOut();
+               await base.auth().signOut();
                this.setState({
                    response: "Logged out!"
                });
@@ -48,7 +41,6 @@ export default class LogoutScreen extends React.Component {
        }
 
   render() {
-      console.log(this.props.component);
     return (
       <TouchableWithoutFeedback style={styles.container}>
         <View>
