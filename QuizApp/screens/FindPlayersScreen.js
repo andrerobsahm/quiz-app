@@ -24,10 +24,9 @@ export default class FindPlayersScreen extends React.Component {
   }
      async allplayers() {
          try {
-             await base.database().ref('users').orderByChild('loggedin').equalTo(true).on('value').then(function(snapshot) {
-              console.log(snapshot.child('username').val());
-            });
-
+             await base.database().ref('users').orderByChild('loggedin').equalTo(true).on('value', (data) =>{
+               console.log(data.toJSON());
+             })
          } catch (error) {
              // this.setState({
              //     response: error.toString()
@@ -36,7 +35,6 @@ export default class FindPlayersScreen extends React.Component {
 
      }
   render() {
-console.log(this.state.emails);
     return (
       <TouchableWithoutFeedback style={styles.container}>
         <View>

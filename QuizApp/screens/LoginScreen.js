@@ -22,7 +22,9 @@ export default class LoginScreen extends React.Component {
     this.state = {
       email: '',
       password: '',
-      response: ''
+      response: '',
+      loggedin: '',
+      username: ''
     }
     this.login = this.login.bind(this);
   }
@@ -30,10 +32,10 @@ export default class LoginScreen extends React.Component {
 
        try {
            await base.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
-           base.database().ref(`users/${this.state.username}`).update(
+           base.database().ref(`users/email/${this.state.email}`).update(
              {
-               loggedin: true,
-             });
+             loggedin: true
+           });
            this.setState({
                response: "Logged In!"
            });
