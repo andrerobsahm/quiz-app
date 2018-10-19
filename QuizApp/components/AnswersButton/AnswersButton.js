@@ -21,7 +21,7 @@ export default class AnswersButton extends Component {
     return(
       <View>
       <TouchableHighlight
-        underlayColor={this.state.backgroundColor}
+        underlayColor='transparent'
         onPress={this._onAnswerPress}
         style={[{backgroundColor:this.state.backgroundColor}, ...styles.buttoncontainer]}>
         <Text>
