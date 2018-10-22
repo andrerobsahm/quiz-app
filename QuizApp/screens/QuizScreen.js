@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
-import AnswersButton from '../components/AnswersButton/AnswersButton';
+import AnswersButton from '../components/AnswersButton/AnswersButton'
 class QuestionList extends Component {
   state = {
     questions: []
@@ -12,7 +12,7 @@ class QuestionList extends Component {
 
   _getData() {
     let data = fetch(
-      "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean"
+      "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty"
     )
       .then(this._handleResponse)
       .catch(error => {
@@ -28,10 +28,10 @@ class QuestionList extends Component {
     }
 
     this.setState({
-      questions: questionList.results
+      questions: questionList
     });
 
-    console.log(questionList);
+
   };
 
   renderQuestions() {
@@ -39,8 +39,7 @@ class QuestionList extends Component {
       <View key={key} style={styles.questionContainer}>
         <Text style={styles.category}>{question.category}</Text>
         <Text style={styles.question}>{question.question}</Text>
-        <AnswersButton answers={question.correct_answer} />
-        <AnswersButton answers={question.incorrect_answers} />
+          <AnswersButton id={question.id}/>
       </View>
     ));
   }
