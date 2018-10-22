@@ -12,17 +12,26 @@ export default class AnswersButton extends Component {
   }
 
   _onAnswerPress = () =>{
-    this.setState({
-      backgroundColor:'pink',
-    });
-  }
+    if (this.props.option == this.props.correct) {
+      this.setState({
+        backgroundColor:'green',
+      });
+    }else {
+      this.setState({
+        backgroundColor:'red',
+      });
+    }
+    }
+
 
   render() {
-
+console.log(this.props.correct);
     return(
-      this.props.answers.map((option, key) => (
-        <View key={key}>
+      <View >
+      {this.props.correct}
+      {this.props.answers.map((option, key) => (
       <TouchableHighlight
+        key={key}
         underlayColor='transparent'
         onPress={this._onAnswerPress}
         style={[{backgroundColor:this.state.backgroundColor}, ...styles.buttoncontainer]}>
@@ -34,8 +43,9 @@ export default class AnswersButton extends Component {
           </View>
         </Text>
         </TouchableHighlight>
+      ))}
       </View>
-      ))
+
     )
   };
 }
