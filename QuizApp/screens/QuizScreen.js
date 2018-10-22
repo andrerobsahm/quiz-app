@@ -39,7 +39,8 @@ class QuestionList extends Component {
       <View key={key} style={styles.questionContainer}>
         <Text style={styles.category}>{question.category}</Text>
         <Text style={styles.question}>{question.question}</Text>
-          <AnswersButton id={question.id}/>
+      
+          <AnswersButton answers={question.options} id={question.id}/>
       </View>
     ));
   }
