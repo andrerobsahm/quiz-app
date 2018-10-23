@@ -14,6 +14,7 @@ import {
 import base from '../Config/base.js';
 import HomeScreen from './HomeScreen';
 import SignUpLink from '../components/Links/SignUpLink/SignUpLink';
+import ForgotPassword from '../components/Links/ForgotPassword/ForgotPassword';
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
@@ -75,6 +76,9 @@ export default class LoginScreen extends React.Component {
 
           </View>
         </TouchableWithoutFeedback>
+        </View>
+        <View>
+        <ForgotPassword navigation={this.props.navigation} />
         </View>
         <View>
           <Text>Har du inget konto?</Text>

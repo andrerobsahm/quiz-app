@@ -13,6 +13,7 @@ import SignUpScreen from "../screens/SignUpScreen";
 import FindPlayersScreen from "../screens/FindPlayersScreen";
 import LogoutScreen from "../screens/LogoutScreen";
 import QuizScreen from "../screens/QuizScreen";
+import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -150,6 +151,23 @@ QuizStack.navigationOptions = {
   )
 };
 
+const ForgotPasswordStack = createStackNavigator({
+  ForgotPassword: ForgotPasswordScreen
+});
+ForgotPasswordStack.navigationOptions = {
+  tabBarLabel: "Forgotpassword",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === "ios"
+          ? `ios-options${focused ? "" : "-outline"}`
+          : "md-options"
+      }
+    />
+  )
+};
+
 export default createBottomTabNavigator({
   LoginStack,
   SignUpStack,
@@ -158,5 +176,6 @@ export default createBottomTabNavigator({
   SettingsStack,
   FindPlayersStack,
   LogoutStack,
-  QuizStack
+  QuizStack,
+  ForgotPasswordStack
 });

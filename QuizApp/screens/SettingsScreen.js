@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  TextInput,
   View,
 } from 'react-native';
 import base from '../Config/base.js';
@@ -22,6 +24,9 @@ export default class SettingsScreen extends React.Component {
       email: '',
       password: '',
       response: '',
+      photoUrl: '',
+      name:'',
+      emailVerified: '',
       uid: ''
     }
     this.getuser = this.getuser.bind(this);
@@ -30,15 +35,26 @@ export default class SettingsScreen extends React.Component {
     this.getuser();
   }
   getuser = ()=> {
-         if (base.auth().currentUser !== null){
-       console.log("user id: " + base.auth().currentUser.uid);
-       this.setState({
-           email:base.auth().currentUser.email,
-           password: base.auth().currentUser.password
-       });
-     }
+    var user = base.auth().currentUser;
+  if (user != null) {
+    this.setState({
+        emailVerified:user.emailVerified,
+        email:user.email,
+        photoUrl:user.photoURL,
+        uid: user.uid,
+        name:user.displayName
+    });
+  }
+ }
 
-   }
+ changePassword = ()=> {
+   base.auth().currentUser.updatePassword(this.state.password).then(function() {
+    console.log('update');
+   }).catch(function(error) {
+     console.log(error);
+   });
+}
+
 
 
 
@@ -47,10 +63,18 @@ export default class SettingsScreen extends React.Component {
      * content, we just wanted to give you a quick view of your config */
     return (
         <ScrollView>
-          <Text>
-            {this.state.email}
-             {this.state.password }
-         </Text>
+        <Text>
+        {this.state.email}
+       {this.state.photoURL}
+       {this.state.name}
+        </Text>
+          <TouchableWithoutFeedback>
+             <TextInput
+               placeholder='change password'
+               changePassword={(password) => this.setState({password})}
+               autoCapitalize="none"
+             />
+         </TouchableWithoutFeedback>
         </ScrollView>
     );
   }
