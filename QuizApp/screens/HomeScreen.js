@@ -9,8 +9,14 @@ import {
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-
+//
 import { MonoText } from '../components/StyledText';
+import LinkNewGame from '../components/Links/LinkNewGame/LinkNewGame';
+import ActiveGames from '../components/Links/ActiveGames/ActiveGames';
+import Friends from '../components/Links/Friends/Friends';
+import Statistics from '../components/Links/Statistics/Statistics';
+import Notifications from '../components/Links/Notifications/Notifications';
+import Settings from '../components/Links/Settings/Settings';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -36,7 +42,11 @@ export default class HomeScreen extends React.Component {
             {this._maybeRenderDevelopmentModeWarning()}
 
             <Text style={styles.getStartedText}>Välkommen till Quiz-appen!</Text>
-
+            <LinkNewGame navigation={this.props.navigation} />
+            <ActiveGames navigation={this.props.navigation} />
+            <Friends navigation={this.props.navigation} />
+            <Notifications navigation={this.props.navigation} />
+            <Settings navigation={this.props.navigation} />
           </View>
 
 

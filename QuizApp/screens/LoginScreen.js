@@ -32,7 +32,7 @@ export default class LoginScreen extends React.Component {
 
        try {
            await base.auth().signInWithEmailAndPassword(this.state.email, this.state.password);
-           
+
            this.setState({
                response: "Logged In!"
            });
@@ -48,7 +48,6 @@ export default class LoginScreen extends React.Component {
        }
    }
   render() {
-      console.log(this.props.component);
     return (
       <TouchableWithoutFeedback style={styles.container}>
         <View>
