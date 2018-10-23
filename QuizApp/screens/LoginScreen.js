@@ -10,11 +10,12 @@ import {
   View,
   TextInput,
   Button,
-  NavigatorIOS,
 } from 'react-native';
 import base from '../Config/base.js';
-import { Navigator } from 'react-navigation';
 import HomeScreen from './HomeScreen';
+import SignUpLink from '../components/Links/SignUpLink/SignUpLink';
+import { WebBrowser } from 'expo';
+import { MonoText } from '../components/StyledText';
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -49,30 +50,37 @@ export default class LoginScreen extends React.Component {
    }
   render() {
     return (
-      <TouchableWithoutFeedback style={styles.container}>
+      <ScrollView>
         <View>
-          <TextInput
-            placeholder='enter email'
-            onChangeText={(email) => this.setState({email})}
-            autoCapitalize="none"
-          />
-          <TextInput
-            placeholder='enter password'
-            onChangeText={(password) => this.setState({password})}
-            autoCapitalize="none"
-          />
-
-
+        <TouchableWithoutFeedback style={styles.container}>
           <View>
-            <Button title='Login' onPress={this.login} />
-          </View>
-          <View>
-           <Text style={styles.response}>{this.state.response}</Text>
-          </View>
+            <TextInput
+              placeholder='enter email'
+              onChangeText={(email) => this.setState({email})}
+              autoCapitalize="none"
+            />
+            <TextInput
+              placeholder='enter password'
+              onChangeText={(password) => this.setState({password})}
+              autoCapitalize="none"
+            />
 
+
+            <View>
+              <Button title='Login' onPress={this.login} />
+            </View>
+            <View>
+             <Text style={styles.response}>{this.state.response}</Text>
+            </View>
+
+          </View>
+        </TouchableWithoutFeedback>
         </View>
-      </TouchableWithoutFeedback>
-
+        <View>
+          <Text>Har du inget konto?</Text>
+          <SignUpLink navigation={this.props.navigation} />
+        </View>
+      </ScrollView>
 
     );
   }

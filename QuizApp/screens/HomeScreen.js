@@ -9,7 +9,6 @@ import {
   View,
 } from 'react-native';
 import { WebBrowser } from 'expo';
-//
 import { MonoText } from '../components/StyledText';
 import LinkNewGame from '../components/Links/LinkNewGame/LinkNewGame';
 import ActiveGames from '../components/Links/ActiveGames/ActiveGames';

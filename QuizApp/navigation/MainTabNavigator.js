@@ -87,7 +87,7 @@ const SignUpStack = createStackNavigator({
   SignUp: SignUpScreen
 });
 SignUpStack.navigationOptions = {
-  tabBarLabel: "Sign up",
+  tabBarLabel: "Registrera",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
