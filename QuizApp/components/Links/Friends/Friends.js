@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, TouchableHighlight,StyleSheet } from 'react-native';
 
-const LinkNewGame = ({ navigation }) => (
+const Friends = ({ navigation }) => (
   <TouchableHighlight
-    onPress={() => navigation.navigate('Quiz')}
+    onPress={() => navigation.navigate('FindPlayers')}
     underlayColor="transparent"
     style={styles.newgamelink}
     >
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 
 });
-export default LinkNewGame;
+export default Friends;

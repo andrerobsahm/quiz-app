@@ -1,13 +1,13 @@
 import React from 'react';
 import { Text, TouchableHighlight,StyleSheet } from 'react-native';
 
-const ForgotPassword = ({ navigation }) => (
+const LoginLink = ({ navigation }) => (
   <TouchableHighlight
-    onPress={() => navigation.navigate('ForgotPassword')}
+    onPress={() => navigation.navigate('Login')}
     underlayColor="transparent"
     style={styles.newgamelink}
     >
-     <Text>Glömt ditt lösenord?</Text>
+     <Text>har redan konto</Text>
   </TouchableHighlight>
 );
 
@@ -17,4 +17,4 @@ const styles = StyleSheet.create({
   },
 
 });
-export default ForgotPassword;
+export default LoginLink;

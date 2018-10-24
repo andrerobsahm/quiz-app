@@ -88,7 +88,7 @@ const SignUpStack = createStackNavigator({
   SignUp: SignUpScreen
 });
 SignUpStack.navigationOptions = {
-  tabBarLabel: "Registrera",
+  tabBarLabel: "SignUp",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
@@ -104,7 +104,7 @@ const FindPlayersStack = createStackNavigator({
   FindPlayers: FindPlayersScreen
 });
 FindPlayersStack.navigationOptions = {
-  tabBarLabel: "Find players",
+  tabBarLabel: "FindPlayers",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}

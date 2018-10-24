@@ -12,6 +12,7 @@ import {
   Button,
 } from 'react-native';
 import base from '../Config/base';
+import LoginLink from '../components/Links/LoginLink/LoginLink';
 
 
 export default class SignUpScreen extends React.Component {
@@ -58,34 +59,41 @@ export default class SignUpScreen extends React.Component {
   render() {
 
     return (
-      <TouchableWithoutFeedback style={styles.container}>
+      <View>
+        <TouchableWithoutFeedback style={styles.container}>
+          <View>
+            <TextInput
+              placeholder='enter email'
+              onChangeText={(email) => this.setState({email})}
+              autoCapitalize="none"
+            />
+            <TextInput
+              placeholder='enter username'
+              onChangeText={(username) => this.setState({username})}
+              autoCapitalize="none"
+            />
+            <TextInput
+              placeholder='enter password'
+              onChangeText={(password) => this.setState({password})}
+              autoCapitalize="none"
+            />
+
+
+            <View>
+              <Button title='Create account' onPress={this.signup} />
+            </View>
+            <View>
+             <Text style={styles.response}>{this.state.response}</Text>
+            </View>
+
+          </View>
+        </TouchableWithoutFeedback>
+
+
         <View>
-          <TextInput
-            placeholder='enter email'
-            onChangeText={(email) => this.setState({email})}
-            autoCapitalize="none"
-          />
-          <TextInput
-            placeholder='enter username'
-            onChangeText={(username) => this.setState({username})}
-            autoCapitalize="none"
-          />
-          <TextInput
-            placeholder='enter password'
-            onChangeText={(password) => this.setState({password})}
-            autoCapitalize="none"
-          />
-
-
-          <View>
-            <Button title='Create account' onPress={this.signup} />
-          </View>
-          <View>
-           <Text style={styles.response}>{this.state.response}</Text>
-          </View>
-
+        <LoginLink navigation={this.props.navigation} />
         </View>
-      </TouchableWithoutFeedback>
+      </View>
     );
   }
 }

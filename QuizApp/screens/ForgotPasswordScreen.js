@@ -1,5 +1,5 @@
 import 'react-native';
-import React, { Component } from 'react';
+import React from 'react';
 import {
   AppRegistry,
   Text,
@@ -11,7 +11,7 @@ import {
  } from 'react-native';
 import base from '../Config/base.js';
 
-export default class ForgotPasswordScreen extends Component {
+export default class ForgotPasswordScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

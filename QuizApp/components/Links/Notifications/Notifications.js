@@ -3,7 +3,7 @@ import { Text, TouchableHighlight,StyleSheet } from 'react-native';
 
 const Notifications = ({ navigation }) => (
   <TouchableHighlight
-    onPress={() => navigation.navigate('Quiz')}
+    onPress={() => navigation.navigate('ForgotPassword')}
     underlayColor="transparent"
     style={styles.newgamelink}
     >

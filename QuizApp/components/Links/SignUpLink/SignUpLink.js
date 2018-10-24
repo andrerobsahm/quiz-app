@@ -3,7 +3,7 @@ import { Text, TouchableHighlight,StyleSheet } from 'react-native';
 
 const SignUpLink = ({ navigation }) => (
   <TouchableHighlight
-    onPress={() => navigation.navigate('Registrera')}
+    onPress={() => navigation.navigate('SignUp')}
     underlayColor="transparent"
     style={styles.newgamelink}
     >
