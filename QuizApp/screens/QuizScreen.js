@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
-import AnswersButton from '../components/AnswersButton/AnswersButton'
+import AnswersButton from "../components/AnswersButton/AnswersButton";
 class QuestionList extends Component {
   state = {
-    questions: []
+    questions: [],
+    questionsanswers: 0
   };
 
   componentDidMount() {
@@ -30,26 +31,36 @@ class QuestionList extends Component {
     this.setState({
       questions: questionList
     });
+  };
 
-
+  _counter = () => {
+    this.setState({
+      questionsanswers: this.state.questionsanswers + 1
+    });
   };
 
   renderQuestions() {
-    return this.state.questions.map((question, key) => (
-      <View key={key} style={styles.questionContainer}>
-        <Text style={styles.category}>{question.category}</Text>
-        <Text style={styles.question}>{question.question}</Text>
-          <AnswersButton correct={question.correct_answer} answers={question.options} id={question.id}/>
+    const question = this.state.questions[this.state.questionsanswers];
+    return (
+      <View style={styles.questionContainer}>
+        {question !== undefined && (
+          <React.Fragment>
+            {console.log(question.category)}
+            <Text style={styles.category}>{question.category}</Text>
+            <Text style={styles.question}>{question.question}</Text>
+            <AnswersButton
+              counter={this._counter}
+              correct={question.correct_answer}
+              answers={question.options}
+            />
+          </React.Fragment>
+        )}
       </View>
-    ));
+    );
   }
 
   render() {
-    return (
-      <ScrollView>
-        <Text>{this.renderQuestions()}</Text>
-      </ScrollView>
-    );
+    return <ScrollView>{this.renderQuestions()}</ScrollView>;
   }
 }
 
