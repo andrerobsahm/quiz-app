@@ -13,7 +13,7 @@ class QuestionList extends Component {
 
   _getData() {
     let data = fetch(
-      "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty"
+      "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty.limitToLast=10"
     )
       .then(this._handleResponse)
       .catch(error => {
