@@ -22,6 +22,7 @@ export default class AnswersButton extends Component {
       this.setState({
         backgroundColor: "green"
       });
+      this.props.score();
     } else {
       this.setState({
         backgroundColor: "red"

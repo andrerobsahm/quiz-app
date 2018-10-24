@@ -4,7 +4,8 @@ import AnswersButton from "../components/AnswersButton/AnswersButton";
 class QuestionList extends Component {
   state = {
     questions: [],
-    questionsanswers: 0
+    questionsanswers: 0,
+    score: 0
   };
 
   componentDidMount() {
@@ -38,6 +39,11 @@ class QuestionList extends Component {
       questionsanswers: this.state.questionsanswers + 1
     });
   };
+  _scoreCounter = () => {
+    this.setState({
+      score: this.state.score + 1
+    });
+  };
 
   renderQuestions() {
     const question = this.state.questions[this.state.questionsanswers];
@@ -49,12 +55,16 @@ class QuestionList extends Component {
             <Text style={styles.category}>{question.category}</Text>
             <Text style={styles.question}>{question.question}</Text>
             <AnswersButton
+              score={this._scoreCounter}
               counter={this._counter}
               correct={question.correct_answer}
               answers={question.options}
             />
           </React.Fragment>
         )}
+        <Text>
+          Du fick {this.state.score}/{this.state.questions.length}
+        </Text>
       </View>
     );
   }
