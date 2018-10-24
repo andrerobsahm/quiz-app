@@ -11,8 +11,9 @@ export default class AnswersButton extends Component {
 
   }
 
-  _onAnswerPress = () =>{
-    if (this.props.option == this.props.correct) {
+  _onAnswerPress = (e) =>{
+    console.log(e);
+    if (e === this.props.correct) {
       this.setState({
         backgroundColor:'green',
       });
@@ -25,7 +26,7 @@ export default class AnswersButton extends Component {
 
 
   render() {
-console.log(this.props.correct);
+
     return(
       <View >
       {this.props.correct}
@@ -33,7 +34,7 @@ console.log(this.props.correct);
       <TouchableHighlight
         key={key}
         underlayColor='transparent'
-        onPress={this._onAnswerPress}
+        onPress={() => this._onAnswerPress(option)}
         style={[{backgroundColor:this.state.backgroundColor}, ...styles.buttoncontainer]}>
         <Text>
           <View >
