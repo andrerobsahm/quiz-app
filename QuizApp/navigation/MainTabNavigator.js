@@ -11,7 +11,6 @@ import SettingsScreen from "../screens/SettingsScreen";
 import LoginScreen from "../screens/LoginScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 import FindPlayersScreen from "../screens/FindPlayersScreen";
-import LogoutScreen from "../screens/LogoutScreen";
 import QuizScreen from "../screens/QuizScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 
@@ -116,22 +115,6 @@ FindPlayersStack.navigationOptions = {
     />
   )
 };
-const LogoutStack = createStackNavigator({
-  Logout: LogoutScreen
-});
-LogoutStack.navigationOptions = {
-  tabBarLabel: "Logout",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-options${focused ? "" : "-outline"}`
-          : "md-options"
-      }
-    />
-  )
-};
 
 //QUIZSTACK
 const QuizStack = createStackNavigator({
@@ -175,7 +158,6 @@ export default createBottomTabNavigator({
   LinksStack,
   SettingsStack,
   FindPlayersStack,
-  LogoutStack,
   QuizStack,
   ForgotPasswordStack
 });
