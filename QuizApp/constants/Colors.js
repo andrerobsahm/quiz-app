@@ -16,7 +16,8 @@ const colors = {
   bgWhite: "#F5F5F5",
   grey: "#9B9B9B",
   black: "#151515",
-  gradient: "linear-gradient(225deg, #FF8960 0%, #FF62A5 100%)"
+  orange: "#FF8960",
+  pink: "#FF62A5"
 };
 
 export default colors;

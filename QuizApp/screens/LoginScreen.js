@@ -8,8 +8,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  TextInput,
-  Button
+  TextInput
 } from "react-native";
 import colors from "../constants/Colors";
 import base from "../Config/base.js";
@@ -18,6 +17,7 @@ import SignUpLink from "../components/Links/SignUpLink/SignUpLink";
 import ForgotPassword from "../components/Links/ForgotPassword/ForgotPassword";
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
+import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 
 export default class LoginScreen extends React.Component {
   constructor(props) {
@@ -67,7 +67,7 @@ export default class LoginScreen extends React.Component {
     return (
       <ScrollView style={styles.container}>
         <Text>QUIZ!T</Text>
-        <Text>En app för dig som gillar quiz...</Text>
+        <Text>Utmana dina vänner. Eller dig själv!</Text>
         <View>
           <TouchableWithoutFeedback style={styles.container}>
             <View>
@@ -85,12 +85,7 @@ export default class LoginScreen extends React.Component {
               />
 
               <View>
-                <Button
-                  style={styles.button}
-                  title="Logga in"
-                  color={colors.radial}
-                  onPress={this.login}
-                />
+                <ButtonComponent title="Logga in" onPress={this.login} />
               </View>
               <View>
                 <Text style={styles.response}>{this.state.response}</Text>
@@ -111,24 +106,17 @@ export default class LoginScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 15
+  },
   input: {
     height: 50,
     width: 304,
     borderRadius: 25,
     backgroundColor: colors.bgWhite,
     textAlign: "center",
-    fontSize: 15
-  },
-  // button: {
-  //   backgroundColor: colors.radial,
-  //   color: colors.white,
-  //   height: 50,
-  //   width: 304,
-  //   borderRadius: 25
-  // },
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: colors.grey
+    fontSize: 15,
+    marginBottom: 20
   }
 });
