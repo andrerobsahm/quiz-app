@@ -2,8 +2,8 @@ const tintColor = "#2f95dc";
 
 const colors = {
   tintColor,
-  tabIconDefault: "#ccc",
-  tabIconSelected: tintColor,
+  tabIconDefault: "#151515",
+  tabIconSelected: "#FF8960",
   tabBar: "#fefefe",
   errorBackground: "red",
   errorText: "#fff",

@@ -87,18 +87,16 @@ export default class SignUpScreen extends React.Component {
               autoCapitalize="none"
               style={styles.input}
             />
-
-            <View>
-              <ButtonComponent title="Registrera konto" onPress={this.signup} />
-            </View>
-            <View>
-              <Text style={styles.response}>{this.state.response}</Text>
-            </View>
           </View>
         </TouchableWithoutFeedback>
-
         <View>
-          <Text>Har du redan ett konto?</Text>
+          <ButtonComponent title="Registrera konto" onPress={this.signup} />
+        </View>
+        <View>
+          <Text style={styles.response}>{this.state.response}</Text>
+        </View>
+        <View style={styles.row}>
+          <Text>Har du redan ett konto? </Text>
           <LoginLink navigation={this.props.navigation} />
         </View>
       </View>
@@ -111,7 +109,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 15,
+    paddingTop: 100,
     backgroundColor: Colors.black
   },
   h1: {
@@ -126,5 +124,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     marginBottom: 20
+  },
+  row: {
+    flexDirection: "row"
   }
 });
