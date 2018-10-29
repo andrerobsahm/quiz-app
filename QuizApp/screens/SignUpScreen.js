@@ -11,8 +11,10 @@ import {
   TextInput,
   Button
 } from "react-native";
+import colors from "../constants/Colors";
 import base from "../Config/base";
 import LoginLink from "../components/Links/LoginLink/LoginLink";
+import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 
 export default class SignUpScreen extends React.Component {
   constructor(props) {
@@ -61,23 +63,26 @@ export default class SignUpScreen extends React.Component {
         <TouchableWithoutFeedback style={styles.container}>
           <View>
             <TextInput
-              placeholder="enter email"
-              onChangeText={email => this.setState({ email })}
-              autoCapitalize="none"
-            />
-            <TextInput
-              placeholder="enter username"
+              placeholder="Användarnamn"
               onChangeText={username => this.setState({ username })}
               autoCapitalize="none"
+              style={styles.input}
             />
             <TextInput
-              placeholder="enter password"
+              placeholder="Email"
+              onChangeText={email => this.setState({ email })}
+              autoCapitalize="none"
+              style={styles.input}
+            />
+            <TextInput
+              placeholder="Lösenord"
               onChangeText={password => this.setState({ password })}
               autoCapitalize="none"
+              style={styles.input}
             />
 
             <View>
-              <Button title="Create account" onPress={this.signup} />
+              <ButtonComponent title="Registrera konto" onPress={this.signup} />
             </View>
             <View>
               <Text style={styles.response}>{this.state.response}</Text>
@@ -99,5 +104,14 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: "#fff"
+  },
+  input: {
+    height: 50,
+    width: 304,
+    borderRadius: 25,
+    backgroundColor: colors.bgWhite,
+    textAlign: "center",
+    fontSize: 15,
+    marginBottom: 20
   }
 });
