@@ -51,7 +51,6 @@ class QuestionList extends Component {
       <View style={styles.questionContainer}>
         {question !== undefined && (
           <React.Fragment>
-            {console.log(question.category)}
             <Text style={styles.category}>{question.category}</Text>
             <Text style={styles.question}>{question.question}</Text>
             <AnswersButton

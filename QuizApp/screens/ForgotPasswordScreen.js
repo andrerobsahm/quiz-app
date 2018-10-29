@@ -1,5 +1,5 @@
-import 'react-native';
-import React from 'react';
+import "react-native";
+import React from "react";
 import {
   AppRegistry,
   Text,
@@ -7,50 +7,54 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
   TextInput,
-  Button,
- } from 'react-native';
-import base from '../Config/base.js';
+  Button
+} from "react-native";
+import base from "../Config/base.js";
 
 export default class ForgotPasswordScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: ''
-    }
+      email: ""
+    };
     this._onForgotPress = this._onForgotPress.bind(this);
   }
-   async _onForgotPress() {
-     base.auth().sendPasswordResetEmail(this.state.email).then(function() {
-       console.log('email sent to' + `${this.state.email}`);
-     }).catch(function(error) {
-       console.log(error);
-     });
-   }
+  async _onForgotPress() {
+    base
+      .auth()
+      .sendPasswordResetEmail(this.state.email)
+      .then(function() {
+        console.log("email sent to" + `${this.state.email}`);
+      });
+    this.setState({
+      email: ""
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
 
   render() {
-    return(
-      <View >
-      <TouchableWithoutFeedback style={styles.container}>
-        <View>
-          <TextInput
-            placeholder='enter email'
-            onChangeText={(email) => this.setState({email})}
-            autoCapitalize="none"
-          />
+    return (
+      <View>
+        <TouchableWithoutFeedback style={styles.container}>
           <View>
-            <Button title='Send new password' onPress={this._onForgotPress } />
+            <TextInput
+              placeholder="enter email"
+              onChangeText={email => this.setState({ email })}
+              autoCapitalize="none"
+            />
+            <View>
+              <Button title="Send new password" onPress={this._onForgotPress} />
+            </View>
           </View>
-        </View>
         </TouchableWithoutFeedback>
       </View>
-
-    )
-  };
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   buttoncontainer: {
-    padding: 0,
-  },
-
+    padding: 0
+  }
 });

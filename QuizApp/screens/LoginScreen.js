@@ -27,9 +27,23 @@ export default class LoginScreen extends React.Component {
       password: "",
       response: "",
       loggedin: "",
-      username: ""
+      username: "",
+      loggedin: false
     };
     this.login = this.login.bind(this);
+    this.email = React.createRef();
+    this.password = React.createRef();
+  }
+
+  componentDidMount() {
+    var user = base.auth().currentUser;
+    if (user !== null) {
+      this.setState({
+        loggedin: true
+      });
+      this.props.navigation.navigate("Home");
+      console.log(user);
+    }
   }
   async login() {
     try {
@@ -40,7 +54,6 @@ export default class LoginScreen extends React.Component {
       this.setState({
         response: "Logged In!"
       });
-
       setTimeout(() => {
         this.props.navigation.navigate("Home");
       }, 1500);
@@ -51,7 +64,6 @@ export default class LoginScreen extends React.Component {
     }
   }
   render() {
-    console.log(this.props.navigation);
     return (
       <ScrollView style={styles.container}>
         <Text>QUIZ!T</Text>
