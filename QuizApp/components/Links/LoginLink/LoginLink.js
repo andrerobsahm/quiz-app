@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, TouchableHighlight, StyleSheet } from "react-native";
+import Colors from "../../../constants/Colors";
 
 const LoginLink = ({ navigation }) => (
   <TouchableHighlight
@@ -7,7 +8,7 @@ const LoginLink = ({ navigation }) => (
     underlayColor="transparent"
     style={styles.newgamelink}
   >
-    <Text>Logga in här!</Text>
+    <Text style={{ color: Colors.white }}>Logga in här!</Text>
   </TouchableHighlight>
 );
 

@@ -85,6 +85,7 @@ export default class SignUpScreen extends React.Component {
               placeholder="Lösenord"
               onChangeText={password => this.setState({ password })}
               autoCapitalize="none"
+              secureTextEntry={true}
               style={styles.input}
             />
           </View>
@@ -96,7 +97,7 @@ export default class SignUpScreen extends React.Component {
           <Text style={styles.response}>{this.state.response}</Text>
         </View>
         <View style={styles.row}>
-          <Text>Har du redan ett konto? </Text>
+          <Text style={{ color: Colors.grey }}>Har du redan ett konto? </Text>
           <LoginLink navigation={this.props.navigation} />
         </View>
       </View>
