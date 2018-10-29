@@ -12,7 +12,7 @@ import {
   TextInput,
   AsyncStorage
 } from "react-native";
-import colors from "../constants/Colors";
+import Colors from "../constants/Colors";
 import base from "../Config/base.js";
 import HomeScreen from "./HomeScreen";
 import SignUpLink from "../components/Links/SignUpLink/SignUpLink";
@@ -117,8 +117,8 @@ export default class LoginScreen extends React.Component {
         <View>
           <ForgotPassword navigation={this.props.navigation} />
         </View>
-        <View>
-          <Text>Har du inget konto?</Text>
+        <View style={styles.row}>
+          <Text style={{ color: Colors.grey }}>Har du inget konto? </Text>
           <SignUpLink navigation={this.props.navigation} />
         </View>
       </View>
@@ -137,9 +137,12 @@ const styles = StyleSheet.create({
     height: 50,
     width: 304,
     borderRadius: 25,
-    backgroundColor: colors.bgWhite,
+    backgroundColor: Colors.bgWhite,
     textAlign: "center",
     fontSize: 15,
     marginBottom: 20
+  },
+  row: {
+    flexDirection: "row"
   }
 });
