@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   TouchableWithoutFeedback,
   View,
   TextInput,
@@ -29,7 +30,8 @@ export default class SignUpScreen extends React.Component {
       password: "",
       response: "",
       loggedin: "",
-      uid: ""
+      uid: "",
+      secureText: true
     };
 
     this.signup = this.signup.bind(this);
@@ -71,6 +73,12 @@ export default class SignUpScreen extends React.Component {
       });
     }
   }
+
+  seeSecureText = () => {
+    this.setState({
+      secureText: !this.state.secureText
+    });
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -93,10 +101,14 @@ export default class SignUpScreen extends React.Component {
             />
             <TextInput
               placeholder="Lösenord"
+              secureTextEntry={this.state.secureText}
               onChangeText={password => this.setState({ password })}
               autoCapitalize="none"
               style={styles.input}
             />
+            <TouchableHighlight onPress={this.seeSecureText}>
+              <Text>tryck för att se</Text>
+            </TouchableHighlight>
           </View>
         </TouchableWithoutFeedback>
         <View>
