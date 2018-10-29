@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   TouchableWithoutFeedback,
   View,
   TextInput,
@@ -33,7 +34,8 @@ export default class LoginScreen extends React.Component {
       response: "",
       loggedin: "",
       username: "",
-      loggedin: false
+      loggedin: false,
+      secureText: true
     };
     this.login = this.login.bind(this);
   }
@@ -67,11 +69,18 @@ export default class LoginScreen extends React.Component {
     }
   }
 
+  seeSecureText = () => {
+    this.setState({
+      secureText: !this.state.secureText
+    });
+  };
+
   // _storeUser(user) {
   //   AsyncStorage.setItem("person", JSON.stringify(user));
   // }
 
   render() {
+    console.log(this.state.secureText);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
@@ -87,11 +96,14 @@ export default class LoginScreen extends React.Component {
               />
               <TextInput
                 placeholder="Lösenord"
+                secureTextEntry={this.state.secureText}
                 onChangeText={password => this.setState({ password })}
                 autoCapitalize="none"
-                secureTextEntry={true}
                 style={styles.input}
               />
+              <TouchableHighlight onPress={this.seeSecureText}>
+                <Text>tryck för att se</Text>
+              </TouchableHighlight>
 
               <View>
                 <ButtonComponent title="Logga in" onPress={this.login} />
