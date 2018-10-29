@@ -11,12 +11,16 @@ import {
   TextInput,
   Button
 } from "react-native";
-import colors from "../constants/Colors";
+import Colors from "../constants/Colors";
 import base from "../Config/base";
 import LoginLink from "../components/Links/LoginLink/LoginLink";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 
 export default class SignUpScreen extends React.Component {
+  static navigationOptions = {
+    header: null
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -59,8 +63,11 @@ export default class SignUpScreen extends React.Component {
   }
   render() {
     return (
-      <View>
-        <TouchableWithoutFeedback style={styles.container}>
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.h1}>Registrera</Text>
+        </View>
+        <TouchableWithoutFeedback>
           <View>
             <TextInput
               placeholder="Användarnamn"
@@ -102,14 +109,20 @@ export default class SignUpScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "space-around",
     paddingTop: 15,
-    backgroundColor: "#fff"
+    backgroundColor: Colors.black
+  },
+  h1: {
+    fontSize: 36,
+    color: Colors.bgWhite
   },
   input: {
     height: 50,
     width: 304,
     borderRadius: 25,
-    backgroundColor: colors.bgWhite,
+    backgroundColor: Colors.bgWhite,
     textAlign: "center",
     fontSize: 15,
     marginBottom: 20

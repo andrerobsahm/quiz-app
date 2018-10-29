@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View,
-  TextInput
+  TextInput,
+  AsyncStorage
 } from "react-native";
 import colors from "../constants/Colors";
 import base from "../Config/base.js";
@@ -20,6 +21,10 @@ import { MonoText } from "../components/StyledText";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 
 export default class LoginScreen extends React.Component {
+  static navigationOptions = {
+    header: null
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -50,10 +55,15 @@ export default class LoginScreen extends React.Component {
       });
     }
   }
+
+  // _storeUser(user) {
+  //   AsyncStorage.setItem("person", JSON.stringify(user));
+  // }
+
   render() {
     console.log(this.props.navigation);
     return (
-      <ScrollView style={styles.container}>
+      <View style={styles.container}>
         <Text>QUIZ!T</Text>
         <Text>Utmana dina vänner. Eller dig själv!</Text>
         <View>
@@ -69,6 +79,7 @@ export default class LoginScreen extends React.Component {
                 placeholder="Lösenord"
                 onChangeText={password => this.setState({ password })}
                 autoCapitalize="none"
+                secureTextEntry={true}
                 style={styles.input}
               />
 
@@ -88,7 +99,7 @@ export default class LoginScreen extends React.Component {
           <Text>Har du inget konto?</Text>
           <SignUpLink navigation={this.props.navigation} />
         </View>
-      </ScrollView>
+      </View>
     );
   }
 }
@@ -96,6 +107,8 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
+    justifyContent: "space-around",
     paddingTop: 15
   },
   input: {
