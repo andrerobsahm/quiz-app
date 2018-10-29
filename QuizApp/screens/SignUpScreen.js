@@ -24,7 +24,8 @@ export default class SignUpScreen extends React.Component {
       username: "",
       password: "",
       response: "",
-      loggedin: ""
+      loggedin: "",
+      uid: ""
     };
 
     this.signup = this.signup.bind(this);
@@ -35,14 +36,23 @@ export default class SignUpScreen extends React.Component {
       await base
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password);
-      base
-        .database()
-        .ref("users")
-        .push({
-          email: this.state.email,
-          username: this.state.username,
-          loggedin: true
+      var user = base.auth().currentUser;
+      if (user != null) {
+        this.setState({
+          email: user.email,
+          uid: user.uid,
+          name: user.displayName
         });
+        base
+          .database()
+          .ref("users")
+          .push({
+            email: this.state.email,
+            username: this.state.username,
+            uid: user.uid,
+            loggedin: true
+          });
+      }
 
       this.setState({
         response: "account created"

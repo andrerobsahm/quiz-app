@@ -31,8 +31,6 @@ export default class LoginScreen extends React.Component {
       loggedin: false
     };
     this.login = this.login.bind(this);
-    this.email = React.createRef();
-    this.password = React.createRef();
   }
 
   componentDidMount() {
