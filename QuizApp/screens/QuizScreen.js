@@ -23,8 +23,8 @@ class QuestionList extends Component {
   }
 
   randomAndLimit(questionList) {
-    const numberOfQuestions = 20;
-    const limit = 10;
+    const numberOfQuestions = 6;
+    const limit = 4;
     const randomList = [];
     for (var i = 0; i < limit; i++) {
       let randomIndex = Math.floor(Math.random() * numberOfQuestions);
@@ -35,9 +35,7 @@ class QuestionList extends Component {
 
   _handleResponse = async response => {
     questionList = await response.json();
-
     randomList = this.randomAndLimit(questionList);
-    console.log(randomList);
     if (!response.ok) {
       console.log("error");
     }
@@ -58,6 +56,15 @@ class QuestionList extends Component {
     });
   };
 
+  progress = () => {
+    timer = 15;
+    const wrongAnswer = [];
+    for (var i = 0; i < 5; i++) {
+      randomList.push("wrongAnswer");
+    }
+    return wrongAnswer;
+  };
+
   renderQuestions() {
     const question = this.state.questions[this.state.questionsanswers];
     return (
@@ -67,6 +74,7 @@ class QuestionList extends Component {
             <Text style={styles.category}>{question.category}</Text>
             <Text style={styles.question}>{question.question}</Text>
             <AnswersButton
+              progress={this.progress}
               score={this._scoreCounter}
               counter={this._counter}
               correct={question.correct_answer}
