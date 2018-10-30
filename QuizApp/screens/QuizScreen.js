@@ -14,7 +14,7 @@ class QuestionList extends Component {
 
   _getData() {
     let data = fetch(
-      "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty.limitToLast=10"
+      "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty"
     )
       .then(this._handleResponse)
       .catch(error => {
@@ -22,15 +22,28 @@ class QuestionList extends Component {
       });
   }
 
-  _handleResponse = async response => {
-    const questionList = await response.json();
+  randomAndLimit(questionList) {
+    const numberOfQuestions = 20;
+    const limit = 10;
+    const randomList = [];
+    for (var i = 0; i < limit; i++) {
+      let randomIndex = Math.floor(Math.random() * numberOfQuestions);
+      randomList.push(questionList[randomIndex]);
+    }
+    return randomList;
+  }
 
+  _handleResponse = async response => {
+    questionList = await response.json();
+
+    randomList = this.randomAndLimit(questionList);
+    console.log(randomList);
     if (!response.ok) {
       console.log("error");
     }
 
     this.setState({
-      questions: questionList
+      questions: randomList
     });
   };
 
