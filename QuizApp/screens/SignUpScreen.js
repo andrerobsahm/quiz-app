@@ -42,12 +42,14 @@ export default class SignUpScreen extends React.Component {
       await base
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password);
+      user.updateProfile({ displayName: this.state.username });
+
       var user = base.auth().currentUser;
       if (user != null) {
         this.setState({
           email: user.email,
           uid: user.uid,
-          name: user.displayName
+          username: user.displayName
         });
         base
           .database()

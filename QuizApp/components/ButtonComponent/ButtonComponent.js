@@ -7,7 +7,13 @@ const ButtonComponent = props => {
   return (
     <LinearGradient
       colors={[Colors.pink, Colors.orange]}
-      style={{ width: 304, height: 50, borderRadius: 25 }}
+      style={{
+        width: 304,
+        height: 50,
+        borderRadius: 25,
+        marginBottom: 10,
+        marginTop: 10
+      }}
       start={[0.1, 0]}
       end={[0.5, 0]}
     >

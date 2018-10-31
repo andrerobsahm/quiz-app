@@ -9,6 +9,9 @@ import {
   TextInput,
   Button
 } from "react-native";
+import Colors from "../constants/Colors";
+import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
+
 import base from "../Config/base.js";
 
 export default class ForgotPasswordScreen extends React.Component {
@@ -42,9 +45,13 @@ export default class ForgotPasswordScreen extends React.Component {
               placeholder="enter email"
               onChangeText={email => this.setState({ email })}
               autoCapitalize="none"
+              style={styles.input}
             />
             <View>
-              <Button title="Send new password" onPress={this._onForgotPress} />
+              <ButtonComponent
+                title="Skicka nytt lösenord"
+                onPress={this._onForgotPress}
+              />
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -56,5 +63,14 @@ export default class ForgotPasswordScreen extends React.Component {
 const styles = StyleSheet.create({
   buttoncontainer: {
     padding: 0
+  },
+  input: {
+    height: 50,
+    width: 304,
+    borderRadius: 25,
+    backgroundColor: Colors.bgWhite,
+    textAlign: "center",
+    fontSize: 15,
+    marginBottom: 20
   }
 });
