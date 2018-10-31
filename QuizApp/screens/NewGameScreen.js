@@ -10,7 +10,9 @@ import {
 } from "react-native";
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
-import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
+import PlayGame from "../components/Links/PlayGame/PlayGame";
+import PlayRandom from "../components/Links/PlayRandom/PlayRandom";
+import PlayFriend from "../components/Links/PlayFriend/PlayFriend";
 
 export default class NewGameScreen extends React.Component {
   render() {
@@ -21,9 +23,9 @@ export default class NewGameScreen extends React.Component {
       >
         <Text>Nytt spel</Text>
 
-        <ButtonComponent title="Spela själv" />
-        <ButtonComponent title="Spela mot random spelare" />
-        <ButtonComponent title="Spela mot en vän" />
+        <PlayGame navigation={this.props.navigation} />
+        <PlayRandom navigation={this.props.navigation} />
+        <PlayFriend navigation={this.props.navigation} />
       </View>
     );
   }

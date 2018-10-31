@@ -2,7 +2,11 @@ import React from "react";
 import { LinearGradient } from "expo";
 import Colors from "../../constants/Colors";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-
+// <TouchableOpacity
+// color={this.props.focused ? Colors.gradient : Colors.gradient}
+// onPress={() => props.onPress()}
+// >
+// </TouchableOpacity>
 const ButtonComponent = props => {
   return (
     <LinearGradient
@@ -18,12 +22,7 @@ const ButtonComponent = props => {
       end={[0.5, 0]}
     >
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          // color={this.props.focused ? Colors.gradient : Colors.gradient}
-          onPress={() => props.onPress()}
-        >
-          <Text style={styles.title}>{props.title.toUpperCase()}</Text>
-        </TouchableOpacity>
+        <Text style={styles.title}>{props.title.toUpperCase()}</Text>
       </View>
     </LinearGradient>
   );
