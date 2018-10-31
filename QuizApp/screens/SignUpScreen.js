@@ -2,7 +2,6 @@ import React from "react";
 import {
   Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -42,25 +41,26 @@ export default class SignUpScreen extends React.Component {
       await base
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password);
-      user.updateProfile({ displayName: this.state.username });
 
-      var user = base.auth().currentUser;
-      if (user != null) {
-        this.setState({
-          email: user.email,
-          uid: user.uid,
-          username: user.displayName
+      // if (user != null) {
+      //   this.setState({
+      //     email: user.email,
+      //     username: user.username,
+      //     uid: user.uid
+      //   });
+      // }
+      //
+      const user = base.auth().currentUser;
+
+      base
+        .database()
+        .ref("users/")
+        .push({
+          email: this.state.email,
+          username: this.state.username,
+          uid: user.uid
+          // loggedin: true
         });
-        base
-          .database()
-          .ref("users")
-          .push({
-            email: this.state.email,
-            username: this.state.username,
-            uid: user.uid,
-            loggedin: true
-          });
-      }
 
       this.setState({
         response: "account created"
@@ -76,11 +76,13 @@ export default class SignUpScreen extends React.Component {
     }
   }
 
+  //see password
   seeSecureText = () => {
     this.setState({
       secureText: !this.state.secureText
     });
   };
+
   render() {
     return (
       <View style={styles.container}>
@@ -106,11 +108,10 @@ export default class SignUpScreen extends React.Component {
               secureTextEntry={this.state.secureText}
               onChangeText={password => this.setState({ password })}
               autoCapitalize="none"
-              secureTextEntry={true}
               style={styles.input}
             />
             <TouchableHighlight onPress={this.seeSecureText}>
-              <Text>tryck för att se</Text>
+              <Text style={{ color: "#fff" }}>tryck för att se</Text>
             </TouchableHighlight>
           </View>
         </TouchableWithoutFeedback>
@@ -134,8 +135,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 100,
-    backgroundColor: Colors.black
+    paddingTop: 100
+    // backgroundColor: Colors.black
   },
   h1: {
     fontSize: 36,
