@@ -2,7 +2,6 @@ import React from "react";
 import {
   Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -30,7 +29,7 @@ export default class SignUpScreen extends React.Component {
       password: "",
       response: "",
       loggedin: "",
-      uid: "",
+      // uid: "",
       secureText: true
     };
 
@@ -42,28 +41,24 @@ export default class SignUpScreen extends React.Component {
       await base
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password);
-      user.updateProfile({ displayName: this.state.username });
 
-      var user = base.auth().currentUser;
-      if (user != null) {
-        this.setState({
-          email: user.email,
-          uid: user.uid,
-          username: user.displayName
+      // const user = base.auth().currentUser;
+
+      base
+        .database()
+        .ref("users/")
+        .push({
+          email: this.state.email,
+          username: this.state.username,
+          uid: base.auth().currentUser.uid
+          // loggedin: true
         });
-        base
-          .database()
-          .ref("users")
-          .push({
-            email: this.state.email,
-            username: this.state.username,
-            uid: user.uid,
-            loggedin: true
-          });
-      }
+      base
+        .auth()
+        .currentUser.updateProfile({ displayName: this.state.username });
 
       this.setState({
-        response: "account created"
+        response: "Konto skapat"
       });
 
       setTimeout(() => {
@@ -74,13 +69,15 @@ export default class SignUpScreen extends React.Component {
         response: error.toString()
       });
     }
-  }
+  } //end signup
 
+  //see password
   seeSecureText = () => {
     this.setState({
       secureText: !this.state.secureText
     });
   };
+
   render() {
     return (
       <View style={styles.container}>
@@ -106,11 +103,10 @@ export default class SignUpScreen extends React.Component {
               secureTextEntry={this.state.secureText}
               onChangeText={password => this.setState({ password })}
               autoCapitalize="none"
-              secureTextEntry={true}
               style={styles.input}
             />
             <TouchableHighlight onPress={this.seeSecureText}>
-              <Text>tryck för att se</Text>
+              <Text style={{ color: "#fff" }}>tryck för att se</Text>
             </TouchableHighlight>
           </View>
         </TouchableWithoutFeedback>
@@ -134,8 +130,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 100,
-    backgroundColor: Colors.black
+    paddingTop: 100
+    // backgroundColor: Colors.black
   },
   h1: {
     fontSize: 36,
