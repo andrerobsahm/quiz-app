@@ -25,45 +25,37 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: {},
       uid: "",
       email: "",
       username: "",
       response: "",
       photoUrl: ""
     };
-    this.getuser = this.getuser.bind(this);
+
+    this.getUserData = this.getUserData.bind(this);
   }
 
-  readUserData() {
-    base
-      .database()
-      .ref("users/")
-      .once("value", function(snapshot) {
-        console.log(snapshot.val());
-      });
+  getUserData() {
+    base.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+        // console.log(user);
+      } else {
+        this.setState({ user: null });
+        console.log("User not logged in");
+      }
+    });
   }
-
-  getuser = () => {
-    const user = base.auth().currentUser;
-
-    if (user != null) {
-      this.setState({
-        uid: user.uid,
-        email: user.email,
-        username: user.username,
-        photoUrl: user.photoURL
-      });
-    }
-  };
 
   componentDidMount() {
-    this.readUserData();
+    this.getUserData();
   }
 
   render() {
-    console.log(this.state.uid);
+    const { user } = this.state;
+
     console.log(this.state.username);
-    console.log(this.state.email);
 
     return (
       <View style={styles.container}>
@@ -79,9 +71,9 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-          <View>
-            <Text>{this.state.username}</Text>
-          </View>
+          {user && <Text>{this.state.username}</Text>}
+
+          <View />
 
           <View style={styles.getStartedContainer}>
             <LinkNewGame navigation={this.props.navigation} />

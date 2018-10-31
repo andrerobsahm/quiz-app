@@ -29,7 +29,7 @@ export default class SignUpScreen extends React.Component {
       password: "",
       response: "",
       loggedin: "",
-      uid: "",
+      // uid: "",
       secureText: true
     };
 
@@ -42,15 +42,7 @@ export default class SignUpScreen extends React.Component {
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password);
 
-      // if (user != null) {
-      //   this.setState({
-      //     email: user.email,
-      //     username: user.username,
-      //     uid: user.uid
-      //   });
-      // }
-      //
-      const user = base.auth().currentUser;
+      // const user = base.auth().currentUser;
 
       base
         .database()
@@ -58,12 +50,15 @@ export default class SignUpScreen extends React.Component {
         .push({
           email: this.state.email,
           username: this.state.username,
-          uid: user.uid
+          uid: base.auth().currentUser.uid
           // loggedin: true
         });
+      base
+        .auth()
+        .currentUser.updateProfile({ displayName: this.state.username });
 
       this.setState({
-        response: "account created"
+        response: "Konto skapat"
       });
 
       setTimeout(() => {
@@ -74,7 +69,7 @@ export default class SignUpScreen extends React.Component {
         response: error.toString()
       });
     }
-  }
+  } //end signup
 
   //see password
   seeSecureText = () => {

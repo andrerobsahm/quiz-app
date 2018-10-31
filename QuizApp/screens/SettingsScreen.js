@@ -26,7 +26,7 @@ export default class SettingsScreen extends React.Component {
       password: "",
       response: "",
       photoUrl: "",
-      name: "",
+      username: "",
       emailVerified: "",
       uid: ""
     };
@@ -43,7 +43,7 @@ export default class SettingsScreen extends React.Component {
         email: user.email,
         photoUrl: user.photoURL,
         uid: user.uid,
-        name: user.displayName
+        username: user.username
       });
     }
   };
@@ -61,13 +61,14 @@ export default class SettingsScreen extends React.Component {
   };
 
   render() {
+    console.log(this.state.username);
     return (
       <View>
         <Text>Här kan du ändra ditt lösenord</Text>
         <Text>
           {this.state.email}
           {this.state.photoURL}
-          {this.state.name}
+          {this.state.username}
         </Text>
         <TouchableWithoutFeedback>
           <TextInput
