@@ -14,7 +14,7 @@ class QuestionList extends Component {
 
   _getData() {
     let data = fetch(
-      "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty.limitToLast=10"
+      "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty"
     )
       .then(this._handleResponse)
       .catch(error => {
@@ -22,15 +22,26 @@ class QuestionList extends Component {
       });
   }
 
-  _handleResponse = async response => {
-    const questionList = await response.json();
+  randomAndLimit(questionList) {
+    const numberOfQuestions = 6;
+    const limit = 4;
+    const randomList = [];
+    for (var i = 0; i < limit; i++) {
+      let randomIndex = Math.floor(Math.random() * numberOfQuestions);
+      randomList.push(questionList[randomIndex]);
+    }
+    return randomList;
+  }
 
+  _handleResponse = async response => {
+    questionList = await response.json();
+    randomList = this.randomAndLimit(questionList);
     if (!response.ok) {
       console.log("error");
     }
 
     this.setState({
-      questions: questionList
+      questions: randomList
     });
   };
 
@@ -45,6 +56,15 @@ class QuestionList extends Component {
     });
   };
 
+  progress = () => {
+    timer = 15;
+    const wrongAnswer = [];
+    for (var i = 0; i < 5; i++) {
+      randomList.push("wrongAnswer");
+    }
+    return wrongAnswer;
+  };
+
   renderQuestions() {
     const question = this.state.questions[this.state.questionsanswers];
     return (
@@ -54,6 +74,7 @@ class QuestionList extends Component {
             <Text style={styles.category}>{question.category}</Text>
             <Text style={styles.question}>{question.question}</Text>
             <AnswersButton
+              progress={this.progress}
               score={this._scoreCounter}
               counter={this._counter}
               correct={question.correct_answer}
