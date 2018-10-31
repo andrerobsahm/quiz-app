@@ -10,6 +10,7 @@ class QuestionList extends Component {
 
   componentDidMount() {
     this._getData();
+    this._quizFinish();
   }
 
   _getData() {
@@ -55,9 +56,14 @@ class QuestionList extends Component {
       score: this.state.score + 1
     });
   };
-
+  _quizFinish = () => {
+    if (this.state.questions.length === this.state.questionsanswers) {
+      setTimeout(() => {
+        this.props.navigation.navigate("Home");
+      }, 15000);
+    }
+  };
   renderQuestions() {
-    console.log(this.state.questions);
     const question = this.state.questions[this.state.questionsanswers];
     return (
       <View style={styles.questionContainer}>

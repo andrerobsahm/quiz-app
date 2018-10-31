@@ -15,11 +15,11 @@ export default class AnswersButton extends Component {
       backgroundColor: "blue"
     };
   }
-  componentDidMount() {
-    setTimeout(() => {
-      this._onAnswerPress(this.progress());
-    }, 5000);
-  }
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     this._onAnswerPress(this.progress());
+  //   }, 5000);
+  // }
   _onAnswerPress = e => {
     if (e === this.props.correct) {
       this.setState({
