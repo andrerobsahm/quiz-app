@@ -56,16 +56,8 @@ class QuestionList extends Component {
     });
   };
 
-  progress = () => {
-    timer = 15;
-    const wrongAnswer = [];
-    for (var i = 0; i < 5; i++) {
-      randomList.push("wrongAnswer");
-    }
-    return wrongAnswer;
-  };
-
   renderQuestions() {
+    console.log(this.state.questions);
     const question = this.state.questions[this.state.questionsanswers];
     return (
       <View style={styles.questionContainer}>
@@ -74,7 +66,6 @@ class QuestionList extends Component {
             <Text style={styles.category}>{question.category}</Text>
             <Text style={styles.question}>{question.question}</Text>
             <AnswersButton
-              progress={this.progress}
               score={this._scoreCounter}
               counter={this._counter}
               correct={question.correct_answer}

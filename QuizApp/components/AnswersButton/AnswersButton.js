@@ -17,8 +17,8 @@ export default class AnswersButton extends Component {
   }
   componentDidMount() {
     setTimeout(() => {
-      this._onAnswerPress(this.props.progress());
-    }, 1500);
+      this._onAnswerPress(this.progress());
+    }, 5000);
   }
   _onAnswerPress = e => {
     if (e === this.props.correct) {
@@ -36,6 +36,15 @@ export default class AnswersButton extends Component {
       this.setState({ backgroundColor: "blue" });
     }, 1000);
   };
+
+  progress() {
+    timer = 15;
+    for (var i = 0; i < 4; i++) {
+      setTimeout(() => {
+        this._onAnswerPress("wrongAnswer");
+      }, 5000);
+    }
+  }
 
   render() {
     return (
