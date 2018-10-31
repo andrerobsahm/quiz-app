@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Image,
   Platform,
@@ -6,32 +6,71 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
-} from 'react-native';
-import { WebBrowser } from 'expo';
-import { MonoText } from '../components/StyledText';
-import LinkNewGame from '../components/Links/LinkNewGame/LinkNewGame';
-import ActiveGames from '../components/Links/ActiveGames/ActiveGames';
-import Friends from '../components/Links/Friends/Friends';
-import Statistics from '../components/Links/Statistics/Statistics';
-import Notifications from '../components/Links/Notifications/Notifications';
-import Settings from '../components/Links/Settings/Settings';
+  View
+} from "react-native";
+import base from "../Config/base.js";
+import { WebBrowser } from "expo";
+import { MonoText } from "../components/StyledText";
+import LinkNewGame from "../components/Links/LinkNewGame/LinkNewGame";
+import ActiveGames from "../components/Links/ActiveGames/ActiveGames";
+import Friends from "../components/Links/Friends/Friends";
+import Statistics from "../components/Links/Statistics/Statistics";
+import Notifications from "../components/Links/Notifications/Notifications";
+import Settings from "../components/Links/Settings/Settings";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
-    header: null,
+    header: null
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      response: "",
+      photoUrl: "",
+      name: "",
+      emailVerified: "",
+      uid: ""
+    };
+    this.getuser = this.getuser.bind(this);
+  }
+
+  getuser = () => {
+    var user = base.auth().currentUser;
+    if (user != null) {
+      this.setState({
+        emailVerified: user.emailVerified,
+        email: user.email,
+        photoUrl: user.photoURL,
+        uid: user.uid,
+        name: user.name
+      });
+    }
+  };
+
+  componentDidMount() {
+    this.getuser();
+  }
+
   render() {
+    console.log("Id: " + this.state.uid);
+    console.log("Username: " + this.state.name);
+    console.log("Email: " + this.state.email);
+
     return (
       <View style={styles.container}>
-        <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+        <ScrollView
+          style={styles.container}
+          contentContainerStyle={styles.contentContainer}
+        >
           <View style={styles.welcomeContainer}>
             <Image
               source={
                 __DEV__
-                  ? require('../assets/images/robot-dev.png')
-                  : require('../assets/images/robot-prod.png')
+                  ? require("../assets/images/robot-dev.png")
+                  : require("../assets/images/robot-prod.png")
               }
               style={styles.welcomeImage}
             />
@@ -40,20 +79,23 @@ export default class HomeScreen extends React.Component {
           <View style={styles.getStartedContainer}>
             {this._maybeRenderDevelopmentModeWarning()}
 
-            <Text style={styles.getStartedText}>Välkommen till Quiz-appen!</Text>
+            <Text>{this.state.username}</Text>
             <LinkNewGame navigation={this.props.navigation} />
             <ActiveGames navigation={this.props.navigation} />
             <Friends navigation={this.props.navigation} />
             <Notifications navigation={this.props.navigation} />
             <Settings navigation={this.props.navigation} />
           </View>
-
-
         </ScrollView>
 
         <View style={styles.helpContainer}>
-          <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-            <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
+          <TouchableOpacity
+            onPress={this._handleHelpPress}
+            style={styles.helpLink}
+          >
+            <Text style={styles.helpLinkText}>
+              Help, it didn’t automatically reload!
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -70,8 +112,8 @@ export default class HomeScreen extends React.Component {
 
       return (
         <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
+          Development mode is enabled, your app will be slower but you can use
+          useful development tools. {learnMoreButton}
         </Text>
       );
     } else {
@@ -84,12 +126,14 @@ export default class HomeScreen extends React.Component {
   }
 
   _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
+    WebBrowser.openBrowserAsync(
+      "https://docs.expo.io/versions/latest/guides/development-mode"
+    );
   };
 
   _handleHelpPress = () => {
     WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
+      "https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes"
     );
   };
 }
@@ -97,88 +141,82 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff"
   },
   developmentModeText: {
     marginBottom: 20,
-    color: 'rgba(0,0,0,0.4)',
+    color: "rgba(0,0,0,0.4)",
     fontSize: 14,
     lineHeight: 19,
-    textAlign: 'center',
+    textAlign: "center"
   },
   contentContainer: {
-    paddingTop: 30,
+    paddingTop: 30
   },
   welcomeContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 20
   },
   welcomeImage: {
     width: 100,
     height: 80,
-    resizeMode: 'contain',
+    resizeMode: "contain",
     marginTop: 3,
-    marginLeft: -10,
+    marginLeft: -10
   },
   getStartedContainer: {
-    alignItems: 'center',
-    marginHorizontal: 50,
+    alignItems: "center",
+    marginHorizontal: 50
   },
   homeScreenFilename: {
-    marginVertical: 7,
+    marginVertical: 7
   },
   codeHighlightText: {
-    color: 'rgba(96,100,109, 0.8)',
+    color: "rgba(96,100,109, 0.8)"
   },
   codeHighlightContainer: {
-    backgroundColor: 'rgba(0,0,0,0.05)',
+    backgroundColor: "rgba(0,0,0,0.05)",
     borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
+    paddingHorizontal: 4
   },
   tabBarInfoContainer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     ...Platform.select({
       ios: {
-        shadowColor: 'black',
+        shadowColor: "black",
         shadowOffset: { height: -3 },
         shadowOpacity: 0.1,
-        shadowRadius: 3,
+        shadowRadius: 3
       },
       android: {
-        elevation: 20,
-      },
+        elevation: 20
+      }
     }),
-    alignItems: 'center',
-    backgroundColor: '#fbfbfb',
-    paddingVertical: 20,
+    alignItems: "center",
+    backgroundColor: "#fbfbfb",
+    paddingVertical: 20
   },
   tabBarInfoText: {
     fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    textAlign: 'center',
+    color: "rgba(96,100,109, 1)",
+    textAlign: "center"
   },
   navigationFilename: {
-    marginTop: 5,
+    marginTop: 5
   },
   helpContainer: {
     marginTop: 15,
-    alignItems: 'center',
+    alignItems: "center"
   },
   helpLink: {
-    paddingVertical: 15,
+    paddingVertical: 15
   },
   helpLinkText: {
     fontSize: 14,
-    color: '#2e78b7',
-  },
+    color: "#2e78b7"
+  }
 });
