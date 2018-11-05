@@ -10,7 +10,6 @@ class QuestionList extends Component {
 
   componentDidMount() {
     this._getData();
-    this._quizFinish();
   }
 
   _getData() {
@@ -40,7 +39,6 @@ class QuestionList extends Component {
     if (!response.ok) {
       console.log("error");
     }
-
     this.setState({
       questions: randomList
     });
@@ -57,13 +55,24 @@ class QuestionList extends Component {
     });
   };
   _quizFinish = () => {
-    if (this.state.questions.length === this.state.questionsanswers) {
-      setTimeout(() => {
-        this.props.navigation.navigate("Home");
-      }, 15000);
+    if (this.state.questions !== null) {
+      if (this.state.questions.length <= this.state.questionsanswers) {
+        console.log("hej");
+        setTimeout(() => {
+          this.props.navigation.navigate("Home");
+        }, 1500);
+        this.setState({
+          questionsanswers: 0
+        });
+      } else {
+        console.log("hejdå");
+      }
     }
   };
   renderQuestions() {
+    console.log(this.state.questionsanswers);
+    console.log(this.state.questions.length);
+
     const question = this.state.questions[this.state.questionsanswers];
     return (
       <View style={styles.questionContainer}>

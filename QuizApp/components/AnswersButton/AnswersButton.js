@@ -40,9 +40,7 @@ export default class AnswersButton extends Component {
   progress() {
     timer = 15;
     for (var i = 0; i < 4; i++) {
-      setTimeout(() => {
-        this._onAnswerPress("wrongAnswer");
-      }, 5000);
+      this._onAnswerPress("wrongAnswer");
     }
   }
 

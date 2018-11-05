@@ -80,7 +80,6 @@ export default class LoginScreen extends React.Component {
   // }
 
   render() {
-    console.log(this.state.secureText);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
