@@ -33,29 +33,67 @@ export default class HomeScreen extends React.Component {
       photoUrl: ""
     };
 
-    this.getUserData = this.getUserData.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
 
-  getUserData() {
-    base.auth().onAuthStateChanged(user => {
+  // getUserData() {
+  //   base.auth().onAuthStateChanged(user => {
+  //     if (user) {
+  //       this.setState({ user });
+  //       // console.log(user);
+  //     } else {
+  //       this.setState({ user: null });
+  //       console.log("User not logged in");
+  //     }
+  //   });
+  //   return { user };
+  // }
+
+  // getuser = () => {
+  //   var user = base.auth().currentUser;
+  //   if (user != null) {
+  //     this.setState({
+  //       currentUser: user
+  //     });
+  //   }
+  // };
+
+  componentDidMount() {
+    // this.getUser();
+    base.auth().onAuthStateChanged(function(user) {
       if (user) {
-        this.setState({ user });
-        // console.log(user);
+        console.log(user.uid.username);
       } else {
-        this.setState({ user: null });
-        console.log("User not logged in");
+        console.log("no user logged in");
       }
     });
   }
 
-  componentDidMount() {
-    this.getUserData();
-  }
+  getUser = () => {
+    base.auth().onAuthStateChanged(user => {
+      if (user) {
+        const database = base.database();
+        const owner = database
+          .ref(`users`)
+          .orderByChild("uid")
+          .equalTo(`${user.uid}`);
+        if (owner) {
+          owner.on("value", snapshot => {
+            if (snapshot.val()) {
+              this.setState({ user: Object.entries(snapshot.val()) });
+              console.log(this.state.user);
+            }
+          });
+        }
+      } else {
+        console.log("no user logged in");
+      }
+    });
+  };
 
   render() {
     const { user } = this.state;
-
-    console.log(this.state.username);
+    console.log(user);
 
     return (
       <View style={styles.container}>
@@ -71,10 +109,9 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
-          {user && <Text>{this.state.username}</Text>}
 
+          <Text>{user && user.username}</Text>
           <View />
-
           <View style={styles.getStartedContainer}>
             <LinkNewGame navigation={this.props.navigation} />
             <ActiveGames navigation={this.props.navigation} />
