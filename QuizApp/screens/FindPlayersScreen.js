@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Image,
   Platform,
@@ -6,67 +6,92 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
+  TouchableHighlight,
   TouchableWithoutFeedback,
   View,
   TextInput,
-  Button,
-} from 'react-native';
-import base from '../Config/base';
-
+  Button
+} from "react-native";
+import base from "../Config/base";
 
 export default class FindPlayersScreen extends React.Component {
-  constructor(props){
-  super(props);
-  this.state={
-    emails:[],
-    response: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      emails: [],
+      response: ""
+    };
   }
+  componentDidMount() {
+    this._getData();
   }
-     async allplayers() {
-         try {
-             await base.database().ref('users').orderByChild('loggedin').equalTo(true).on('value', (data) =>{
-               console.log(data.toJSON());
-             })
-         } catch (error) {
-             // this.setState({
-             //     response: error.toString()
-             // })
-         }
+  _getData() {
+    let data = fetch(
+      "https://quiz-app-6a8dd.firebaseio.com/users.json?print=pretty"
+    )
+      .then(this._handleResponse)
+      .catch(error => {
+        console.log(error);
+      });
+    // try {
+    //     await base.database().ref('users').orderByChild('loggedin').equalTo(true).on('value', (data) =>{
+    //       console.log(data.toJSON());
+    //       .then(this._handleResponse)
+    //       .catch(error => {
+    //         console.log(error);
+    //       });
+    //     })
+    // } catch (error) {
+    // this.setState({
+    //     response: error.toString()
+    // })
+    // }
+  }
 
-     }
+  _handleResponse = async response => {
+    usersList = await response.json();
+    console.log(usersList);
+    if (!response.ok) {
+      console.log("error");
+    }
+    this.setState({
+      emails: usersList
+    });
+  };
+
+  // <View>
+  //   <TouchableHighlight onPress={this._allplayers}>
+  //     <View>
+  //       <Text>hitta spelare</Text>
+  //     </View>
+  //   </TouchableHighlight>
+  // </View>
+
   render() {
+    const users = this.state.emails;
+    console.log(users);
     return (
       <TouchableWithoutFeedback style={styles.container}>
         <View>
-
-          <View>
-            <Button title='search players' onPress={this.allplayers} />
-          </View>
-          <View>
-           <Text style={styles.response}>{this.state.response}</Text>
-          </View>
-          {this.state.emails.map((email, key) => {
-          return (
+          {users !== undefined && (
             <View>
-            <Text style={styles.response}>{email}</Text>
-
+              {users.map((email, key) => {
+                <View key={key}>
+                  <Text style={styles.response}>{email}</Text>
+                </View>;
+              })}
             </View>
-        );}
-
-        )}
-          <View>
-          </View>
+          )}
         </View>
       </TouchableWithoutFeedback>
     );
   }
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 15,
-    backgroundColor: '#fff',
-  },
+    backgroundColor: "#fff"
+  }
 });
