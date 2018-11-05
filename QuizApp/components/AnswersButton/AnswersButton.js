@@ -54,15 +54,20 @@ export default class AnswersButton extends Component {
             underlayColor="transparent"
             onPress={() => this._onAnswerPress(option)}
             style={[
-              { backgroundColor: this.state.backgroundColor },
+              {
+                backgroundColor: this.state.backgroundColor,
+                width: 304,
+                height: 50,
+                borderRadius: 25,
+                marginBottom: 10,
+                marginTop: 10
+              },
               ...styles.buttoncontainer
             ]}
           >
-            <Text>
-              <View>
-                <Text>{option}</Text>
-              </View>
-            </Text>
+            <View style={styles.answerTextContainer}>
+              <Text style={styles.answerText}>{option.toUpperCase()}</Text>
+            </View>
           </TouchableHighlight>
         ))}
       </View>
@@ -71,7 +76,17 @@ export default class AnswersButton extends Component {
 }
 
 const styles = StyleSheet.create({
-  buttoncontainer: {
-    padding: 0
+  buttoncontainer: {},
+  answerTextContainer: {
+    flex: 1,
+    alignContent: "center",
+    justifyContent: "center"
+  },
+  answerText: {
+    // color: Colors.white,
+    fontSize: 15,
+    fontWeight: "600",
+    lineHeight: 18,
+    textAlign: "center"
   }
 });

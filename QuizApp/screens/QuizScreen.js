@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 import AnswersButton from "../components/AnswersButton/AnswersButton";
+import Colors from "../constants/Colors";
+
 class QuestionList extends Component {
+  static navigationOptions = {
+    header: null
+  };
+
   state = {
     questions: [],
     questionsanswers: 0,
@@ -78,8 +84,12 @@ class QuestionList extends Component {
       <View style={styles.questionContainer}>
         {question !== undefined && (
           <React.Fragment>
-            <Text style={styles.category}>{question.category}</Text>
-            <Text style={styles.question}>{question.question}</Text>
+            <View>
+              <Text style={styles.category}>KATEGORI: {question.category}</Text>
+            </View>
+            <View>
+              <Text style={styles.question}>{question.question}</Text>
+            </View>
             <AnswersButton
               score={this._scoreCounter}
               counter={this._counter}
@@ -89,26 +99,44 @@ class QuestionList extends Component {
           </React.Fragment>
         )}
         <Text>
-          Du fick {this.state.score}/{this.state.questions.length}
+          Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
+          frågor
         </Text>
       </View>
     );
   }
 
   render() {
-    return <ScrollView>{this.renderQuestions()}</ScrollView>;
+    return (
+      <View style={styles.container}>
+        <Text>QUIZ!T</Text>
+        <View>{this.renderQuestions()}</View>
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    paddingTop: 20
+  },
   questionContainer: {
-    paddingTop: 10
+    flex: 1,
+    alignItems: "center",
+    paddingTop: 50,
+    justifyContent: "space-around"
   },
   category: {
-    fontSize: 14
+    fontSize: 14,
+    textAlign: "center"
   },
   question: {
-    fontSize: 18
+    //  color: Colors.white,
+    fontSize: 30,
+    textAlign: "center",
+    lineHeight: 39
   }
 });
 
