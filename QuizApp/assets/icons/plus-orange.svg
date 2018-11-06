@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Plus</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Dashboard" transform="translate(-95.000000, -395.000000)" fill="#FF7D75">
+            <g id="Menu-List" transform="translate(30.000000, 365.000000)">
+                <g id="Music" transform="translate(65.000000, 30.000000)">
+                    <g id="Plus">
+                        <path d="M20.7594444,9.75944444 L12.2417778,9.75944444 L12.2417778,1.24055556 C12.2405556,0.556111111 11.6844444,0 11,0 C10.3155556,0 9.75944444,0.556111111 9.75944444,1.24055556 L9.75944444,9.75822222 L1.24055556,9.75822222 C0.556111111,9.75944444 0,10.3155556 0,11 C0,11.6844444 0.556111111,12.2405556 1.24055556,12.2405556 L9.75822222,12.2405556 L9.75822222,20.7582222 C9.75944444,21.4438889 10.3155556,22 11,22 C11.6844444,22 12.2405556,21.4438889 12.2405556,20.7594444 L12.2405556,12.2417778 L20.7582222,12.2417778 C21.4438889,12.2405556 22,11.6844444 22,11 C22,10.3155556 21.4438889,9.75944444 20.7594444,9.75944444 Z" id="Path"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

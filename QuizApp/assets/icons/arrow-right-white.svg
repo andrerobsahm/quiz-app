@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="14px" viewBox="0 0 18 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>Arrow Right</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Walkthrough---one" transform="translate(-121.000000, -726.000000)" fill="#FFFFFF">
+            <g id="Arrow-Right" transform="translate(121.000000, 726.000000)">
+                <path d="M17.694,6.297 L11.425,0.285 C11.032,-0.092 10.399,-0.096 10.006,0.281 C9.615,0.656 9.614,1.262 10.013,1.645 L14.595,6.04 L1.003,6.04 C0.449,6.039 0,6.466 0,6.999 C0,7.529 0.453,7.959 1.003,7.959 L14.595,7.959 L10.013,12.354 C9.619,12.732 9.613,13.34 10.006,13.718 C10.397,14.093 11.025,14.098 11.425,13.714 L17.694,7.702 C18.102,7.31 18.102,6.688 17.694,6.297 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>

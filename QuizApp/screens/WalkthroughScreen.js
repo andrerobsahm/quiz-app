@@ -11,8 +11,7 @@ import {
 } from "react-native";
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
-const screenWidht = Dimensions.get("window").width;
-const screenHeight = Dimensions.get("window").height;
+const { width, height } = Dimensions.get("window");
 export default class WalkthroughScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -45,11 +44,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    width: screenWidht,
+    width: width,
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 100
-    // backgroundColor: Colors.black
   },
   screentext: {
     color: "white",
