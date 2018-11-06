@@ -37,6 +37,7 @@ export default class SignUpScreen extends React.Component {
   }
 
   async signup() {
+    console.log("hej");
     try {
       await base
         .auth()
@@ -62,7 +63,7 @@ export default class SignUpScreen extends React.Component {
       });
 
       setTimeout(() => {
-        this.props.navigation.navigate("Home");
+        this.props.navigation.navigate("Walkthrough");
       }, 1500);
     } catch (error) {
       this.setState({

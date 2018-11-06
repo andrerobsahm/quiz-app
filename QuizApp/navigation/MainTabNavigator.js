@@ -14,6 +14,7 @@ import FindPlayersScreen from "../screens/FindPlayersScreen";
 import QuizScreen from "../screens/QuizScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import NewGameScreen from "../screens/NewGameScreen";
+import WalkthroughScreen from "../screens/WalkthroughScreen";
 
 const HomeStack = createStackNavigator({
   Home: HomeScreen
@@ -168,6 +169,22 @@ NewGameStack.navigationOptions = {
     />
   )
 };
+const WalkthroughStack = createStackNavigator({
+  Walkthrough: WalkthroughScreen
+});
+WalkthroughStack.navigationOptions = {
+  tabBarLabel: "Walkthrough",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === "ios"
+          ? `ios-options${focused ? "" : "-outline"}`
+          : "md-options"
+      }
+    />
+  )
+};
 
 export default createBottomTabNavigator({
   LoginStack,
@@ -178,5 +195,6 @@ export default createBottomTabNavigator({
   FindPlayersStack,
   QuizStack,
   ForgotPasswordStack,
-  NewGameStack
+  NewGameStack,
+  WalkthroughStack
 });
