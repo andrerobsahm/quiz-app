@@ -63,7 +63,7 @@ class QuestionList extends Component {
     });
   };
   _quizFinish = () => {
-    if (this.state.questions.length <= this.state.questionsanswers) {
+    if (this.state.questionsanswers === this.state.questions.length - 1) {
       setTimeout(() => {
         this.props.navigation.navigate("Home");
       }, 1500);

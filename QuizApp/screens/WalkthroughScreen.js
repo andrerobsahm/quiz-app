@@ -48,22 +48,19 @@ export default class WalkthroughScreen extends React.Component {
   };
 
   redirect = () => {
-    if (this.state.index <= this.state.pages.length) {
-      console.log("hej");
-      setTimeout(() => {
-        this.props.navigation.navigate("Home");
-      }, 1500);
+    if (this.state.index === this.state.pages.length - 1) {
       this.setState({
         index: 0
       });
-    } else {
-      console.log("hejdå");
+      setTimeout(() => {
+        this.props.navigation.navigate("Home");
+      }, 100);
     }
   };
+
   render() {
     const page = this.state.pages[this.state.index];
     console.log(this.state.index);
-    console.log(this.state.pages.length);
     return (
       <ScrollView horizontal={true}>
         {page !== undefined && (
