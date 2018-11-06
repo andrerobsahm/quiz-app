@@ -18,7 +18,7 @@ export default class FindPlayersScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      emails: [],
+      users: [],
       response: ""
     };
   }
@@ -50,12 +50,11 @@ export default class FindPlayersScreen extends React.Component {
 
   _handleResponse = async response => {
     usersList = await response.json();
-    console.log(usersList);
     if (!response.ok) {
       console.log("error");
     }
     this.setState({
-      emails: usersList
+      users: usersList
     });
   };
 
@@ -68,16 +67,16 @@ export default class FindPlayersScreen extends React.Component {
   // </View>
 
   render() {
-    const users = this.state.emails;
+    const users = this.state.users;
     console.log(users);
     return (
       <TouchableWithoutFeedback style={styles.container}>
         <View>
           {users !== undefined && (
             <View>
-              {users.map((email, key) => {
+              {users.map((user, key) => {
                 <View key={key}>
-                  <Text style={styles.response}>{email}</Text>
+                  <Text style={styles.response}>{user.username}</Text>
                 </View>;
               })}
             </View>

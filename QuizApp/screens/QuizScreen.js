@@ -54,6 +54,7 @@ class QuestionList extends Component {
     this.setState({
       questionsanswers: this.state.questionsanswers + 1
     });
+    this._quizFinish();
   };
   _scoreCounter = () => {
     this.setState({
@@ -61,18 +62,16 @@ class QuestionList extends Component {
     });
   };
   _quizFinish = () => {
-    if (this.state.questions !== null) {
-      if (this.state.questions.length <= this.state.questionsanswers) {
-        console.log("hej");
-        setTimeout(() => {
-          this.props.navigation.navigate("Home");
-        }, 1500);
-        this.setState({
-          questionsanswers: 0
-        });
-      } else {
-        console.log("hejdå");
-      }
+    if (this.state.questions.length <= this.state.questionsanswers) {
+      console.log("hej");
+      setTimeout(() => {
+        this.props.navigation.navigate("Home");
+      }, 1500);
+      this.setState({
+        questionsanswers: 0
+      });
+    } else {
+      console.log("hejdå");
     }
   };
   renderQuestions() {
