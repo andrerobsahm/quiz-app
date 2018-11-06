@@ -94,13 +94,6 @@ export default class LoginScreen extends React.Component {
                 autoCapitalize="none"
                 style={styles.input}
               />
-              <TextInput
-                placeholder="Lösenord"
-                secureTextEntry={this.state.secureText}
-                onChangeText={password => this.setState({ password })}
-                autoCapitalize="none"
-                style={styles.input}
-              />
               <View style={styles.seeSecureText}>
                 <TextInput
                   placeholder="Lösenord"
