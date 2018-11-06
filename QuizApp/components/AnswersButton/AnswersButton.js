@@ -15,11 +15,15 @@ export default class AnswersButton extends Component {
       backgroundColor: "blue"
     };
   }
-  // componentDidMount() {
-  //   setTimeout(() => {
-  //     this._onAnswerPress(this.progress());
-  //   }, 5000);
-  // }
+  componentDidMount() {
+    this.myInterval = setInterval(() => {
+      this.progress();
+    }, 10000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.myInterval);
+  }
   _onAnswerPress = e => {
     if (e === this.props.correct) {
       this.setState({
@@ -38,9 +42,7 @@ export default class AnswersButton extends Component {
   };
 
   progress() {
-    for (var i = 0; i < 4; i++) {
-      this._onAnswerPress("wrongAnswer");
-    }
+    this._onAnswerPress("wrongAnswer");
   }
 
   render() {
