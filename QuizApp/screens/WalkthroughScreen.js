@@ -6,6 +6,7 @@ import {
   ScrollView,
   Dimensions,
   Text,
+  Button,
   TouchableOpacity,
   View
 } from "react-native";
@@ -19,22 +20,44 @@ export default class WalkthroughScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      something: ""
+      index: 0,
+      pages: [
+        {
+          title: "Spela själv eller mot vänner!",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          image: "friends"
+        },
+        {
+          title: "Frågor som utmanar!",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          image: "challanges"
+        },
+        {
+          title: "Håll koll på din utveckling!",
+          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          image: "progress"
+        }
+      ]
     };
   }
-
+  slide = () => {
+    this.setState({
+      index: this.state.index + 1
+    });
+  };
   render() {
+    const page = this.state.pages[this.state.index];
+    console.log(this.state.index);
     return (
       <ScrollView horizontal={true}>
-        <View style={styles.container}>
-          <Text>screen 1</Text>
-        </View>
-        <View style={styles.container}>
-          <Text>screen 2</Text>
-        </View>
-        <View style={styles.container}>
-          <Text style={styles.screentext}>screen 3</Text>
-        </View>
+        {page !== undefined && (
+          <View style={styles.container}>
+            <Text>{page.title}</Text>
+            <Text>{page.text}</Text>
+            <Text>{page.image}</Text>
+            <Button title="gå vidare" onPress={this.slide} />
+          </View>
+        )}
       </ScrollView>
     );
   }
