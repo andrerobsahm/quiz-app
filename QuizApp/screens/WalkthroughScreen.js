@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   Image,
   Platform,
@@ -41,13 +41,29 @@ export default class WalkthroughScreen extends React.Component {
     };
   }
   slide = () => {
+    this.redirect();
     this.setState({
       index: this.state.index + 1
     });
   };
+
+  redirect = () => {
+    if (this.state.index <= this.state.pages.length) {
+      console.log("hej");
+      setTimeout(() => {
+        this.props.navigation.navigate("Home");
+      }, 1500);
+      this.setState({
+        index: 0
+      });
+    } else {
+      console.log("hejdå");
+    }
+  };
   render() {
     const page = this.state.pages[this.state.index];
     console.log(this.state.index);
+    console.log(this.state.pages.length);
     return (
       <ScrollView horizontal={true}>
         {page !== undefined && (

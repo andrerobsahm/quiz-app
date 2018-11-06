@@ -64,15 +64,12 @@ class QuestionList extends Component {
   };
   _quizFinish = () => {
     if (this.state.questions.length <= this.state.questionsanswers) {
-      console.log("hej");
       setTimeout(() => {
         this.props.navigation.navigate("Home");
       }, 1500);
       this.setState({
         questionsanswers: 0
       });
-    } else {
-      console.log("hejdå");
     }
   };
   renderQuestions() {
