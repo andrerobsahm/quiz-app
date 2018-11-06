@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
 import AnswersButton from "../components/AnswersButton/AnswersButton";
+import Timer from "../components/Timer/Timer";
 import Colors from "../constants/Colors";
 
 class QuestionList extends Component {
@@ -75,9 +76,6 @@ class QuestionList extends Component {
     }
   };
   renderQuestions() {
-    console.log(this.state.questionsanswers);
-    console.log(this.state.questions.length);
-
     const question = this.state.questions[this.state.questionsanswers];
     return (
       <View style={styles.questionContainer}>
@@ -97,6 +95,7 @@ class QuestionList extends Component {
             />
           </React.Fragment>
         )}
+        <Timer />
         <Text>
           Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
           frågor
