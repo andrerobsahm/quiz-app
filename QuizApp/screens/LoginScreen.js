@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  Touchable,
   TouchableOpacity,
   TouchableHighlight,
   TouchableWithoutFeedback,
@@ -93,16 +94,21 @@ export default class LoginScreen extends React.Component {
                 autoCapitalize="none"
                 style={styles.input}
               />
-              <TextInput
-                placeholder="Lösenord"
-                secureTextEntry={this.state.secureText}
-                onChangeText={password => this.setState({ password })}
-                autoCapitalize="none"
-                style={styles.input}
-              />
-              <TouchableHighlight onPress={this.seeSecureText}>
-                <Text>tryck för att se</Text>
-              </TouchableHighlight>
+              <View style={styles.seeSecureText}>
+                <TextInput
+                  placeholder="Lösenord"
+                  secureTextEntry={this.state.secureText}
+                  onChangeText={password => this.setState({ password })}
+                  autoCapitalize="none"
+                  style={styles.input}
+                />
+                <TouchableWithoutFeedback onPress={this.seeSecureText}>
+                  <Image
+                    style={styles.seeSecureImage}
+                    source={require("../assets/images/showIcon.png")}
+                  />
+                </TouchableWithoutFeedback>
+              </View>
 
               <View>
                 <ButtonComponent title="Logga in" onPress={this.login} />
@@ -140,6 +146,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     marginBottom: 20
+  },
+  seeSecureImage: {
+    width: 30,
+    height: 18,
+    position: "absolute",
+    top: 16,
+    right: 12
+  },
+  seeSecureText: {
+    flexDirection: "row",
+    justifyContent: "flex-end"
   },
   row: {
     flexDirection: "row"

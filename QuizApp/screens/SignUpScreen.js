@@ -99,16 +99,21 @@ export default class SignUpScreen extends React.Component {
               autoCapitalize="none"
               style={styles.input}
             />
-            <TextInput
-              placeholder="Lösenord"
-              secureTextEntry={this.state.secureText}
-              onChangeText={password => this.setState({ password })}
-              autoCapitalize="none"
-              style={styles.input}
-            />
-            <TouchableHighlight onPress={this.seeSecureText}>
-              <Text style={{ color: "#fff" }}>tryck för att se</Text>
-            </TouchableHighlight>
+            <View style={styles.seeSecureText}>
+              <TextInput
+                placeholder="Lösenord"
+                secureTextEntry={this.state.secureText}
+                onChangeText={password => this.setState({ password })}
+                autoCapitalize="none"
+                style={styles.input}
+              />
+              <TouchableWithoutFeedback onPress={this.seeSecureText}>
+                <Image
+                  style={styles.seeSecureImage}
+                  source={require("../assets/images/showIcon.png")}
+                />
+              </TouchableWithoutFeedback>
+            </View>
           </View>
         </TouchableWithoutFeedback>
         <View>
@@ -131,8 +136,8 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 100
-    // backgroundColor: Colors.black
+    paddingTop: 100,
+    backgroundColor: Colors.black
   },
   h1: {
     fontSize: 36,
@@ -147,6 +152,18 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginBottom: 20
   },
+  seeSecureImage: {
+    width: 30,
+    height: 18,
+    position: "absolute",
+    top: 16,
+    right: 12
+  },
+  seeSecureText: {
+    flexDirection: "row",
+    justifyContent: "flex-end"
+  },
+
   row: {
     flexDirection: "row"
   }
