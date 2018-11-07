@@ -1,17 +1,29 @@
 import "react-native";
 import React, { Component } from "react";
-import { AppRegistry, Text, View, StyleSheet } from "react-native";
+import { AppRegistry, Image, Text, View, StyleSheet } from "react-native";
+const loadingImage = require("../../assets/icons/group-orange.svg");
 
 export default class Loading extends Component {
   render() {
     return (
       <View>
         <View>
-          <Text>Loading</Text>
+          <Image
+            source={loadingImage}
+            imageStyle={{ resizeMode: "stretch" }}
+            style={styles.loadingImage}
+          />
+          <Text>Hittar motståndare</Text>
         </View>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
+    flex: 1
+  }
+});

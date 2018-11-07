@@ -91,7 +91,6 @@ class QuestionList extends Component {
               counter={this._counter}
               correct={question.correct_answer}
               answers={question.options}
-              clear={this.state.clearTimer}
             />
           </React.Fragment>
         )}

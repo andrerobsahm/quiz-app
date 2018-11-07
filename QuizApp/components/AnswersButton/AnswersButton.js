@@ -17,12 +17,16 @@ export default class AnswersButton extends Component {
     };
   }
   componentDidMount() {
-    if (this.state.pressed) {
-      clearInterval(this.myTimerInterval);
-      this.myTimer();
-    } else {
-      this.myTimer();
-    }
+    // if (this.state.pressed) {
+    //   clearInterval(this.myTimerInterval);
+    //   this.myTimer();
+    // } else {
+    //   this.myTimer();
+    // }
+    // this.myTimer();
+    this.myTimerInterval = setInterval(() => {
+      this.progress();
+    }, 10000);
   }
 
   componentWillUnmount() {

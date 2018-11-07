@@ -13,7 +13,7 @@ export default class Timer extends Component {
     this.myInterval = setInterval(() => {
       if (this.state.timer === 0 || this.props.clear) {
         this.setState({
-          timer: 10
+          timer: 11
         });
       }
       this.setState({
