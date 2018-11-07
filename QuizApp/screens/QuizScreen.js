@@ -12,7 +12,8 @@ class QuestionList extends Component {
   state = {
     questions: [],
     questionsanswers: 0,
-    score: 0
+    score: 0,
+    clearTimer: false
   };
 
   componentDidMount() {
@@ -53,7 +54,8 @@ class QuestionList extends Component {
 
   _counter = () => {
     this.setState({
-      questionsanswers: this.state.questionsanswers + 1
+      questionsanswers: this.state.questionsanswers + 1,
+      clearTimer: !this.state.clearTimer
     });
     this._quizFinish();
   };
@@ -89,10 +91,11 @@ class QuestionList extends Component {
               counter={this._counter}
               correct={question.correct_answer}
               answers={question.options}
+              clear={this.state.clearTimer}
             />
           </React.Fragment>
         )}
-        <Timer />
+        <Timer clear={this.state.clearTimer} />
         <Text>
           Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
           frågor
