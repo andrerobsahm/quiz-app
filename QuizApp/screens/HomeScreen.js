@@ -8,7 +8,8 @@ import {
   View
 } from "react-native";
 import base from "../Config/base.js";
-import { WebBrowser } from "expo";
+// import { WebBrowser } from "expo";
+import Colors from "../constants/Colors";
 import { MonoText } from "../components/StyledText";
 import LinkNewGame from "../components/Links/LinkNewGame/LinkNewGame";
 import ActiveGames from "../components/Links/ActiveGames/ActiveGames";
@@ -25,79 +26,40 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
       uid: "",
-      email: "",
       username: "",
-      response: "",
+      email: "",
       photoUrl: ""
     };
 
-    this.getUser = this.getUser.bind(this);
+    this._getUser = this._getUser.bind(this);
   }
 
-  // getUserData() {
-  //   base.auth().onAuthStateChanged(user => {
-  //     if (user) {
-  //       this.setState({ user });
-  //       // console.log(user);
-  //     } else {
-  //       this.setState({ user: null });
-  //       console.log("User not logged in");
-  //     }
-  //   });
-  //   return { user };
-  // }
+  _getUser = () => {
+    const loggedinUser = base.auth().currentUser;
 
-  // getuser = () => {
-  //   var user = base.auth().currentUser;
-  //   if (user != null) {
-  //     this.setState({
-  //       currentUser: user
-  //     });
-  //   }
-  // };
-
-  componentDidMount() {
-    // this.getUser();
-    base.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        console.log(user.uid.username);
-      } else {
-        console.log("no user logged in");
-      }
-    });
-  }
-
-  getUser = () => {
-    base.auth().onAuthStateChanged(user => {
-      if (user) {
-        const database = base.database();
-        const owner = database
-          .ref(`users`)
-          .orderByChild("uid")
-          .equalTo(`${user.uid}`);
-        if (owner) {
-          owner.on("value", snapshot => {
-            if (snapshot.val()) {
-              this.setState({ user: Object.entries(snapshot.val()) });
-              console.log(this.state.user);
-            }
-          });
-        }
-      } else {
-        console.log("no user logged in");
-      }
-    });
+    if (loggedinUser != null) {
+      loggedinUser.providerData.forEach(profile => {
+        this.setState({
+          username: profile.displayName,
+          uid: profile.providerId,
+          email: profile.email,
+          photoUrl: profile.photoURL
+        });
+      });
+    }
   };
 
+  componentDidMount() {
+    this._getUser();
+  }
+
   render() {
-    const { user } = this.state;
-    console.log(user);
+    const user = this.state;
 
     return (
       <View style={styles.container}>
-        <View style={styles.container}>
+        <View>
           <View style={styles.welcomeContainer}>
             <Image
               source={
@@ -109,10 +71,13 @@ export default class HomeScreen extends React.Component {
               style={styles.welcomeImage}
             />
           </View>
+          <View>
+            <Text style={styles.profileText}>{user.username}</Text>
+          </View>
 
-          <Text>{user && user.username}</Text>
           <View />
           <View style={styles.getStartedContainer}>
+            <Text style={styles.codeHighlightText}>Länkar</Text>
             <LinkNewGame navigation={this.props.navigation} />
             <ActiveGames navigation={this.props.navigation} />
             <Friends navigation={this.props.navigation} />
@@ -128,7 +93,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: Colors.bgWhite,
     paddingTop: 30
   },
   welcomeContainer: {
@@ -155,32 +120,10 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     paddingHorizontal: 4
   },
-  tabBarInfoContainer: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    ...Platform.select({
-      ios: {
-        shadowColor: "black",
-        shadowOffset: { height: -3 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3
-      },
-      android: {
-        elevation: 20
-      }
-    }),
-    alignItems: "center",
-    backgroundColor: "#fbfbfb",
-    paddingVertical: 20
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: "rgba(96,100,109, 1)",
+  profileText: {
+    fontSize: 28,
+    lineHeight: 42,
+    color: Colors.black,
     textAlign: "center"
-  },
-  navigationFilename: {
-    marginTop: 5
   }
 });

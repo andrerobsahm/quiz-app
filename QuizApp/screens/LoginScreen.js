@@ -11,7 +11,8 @@ import {
   TouchableWithoutFeedback,
   View,
   TextInput,
-  AsyncStorage
+  AsyncStorage,
+  ImageBackground
 } from "react-native";
 import Colors from "../constants/Colors";
 import base from "../Config/base.js";
@@ -21,6 +22,8 @@ import ForgotPassword from "../components/Links/ForgotPassword/ForgotPassword";
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
+
+const backgroundImage = require("../assets/images/background-waves.png");
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -76,57 +79,59 @@ export default class LoginScreen extends React.Component {
     });
   };
 
-  // _storeUser(user) {
-  //   AsyncStorage.setItem("person", JSON.stringify(user));
-  // }
-
   render() {
     return (
-      <View style={styles.container}>
-        <Text>QUIZ!T</Text>
-        <Text>Utmana dina vänner. Eller dig själv!</Text>
-        <View>
-          <TouchableWithoutFeedback style={styles.container}>
-            <View>
-              <TextInput
-                placeholder="Email"
-                onChangeText={email => this.setState({ email })}
-                autoCapitalize="none"
-                style={styles.input}
-              />
-              <View style={styles.seeSecureText}>
+      <ImageBackground
+        source={backgroundImage}
+        imageStyle={{ resizeMode: "stretch" }}
+        style={styles.backgroundImage}
+      >
+        <View style={styles.container}>
+          <Text>QUIZ!T</Text>
+          <Text>Utmana dina vänner. Eller dig själv!</Text>
+          <View>
+            <TouchableWithoutFeedback style={styles.container}>
+              <View>
                 <TextInput
-                  placeholder="Lösenord"
-                  secureTextEntry={this.state.secureText}
-                  onChangeText={password => this.setState({ password })}
+                  placeholder="Email"
+                  onChangeText={email => this.setState({ email })}
                   autoCapitalize="none"
                   style={styles.input}
                 />
-                <TouchableWithoutFeedback onPress={this.seeSecureText}>
-                  <Image
-                    style={styles.seeSecureImage}
-                    source={require("../assets/images/showIcon.png")}
+                <View style={styles.seeSecureText}>
+                  <TextInput
+                    placeholder="Lösenord"
+                    secureTextEntry={this.state.secureText}
+                    onChangeText={password => this.setState({ password })}
+                    autoCapitalize="none"
+                    style={styles.input}
                   />
-                </TouchableWithoutFeedback>
-              </View>
+                  <TouchableWithoutFeedback onPress={this.seeSecureText}>
+                    <Image
+                      style={styles.seeSecureImage}
+                      source={require("../assets/images/showIcon.png")}
+                    />
+                  </TouchableWithoutFeedback>
+                </View>
 
-              <View>
-                <ButtonComponent title="Logga in" onPress={this.login} />
+                <View>
+                  <ButtonComponent title="Logga in" onPress={this.login} />
+                </View>
+                <View>
+                  <Text style={styles.response}>{this.state.response}</Text>
+                </View>
               </View>
-              <View>
-                <Text style={styles.response}>{this.state.response}</Text>
-              </View>
-            </View>
-          </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback>
+          </View>
+          <View>
+            <ForgotPassword navigation={this.props.navigation} />
+          </View>
+          <View style={styles.row}>
+            <Text style={{ color: Colors.grey }}>Har du inget konto? </Text>
+            <SignUpLink navigation={this.props.navigation} />
+          </View>
         </View>
-        <View>
-          <ForgotPassword navigation={this.props.navigation} />
-        </View>
-        <View style={styles.row}>
-          <Text style={{ color: Colors.grey }}>Har du inget konto? </Text>
-          <SignUpLink navigation={this.props.navigation} />
-        </View>
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -137,6 +142,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     paddingTop: 15
+  },
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
+    flex: 1
   },
   input: {
     height: 50,
