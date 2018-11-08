@@ -22,17 +22,6 @@ export default class NewGameScreen extends React.Component {
   };
   render() {
     return (
-<<<<<<< HEAD
-      <View
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <Text>Nytt spel</Text>
-        <Loading />
-        <PlayGame navigation={this.props.navigation} />
-        <PlayRandom navigation={this.props.navigation} />
-        <PlayFriend navigation={this.props.navigation} />
-=======
       <View style={styles.container}>
         <Text style={styles.h1}>Nytt spel</Text>
         <Text>
@@ -44,7 +33,6 @@ export default class NewGameScreen extends React.Component {
           <PlayRandom navigation={this.props.navigation} />
           <PlayFriend navigation={this.props.navigation} />
         </View>
->>>>>>> andre
       </View>
     );
   }
