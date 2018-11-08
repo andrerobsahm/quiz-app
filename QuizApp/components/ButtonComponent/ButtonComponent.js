@@ -3,7 +3,6 @@ import { LinearGradient } from "expo";
 import Colors from "../../constants/Colors";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 // <TouchableOpacity
-// color={this.props.focused ? Colors.gradient : Colors.gradient}
 // onPress={() => props.onPress()}
 // >
 // </TouchableOpacity>
