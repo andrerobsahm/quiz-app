@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  ScrollView
 } from "react-native";
 import base from "../Config/base.js";
 // import { WebBrowser } from "expo";
@@ -17,6 +18,7 @@ import Friends from "../components/Links/Friends/Friends";
 import Statistics from "../components/Links/Statistics/Statistics";
 import Notifications from "../components/Links/Notifications/Notifications";
 import Settings from "../components/Links/Settings/Settings";
+import HomeLinkBox from "../components/HomeLinkBox/HomeLinkBox";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -56,10 +58,11 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const user = this.state;
+    const { navigate } = this.props.navigation;
 
     return (
       <View style={styles.container}>
-        <View>
+        <ScrollView>
           <View style={styles.welcomeContainer}>
             <Image
               source={
@@ -84,7 +87,15 @@ export default class HomeScreen extends React.Component {
             <Notifications navigation={this.props.navigation} />
             <Settings navigation={this.props.navigation} />
           </View>
-        </View>
+          <View style={styles.linkBoxContainer}>
+            <HomeLinkBox title="Nytt spel" onPress={() => navigate("Quiz")} />
+            <HomeLinkBox title="Aktiva spel" />
+            <HomeLinkBox title="Statistik" />
+            <HomeLinkBox title="Vänner" />
+            <HomeLinkBox title="Notifikationer" />
+            <HomeLinkBox title="Inställningar" />
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -125,5 +136,10 @@ const styles = StyleSheet.create({
     lineHeight: 42,
     color: Colors.black,
     textAlign: "center"
+  },
+  linkBoxContainer: {
+    justifyContent: "center",
+    flexDirection: "row",
+    flexWrap: "wrap"
   }
 });
