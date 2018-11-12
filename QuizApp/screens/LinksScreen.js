@@ -1,19 +1,35 @@
-import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import React, { Component } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
 
-export default class LinksScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Links',
-  };
+const timer = () => {};
+export default class NewTimer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      remainingTime: 10
+    };
+  }
+
+  countdownTimer() {
+    this.setState({ remainingTime: 10 });
+    clearInterval(timer);
+    timer = setInterval(() => {
+      if (!this.state.remainingTime) {
+        clearInterval(timer);
+        return false;
+      }
+      this.setState(prevState => {
+        return { remainingTime: prevState.remainingTime - 1 };
+      });
+    }, 1000);
+  }
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
-      </ScrollView>
+      <View style={styles.container}>
+        <Text>Remaining time :{this.state.remainingTime}</Text>
+        <Button title="Start timer" onPress={() => this.countdownTimer()} />
+      </View>
     );
   }
 }
@@ -21,7 +37,7 @@ export default class LinksScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });

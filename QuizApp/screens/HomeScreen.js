@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import base from "../Config/base.js";
 // import { WebBrowser } from "expo";
+import * as Elements from "react-native-elements";
 import Colors from "../constants/Colors";
 import { MonoText } from "../components/StyledText";
 import LinkNewGame from "../components/Links/LinkNewGame/LinkNewGame";
@@ -19,6 +20,13 @@ import Statistics from "../components/Links/Statistics/Statistics";
 import Notifications from "../components/Links/Notifications/Notifications";
 import Settings from "../components/Links/Settings/Settings";
 import HomeLinkBox from "../components/HomeLinkBox/HomeLinkBox";
+
+import Plus from "../assets/icons/plus-orange.png";
+import Group from "../assets/icons/group-orange.png";
+import Level from "../assets/icons/level-orange.png";
+import Notification from "../assets/icons/notifications-orange.png";
+import Star from "../assets/icons/star-orange.png";
+import Setting from "../assets/icons/settings-orange.png";
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -64,18 +72,21 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <View style={styles.welcomeContainer}>
-            <Image
-              source={
-                __DEV__
-                  ? require("../assets/images/robot-dev.png")
-                  : require("../assets/images/robot-prod.png")
-              }
-              alt="Profile image"
-              style={styles.welcomeImage}
+            <Elements.Avatar
+              xlarge
+              rounded
+              source={{
+                uri:
+                  "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg"
+              }}
+              onPress={() => console.log("Works!")}
+              activeOpacity={0.7}
             />
           </View>
           <View>
-            <Text style={styles.profileText}>{user.username}</Text>
+            <Elements.Text h1 style={styles.profileText}>
+              {user.username}
+            </Elements.Text>
           </View>
 
           <View />
@@ -88,12 +99,36 @@ export default class HomeScreen extends React.Component {
             <Settings navigation={this.props.navigation} />
           </View>
           <View style={styles.linkBoxContainer}>
-            <HomeLinkBox title="Nytt spel" onPress={() => navigate("Quiz")} />
-            <HomeLinkBox title="Aktiva spel" />
-            <HomeLinkBox title="Statistik" />
-            <HomeLinkBox title="Vänner" />
-            <HomeLinkBox title="Notifikationer" />
-            <HomeLinkBox title="Inställningar" />
+            <HomeLinkBox
+              title="Nytt spel"
+              icon={Plus}
+              onPress={() => navigate("NewGame")}
+            />
+            <HomeLinkBox
+              title="Aktiva spel"
+              icon={Star}
+              onPress={() => navigate("Home")}
+            />
+            <HomeLinkBox
+              title="Statistik"
+              icon={Level}
+              onPress={() => navigate("Home")}
+            />
+            <HomeLinkBox
+              title="Vänner"
+              icon={Group}
+              onPress={() => navigate("Home")}
+            />
+            <HomeLinkBox
+              title="Notifikationer"
+              icon={Notification}
+              onPress={() => navigate("Home")}
+            />
+            <HomeLinkBox
+              title="Inställningar"
+              icon={Setting}
+              onPress={() => navigate("Settings")}
+            />
           </View>
         </ScrollView>
       </View>
@@ -132,7 +167,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4
   },
   profileText: {
-    fontSize: 28,
     lineHeight: 42,
     color: Colors.black,
     textAlign: "center"

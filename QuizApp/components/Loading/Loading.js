@@ -1,7 +1,7 @@
 import "react-native";
 import React, { Component } from "react";
 import { AppRegistry, Image, Text, View, StyleSheet } from "react-native";
-const loadingImage = require("../../assets/icons/group-orange.svg");
+const loadingImage = require("../../assets/icons/group-orange.png");
 
 export default class Loading extends Component {
   render() {
