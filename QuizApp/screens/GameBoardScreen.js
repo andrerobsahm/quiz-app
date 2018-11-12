@@ -1,10 +1,17 @@
 import React, { Component } from "react";
-import { ScrollView, View, Text, StyleSheet } from "react-native";
+import {
+  ScrollView,
+  View,
+  Text,
+  StyleSheet,
+  TouchableHighlight
+} from "react-native";
 import AnswersButton from "../components/AnswersButton/AnswersButton";
 import Timer from "../components/Timer/Timer";
 import Colors from "../constants/Colors";
+import base from "../Config/base";
 
-class QuestionList extends Component {
+class GameBoardScreen extends Component {
   static navigationOptions = {
     header: null
   };
@@ -13,14 +20,30 @@ class QuestionList extends Component {
     questions: [],
     questionsanswers: 0,
     score: 0,
-    clearTimer: false
+    clearTimer: false,
+    gameid: "",
+    playerOne: "",
+    playerTwo: "",
+    scorePlayerOne: 0,
+    scorePlayerTwo: 0
   };
 
   componentDidMount() {
-    this._getData();
+    // this.props.channel.bind("client-make-move", data => {
+    //   let moves = this.state.moves;
+    //   let id = this.ids[data.row_index][data.index]; // get the ID based on the row index and block index
+    //   moves[id] = data.piece; // set the piece
+    //
+    //   // update the UI
+    //   this.setState({
+    //     moves
+    //   });
+    //
+    //   this.updateScores.call(this, moves); // update the user scores
+    // });
   }
 
-  _getData() {
+  _getData = () => {
     let data = fetch(
       "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty"
     )
@@ -28,7 +51,17 @@ class QuestionList extends Component {
       .catch(error => {
         console.log(error);
       });
-  }
+    base
+      .database()
+      .ref("games/")
+      .set({
+        playerOne: this.state.username,
+        gameid: base.auth().currentUser.uid,
+        playerTwo: this.state.username,
+        scorePlayerOne: this.state.scorePlayerOne,
+        scorePlayerTwo: this.state.scorePlayerTwo
+      });
+  };
 
   randomAndLimit(questionList) {
     const numberOfQuestions = 6;
@@ -74,6 +107,7 @@ class QuestionList extends Component {
       });
     }
   };
+
   renderQuestions() {
     const question = this.state.questions[this.state.questionsanswers];
     return (
@@ -95,10 +129,17 @@ class QuestionList extends Component {
             <Timer clear={this.state.clearTimer} />
           </React.Fragment>
         )}
-        <Text>
-          Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
-          frågor
-        </Text>
+        <View style={styles.scores_container}>
+          <View style={styles.score}>
+            <Text style={styles.user_score}>{this.state.score}</Text>
+            <Text style={styles.username}>{this.props.username}</Text>
+          </View>
+
+          <View style={styles.score}>
+            <Text style={styles.user_score}>{this.state.score}</Text>
+            <Text style={styles.username}>{this.props.rival_username}</Text>
+          </View>
+        </View>
       </View>
     );
   }
@@ -107,7 +148,13 @@ class QuestionList extends Component {
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
-        <View>{this.renderQuestions()}</View>
+        <TouchableHighlight onPress={this._getData}>
+          <View>
+            <Text>Starta spel</Text>
+          </View>
+        </TouchableHighlight>
+
+        <ScrollView>{this.renderQuestions()}</ScrollView>
       </View>
     );
   }
@@ -138,4 +185,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default QuestionList;
+export default GameBoardScreen;

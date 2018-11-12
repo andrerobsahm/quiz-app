@@ -15,7 +15,7 @@ import QuizScreen from "../screens/QuizScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import NewGameScreen from "../screens/NewGameScreen";
 import WalkthroughScreen from "../screens/WalkthroughScreen";
-
+import GameBoardScreen from "../screens/GameBoardScreen";
 const HomeStack = createStackNavigator({
   Home: HomeScreen
 });
@@ -185,6 +185,22 @@ WalkthroughStack.navigationOptions = {
     />
   )
 };
+const GameBoardStack = createStackNavigator({
+  GameBoard: GameBoardScreen
+});
+GameBoardStack.navigationOptions = {
+  tabBarLabel: "GameBoard",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === "ios"
+          ? `ios-options${focused ? "" : "-outline"}`
+          : "md-options"
+      }
+    />
+  )
+};
 
 export default createBottomTabNavigator({
   LoginStack,
@@ -196,5 +212,6 @@ export default createBottomTabNavigator({
   QuizStack,
   ForgotPasswordStack,
   NewGameStack,
-  WalkthroughStack
+  WalkthroughStack,
+  GameBoardStack
 });

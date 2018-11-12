@@ -4,7 +4,7 @@ import ButtonComponent from "../../ButtonComponent/ButtonComponent";
 
 const PlayRandom = ({ navigation }) => (
   <TouchableHighlight
-    onPress={() => navigation.navigate("Quiz")}
+    onPress={() => navigation.navigate("GameBoard")}
     underlayColor="transparent"
     style={styles.newgamelink}
   >
