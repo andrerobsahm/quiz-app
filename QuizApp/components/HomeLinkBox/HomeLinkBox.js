@@ -38,8 +38,9 @@ const styles = StyleSheet.create({
   },
   image: {
     marginTop: 20,
-    width: 22,
-    height: 22
+    width: 25,
+    height: 25,
+    resizeMode: "contain"
   }
 });
 
