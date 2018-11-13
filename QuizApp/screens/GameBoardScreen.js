@@ -19,11 +19,12 @@ class GameBoardScreen extends Component {
 
   state = {
     questions: [],
+    users: false,
     questionsanswers: 0,
     score: 0,
     clearTimer: false,
     gameid: "",
-    playerOne: "",
+    playerOne: this.props.navigation.state.params.playerOne,
     playerTwo: "",
     scorePlayerOne: 0,
     scorePlayerTwo: 0
@@ -58,7 +59,8 @@ class GameBoardScreen extends Component {
       .set({
         playerOne: this.state.username,
         gameid: base.auth().currentUser.uid,
-        playerTwo: this.state.username,
+        playerOne: this.state.playerOne,
+        playerTwo: this.state.playerTwo,
         scorePlayerOne: this.state.scorePlayerOne,
         scorePlayerTwo: this.state.scorePlayerTwo,
         questions: this.state.questions
@@ -152,8 +154,10 @@ class GameBoardScreen extends Component {
         <Text>QUIZ!T</Text>
         <TouchableHighlight onPress={this._getData}>
           <View>
-            <FindPlayers />
+            <FindPlayers user={this} />
             <Text>Starta spel</Text>
+            <Text>{this.state.playerOne}</Text>
+            <Text>{this.state.playerTwo}</Text>
           </View>
         </TouchableHighlight>
 

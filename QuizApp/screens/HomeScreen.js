@@ -102,7 +102,7 @@ export default class HomeScreen extends React.Component {
             <HomeLinkBox
               title="Nytt spel"
               icon={Plus}
-              onPress={() => navigate("NewGame")}
+              onPress={() => navigate("NewGame", { playerOne: user.username })}
             />
             <HomeLinkBox
               title="Aktiva spel"

@@ -18,22 +18,13 @@ import { Divider } from "react-native-elements";
 import Colors from "../../constants/Colors";
 
 export default class FindPlayers extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: false,
-      username: "",
-      response: ""
-    };
-  }
-
   _getAllUsers = () => {
     base
       .database()
       .ref("users")
       .on("value", data => {
         const users = Object.values(data.val());
-        this.setState({ users });
+        this.props.user.setState({ users });
       });
   };
 
@@ -48,6 +39,12 @@ export default class FindPlayers extends React.Component {
   //     </View>
   //   </TouchableHighlight>
   // </View>
+
+  _onPress = e => {
+    this.props.user.setState({
+      playerTwo: e
+    });
+  };
 
   renderSeparator = () => {
     return (
@@ -67,13 +64,22 @@ export default class FindPlayers extends React.Component {
         <FlatList
           style={styles.listContainer}
           keyExtractor={(item, index) => index.toString()}
-          data={this.state.users}
+          data={this.props.user.state.users}
           renderItem={({ item }) => (
             <View style={styles.listItem}>
               <Image style={styles.userPhoto} source={{ uri: item.photoURL }} />
               <View>
                 <Text style={styles.userText}>
-                  {item.username !== undefined && item.username.toUpperCase()}
+                  <TouchableHighlight
+                    underlayColor="transparent"
+                    onPress={() => this._onPress(item.username)}
+                  >
+                    <View style={styles.answerTextContainer}>
+                      <Text style={styles.answerText}>
+                        {item.username && item.username.toUpperCase()}
+                      </Text>
+                    </View>
+                  </TouchableHighlight>
                 </Text>
               </View>
             </View>
@@ -94,6 +100,7 @@ export default class FindPlayers extends React.Component {
           </View>
         </TouchableHighlight>
         <ScrollView>{this.getUserRows()}</ScrollView>
+        <Text>Vald spelare : {this.props.user.state.playerTwo}</Text>
       </View>
     );
   }

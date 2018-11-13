@@ -16,7 +16,7 @@ import PlayRandom from "../components/Links/PlayRandom/PlayRandom";
 import PlayFriend from "../components/Links/PlayFriend/PlayFriend";
 import Loading from "../components/Loading/Loading";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
-
+import base from "../Config/base";
 export default class NewGameScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -28,43 +28,13 @@ export default class NewGameScreen extends React.Component {
       users: false,
       response: "",
       uid: "",
-      playerOne: "",
+      playerOne: this.props.navigation.state.params.playerOne,
       playerTwo: ""
     };
-    this._getUser = this._getUser.bind(this);
   }
 
-  _getUser = () => {
-    const loggedinUser = base.auth().currentUser;
-
-    if (loggedinUser != null) {
-      loggedinUser.providerData.forEach(profile => {
-        this.setState({
-          playerOne: profile.displayName,
-          uid: profile.providerId
-        });
-      });
-    }
-  };
-
-  componentDidMount() {
-    this._getUser();
-  }
-
-  _getAllUsers = () => {
-    base
-      .database()
-      .ref("users")
-      .on("value", data => {
-        const users = Object.values(data.val());
-        this.setState({ users });
-      });
-
-    users.map((playerTwo, index) => playerTwo.username);
-  };
   render() {
     const { navigate } = this.props.navigation;
-
     return (
       <View style={styles.container}>
         <Text style={styles.h1}>Nytt spel</Text>
@@ -79,7 +49,9 @@ export default class NewGameScreen extends React.Component {
           />
           <ButtonComponent
             title="Spela mot random spelare"
-            onPress={() => navigate("Quiz")}
+            onPress={() =>
+              navigate("GameBoard", { playerOne: this.state.playerOne })
+            }
           />
           <ButtonComponent
             title="Spela mot en vän"
