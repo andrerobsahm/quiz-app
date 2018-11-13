@@ -13,10 +13,11 @@ import {
 } from "react-native";
 import base from "../Config/base.js";
 import Logout from "../components/Logout/Logout";
+import Header from "../components/Header/Header";
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
-    title: "Inställningar"
+    header: null
   };
 
   constructor(props) {
@@ -61,9 +62,10 @@ export default class SettingsScreen extends React.Component {
   };
 
   render() {
-    console.log(this.state.username);
+    const { navigate } = this.props.navigation;
     return (
       <View>
+        <Header onPress={() => navigate("Home")} />
         <Text>Ändra lösenord</Text>
         <Text>
           {this.state.email}
