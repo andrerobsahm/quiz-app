@@ -64,7 +64,7 @@ export default class SettingsScreen extends React.Component {
     console.log(this.state.username);
     return (
       <View>
-        <Text>Här kan du ändra ditt lösenord</Text>
+        <Text>Ändra lösenord</Text>
         <Text>
           {this.state.email}
           {this.state.photoURL}
