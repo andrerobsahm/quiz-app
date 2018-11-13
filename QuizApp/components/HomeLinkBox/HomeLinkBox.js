@@ -1,22 +1,16 @@
 import React from "react";
 import { LinearGradient } from "expo";
 import Colors from "../../constants/Colors";
-import {
-  View,
-  Text,
-  Image,
-  TouchableHighlight,
-  StyleSheet
-} from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 
 const HomeLinkBox = props => {
   return (
-    <TouchableHighlight onPress={() => props.onPress()}>
+    <TouchableOpacity onPress={() => props.onPress()}>
       <View style={styles.container}>
         <Image source={props.icon} style={styles.image} />
         <Text style={styles.title}>{props.title}</Text>
       </View>
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 };
 
@@ -39,7 +33,6 @@ const styles = StyleSheet.create({
   image: {
     marginTop: 20,
     width: 25,
-    height: 25,
     resizeMode: "contain"
   }
 });

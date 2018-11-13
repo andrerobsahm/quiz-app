@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
+import * as Elements from "react-native-elements";
 import LoginLink from "../components/Links/LoginLink/LoginLink";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 
@@ -30,7 +31,8 @@ export default class SignUpScreen extends React.Component {
       response: "",
       loggedin: "",
       // uid: "",
-      secureText: true
+      secureText: true,
+      checked: false
     };
 
     this.signup = this.signup.bind(this);
@@ -117,6 +119,14 @@ export default class SignUpScreen extends React.Component {
           </View>
         </TouchableWithoutFeedback>
         <View>
+          <Elements.CheckBox
+            title="Jag godkänner integritetspolicyn"
+            checked={this.state.checked}
+            checkedColor={Colors.orange}
+            containerStyle={styles.checkBoxContainer}
+            textStyle={styles.checkBoxText}
+            onPress={() => this.setState({ checked: true })}
+          />
           <ButtonComponent title="Registrera konto" onPress={this.signup} />
         </View>
         <View>
@@ -166,5 +176,12 @@ const styles = StyleSheet.create({
 
   row: {
     flexDirection: "row"
+  },
+  checkBoxContainer: {
+    backgroundColor: "transparent",
+    borderColor: "transparent"
+  },
+  checkBoxText: {
+    color: Colors.orange
   }
 });

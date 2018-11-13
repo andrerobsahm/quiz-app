@@ -38,11 +38,11 @@ export default class ForgotPasswordScreen extends React.Component {
 
   render() {
     return (
-      <View>
-        <TouchableWithoutFeedback style={styles.container}>
+      <View style={styles.container}>
+        <TouchableWithoutFeedback>
           <View>
             <TextInput
-              placeholder="enter email"
+              placeholder="Email"
               onChangeText={email => this.setState({ email })}
               autoCapitalize="none"
               style={styles.input}
@@ -61,8 +61,10 @@ export default class ForgotPasswordScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  buttoncontainer: {
-    padding: 0
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
   },
   input: {
     height: 50,

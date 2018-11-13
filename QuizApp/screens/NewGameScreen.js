@@ -16,6 +16,8 @@ import PlayRandom from "../components/Links/PlayRandom/PlayRandom";
 import PlayFriend from "../components/Links/PlayFriend/PlayFriend";
 import Loading from "../components/Loading/Loading";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
+import * as Elements from "react-native-elements";
+import Colors from "../constants/Colors";
 
 export default class NewGameScreen extends React.Component {
   static navigationOptions = {
@@ -26,11 +28,15 @@ export default class NewGameScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.h1}>Nytt spel</Text>
-        <Text>
+        <Elements.Text h1>Nytt spel</Elements.Text>
+        <Text style={styles.p}>
           VIll du spela mot en kompis? Mot en random spelare? Eller bara för dig
           själv för att det är kul!?
         </Text>
+        <Elements.Divider
+          style={{ backgroundColor: Colors.black, width: "30%", height: 3 }}
+        />
+
         <View style={styles.navigationContainer}>
           <ButtonComponent
             title="Spela själv"
@@ -57,13 +63,11 @@ const styles = StyleSheet.create({
     backgroundColor: Color.bgWhite,
     paddingHorizontal: 27
   },
+  textContainer: {},
   navigationContainer: {
     alignItems: "center"
   },
-  h1: {
-    color: Color.black,
-    fontSize: 36,
-    lineHeight: 42,
-    textAlign: "left"
+  p: {
+    fontSize: 18
   }
 });
