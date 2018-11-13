@@ -20,14 +20,16 @@ class GameBoardScreen extends Component {
   state = {
     questions: [],
     users: false,
-    questionsanswers: 0,
+    answersPlayerOne: 0,
+    answersPlayerTwo: 0,
     score: 0,
     clearTimer: false,
     gameid: "",
     playerOne: this.props.navigation.state.params.playerOne,
     playerTwo: "",
     scorePlayerOne: 0,
-    scorePlayerTwo: 0
+    scorePlayerTwo: 0,
+    timer: 10
   };
 
   componentDidMount() {
@@ -56,13 +58,14 @@ class GameBoardScreen extends Component {
     base
       .database()
       .ref("games/")
-      .set({
-        playerOne: this.state.username,
+      .push({
         gameid: base.auth().currentUser.uid,
         playerOne: this.state.playerOne,
         playerTwo: this.state.playerTwo,
         scorePlayerOne: this.state.scorePlayerOne,
         scorePlayerTwo: this.state.scorePlayerTwo,
+        answersPlayerOne: this.state.answersPlayerOne,
+        answersPlayerTwo: this.state.answersPlayerTwo,
         questions: this.state.questions
       });
   };
@@ -130,18 +133,18 @@ class GameBoardScreen extends Component {
               correct={question.correct_answer}
               answers={question.options}
             />
-            <Timer clear={this.state.clearTimer} />
+            <Timer clear={this} />
           </React.Fragment>
         )}
         <View style={styles.scores_container}>
           <View style={styles.score}>
-            <Text style={styles.user_score}>{this.state.score}</Text>
-            <Text style={styles.username}>{this.props.username}</Text>
+            <Text style={styles.user_score}>{this.state.scorePlayerOne}</Text>
+            <Text style={styles.username}>{this.state.playerOne}</Text>
           </View>
 
           <View style={styles.score}>
-            <Text style={styles.user_score}>{this.state.score}</Text>
-            <Text style={styles.username}>{this.props.rival_username}</Text>
+            <Text style={styles.user_score}>{this.state.scorePlayerTwo}</Text>
+            <Text style={styles.username}>{this.state.playerTwo}</Text>
           </View>
         </View>
       </View>
@@ -149,6 +152,7 @@ class GameBoardScreen extends Component {
   }
 
   render() {
+    console.log(this.state.playerTwo);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
