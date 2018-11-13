@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import AnswersButton from "../components/AnswersButton/AnswersButton";
 import Timer from "../components/Timer/Timer";
+import FindPlayers from "../components/FindPlayers/FindPlayers";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
 
@@ -151,6 +152,7 @@ class GameBoardScreen extends Component {
         <Text>QUIZ!T</Text>
         <TouchableHighlight onPress={this._getData}>
           <View>
+            <FindPlayers />
             <Text>Starta spel</Text>
           </View>
         </TouchableHighlight>

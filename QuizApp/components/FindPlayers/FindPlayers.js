@@ -13,11 +13,11 @@ import {
   Button,
   FlatList
 } from "react-native";
-import base from "../Config/base";
+import base from "../../Config/base";
 import { Divider } from "react-native-elements";
-import Colors from "../constants/Colors";
+import Colors from "../../constants/Colors";
 
-export default class FindPlayersScreen extends React.Component {
+export default class FindPlayers extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +62,6 @@ export default class FindPlayersScreen extends React.Component {
   };
 
   getUserRows() {
-    console.log(this.state.users);
     return (
       <View>
         <FlatList
