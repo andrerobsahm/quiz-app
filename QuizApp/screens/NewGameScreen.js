@@ -21,6 +21,47 @@ export default class NewGameScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: false,
+      response: "",
+      uid: "",
+      playerOne: "",
+      playerTwo: ""
+    };
+    this._getUser = this._getUser.bind(this);
+  }
+
+  _getUser = () => {
+    const loggedinUser = base.auth().currentUser;
+
+    if (loggedinUser != null) {
+      loggedinUser.providerData.forEach(profile => {
+        this.setState({
+          playerOne: profile.displayName,
+          uid: profile.providerId
+        });
+      });
+    }
+  };
+
+  componentDidMount() {
+    this._getUser();
+  }
+
+  _getAllUsers = () => {
+    base
+      .database()
+      .ref("users")
+      .on("value", data => {
+        const users = Object.values(data.val());
+        this.setState({ users });
+      });
+
+    users.map((playerTwo, index) => playerTwo.username);
+  };
   render() {
     const { navigate } = this.props.navigation;
 

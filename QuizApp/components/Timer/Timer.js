@@ -3,21 +3,19 @@ import React, { Component } from "react";
 import { AppRegistry, Text, View, StyleSheet } from "react-native";
 
 export default class Timer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      timer: 10
-    };
-  }
   componentDidMount() {
     this.myInterval = setInterval(() => {
-      if (this.state.timer === 0 || this.props.clear) {
-        this.setState({
+      if (
+        this.props.clear.state.timer === 0 ||
+        this.props.clear.state.clearTimer
+      ) {
+        this.props.clear.setState({
+          clearTimer: false,
           timer: 11
         });
       }
-      this.setState({
-        timer: this.state.timer - 1
+      this.props.clear.setState({
+        timer: this.props.clear.state.timer - 1
       });
     }, 1000);
   }
@@ -29,7 +27,7 @@ export default class Timer extends Component {
     return (
       <View>
         <View>
-          <Text>{this.state.timer}</Text>
+          <Text>{this.props.clear.state.timer}</Text>
         </View>
       </View>
     );

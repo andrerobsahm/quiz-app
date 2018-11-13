@@ -13,7 +13,8 @@ class QuestionList extends Component {
     questions: [],
     questionsanswers: 0,
     score: 0,
-    clearTimer: false
+    clearTimer: false,
+    timer: 10
   };
 
   componentDidMount() {
@@ -37,6 +38,7 @@ class QuestionList extends Component {
     for (var i = 0; i < limit; i++) {
       let randomIndex = Math.floor(Math.random() * numberOfQuestions);
       randomList.push(questionList[randomIndex]);
+      questionList.splice(randomIndex, 1);
     }
     return randomList;
   }
@@ -55,7 +57,7 @@ class QuestionList extends Component {
   _counter = () => {
     this.setState({
       questionsanswers: this.state.questionsanswers + 1,
-      clearTimer: !this.state.clearTimer
+      clearTimer: true
     });
     this._quizFinish();
   };
@@ -68,7 +70,7 @@ class QuestionList extends Component {
     if (this.state.questionsanswers === this.state.questions.length - 1) {
       setTimeout(() => {
         this.props.navigation.navigate("Home");
-      }, 1500);
+      }, 2500);
       this.setState({
         questionsanswers: 0
       });
@@ -91,8 +93,9 @@ class QuestionList extends Component {
               counter={this._counter}
               correct={question.correct_answer}
               answers={question.options}
+              timer={this.state.timer}
             />
-            <Timer clear={this.state.clearTimer} />
+            <Timer clear={this} />
           </React.Fragment>
         )}
         <Text>

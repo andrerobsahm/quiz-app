@@ -25,18 +25,16 @@ export default class AnswersButton extends Component {
     // }
     // this.myTimer();
     this.myTimerInterval = setInterval(() => {
-      this.progress();
-    }, 10000);
+      if (this.props.timer === 0) {
+        this.progress();
+      }
+    }, 1500);
   }
 
   componentWillUnmount() {
     clearInterval(this.myTimerInterval);
   }
-  myTimer() {
-    this.myTimerInterval = setInterval(() => {
-      this.progress();
-    }, 10000);
-  }
+
   _onAnswerPress = e => {
     if (e === this.props.correct) {
       this.setState({
@@ -64,6 +62,7 @@ export default class AnswersButton extends Component {
   }
 
   render() {
+    console.log(this.props.timer);
     return (
       <View>
         {this.props.correct}

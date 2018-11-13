@@ -59,7 +59,8 @@ class GameBoardScreen extends Component {
         gameid: base.auth().currentUser.uid,
         playerTwo: this.state.username,
         scorePlayerOne: this.state.scorePlayerOne,
-        scorePlayerTwo: this.state.scorePlayerTwo
+        scorePlayerTwo: this.state.scorePlayerTwo,
+        questions: this.state.questions
       });
   };
 
