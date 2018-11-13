@@ -29,7 +29,8 @@ class GameBoardScreen extends Component {
     playerTwo: "",
     scorePlayerOne: 0,
     scorePlayerTwo: 0,
-    timer: 10
+    timer: 10,
+    gameready: false
   };
 
   componentDidMount() {
@@ -70,14 +71,16 @@ class GameBoardScreen extends Component {
           questions: this.state.questions
         });
     }, 1500);
+    this.setState({
+      gameready: true
+    });
   };
 
   randomAndLimit(questionList) {
-    const numberOfQuestions = 6;
     const limit = 4;
     const randomList = [];
     for (var i = 0; i < limit; i++) {
-      let randomIndex = Math.floor(Math.random() * numberOfQuestions);
+      let randomIndex = Math.floor(Math.random() * questionList.length);
       randomList.push(questionList[randomIndex]);
       questionList.splice(randomIndex, 1);
     }
@@ -96,15 +99,24 @@ class GameBoardScreen extends Component {
   };
 
   _counter = () => {
+    if (this.state.answersPlayerOne <= this.state.answersPlayerTwo) {
+      this.setState({
+        answersPlayerOne: this.state.answersPlayerOne + 1
+      });
+    } else if (this.state.answersPlayerTwo <= this.state.answersPlayerOne) {
+      this.setState({
+        answersPlayerTwo: this.state.answersPlayerTwo + 1
+      });
+    }
     this.setState({
-      questionsanswers: this.state.questionsanswers + 1,
       clearTimer: !this.state.clearTimer
     });
     this._quizFinish();
   };
   _scoreCounter = () => {
     this.setState({
-      score: this.state.score + 1
+      scorePlayerTwo: this.state.scorePlayerTwo + 1,
+      scorePlayerOne: this.state.scorePlayerOne + 1
     });
   };
   _quizFinish = () => {
@@ -119,8 +131,9 @@ class GameBoardScreen extends Component {
   };
 
   renderQuestions() {
-    console.log(this.state.questions);
-    const question = this.state.questions[this.state.questionsanswers];
+    const question = this.state.questions[this.state.answersPlayerTwo];
+    console.log(this.state.answersPlayerOne);
+    console.log(this.state.answersPlayerTwo);
     return (
       <View style={styles.questionContainer}>
         {question !== undefined && (
@@ -159,16 +172,18 @@ class GameBoardScreen extends Component {
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
-        <TouchableHighlight onPress={this._getData}>
-          <View>
-            <FindPlayers user={this} />
-            <Text>Starta spel</Text>
-            <Text>{this.state.playerOne}</Text>
-            <Text>{this.state.playerTwo}</Text>
-          </View>
-        </TouchableHighlight>
-
-        <ScrollView>{this.renderQuestions()}</ScrollView>
+        {this.state.gameready ? (
+          <ScrollView>{this.renderQuestions()}</ScrollView>
+        ) : (
+          <TouchableHighlight onPress={this._getData}>
+            <View>
+              <FindPlayers user={this} />
+              <Text>Starta spel</Text>
+              <Text>{this.state.playerOne}</Text>
+              <Text>{this.state.playerTwo}</Text>
+            </View>
+          </TouchableHighlight>
+        )}
       </View>
     );
   }

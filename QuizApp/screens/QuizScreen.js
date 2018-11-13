@@ -32,11 +32,10 @@ class QuestionList extends Component {
   }
 
   randomAndLimit(questionList) {
-    const numberOfQuestions = 6;
     const limit = 4;
     const randomList = [];
     for (var i = 0; i < limit; i++) {
-      let randomIndex = Math.floor(Math.random() * numberOfQuestions);
+      let randomIndex = Math.floor(Math.random() * questionList.length);
       randomList.push(questionList[randomIndex]);
       questionList.splice(randomIndex, 1);
     }
