@@ -55,19 +55,21 @@ class GameBoardScreen extends Component {
       .catch(error => {
         console.log(error);
       });
-    base
-      .database()
-      .ref("games/")
-      .push({
-        gameid: base.auth().currentUser.uid,
-        playerOne: this.state.playerOne,
-        playerTwo: this.state.playerTwo,
-        scorePlayerOne: this.state.scorePlayerOne,
-        scorePlayerTwo: this.state.scorePlayerTwo,
-        answersPlayerOne: this.state.answersPlayerOne,
-        answersPlayerTwo: this.state.answersPlayerTwo,
-        questions: this.state.questions
-      });
+    setTimeout(() => {
+      base
+        .database()
+        .ref("games/")
+        .push({
+          gameid: base.auth().currentUser.uid,
+          playerOne: this.state.playerOne,
+          playerTwo: this.state.playerTwo,
+          scorePlayerOne: this.state.scorePlayerOne,
+          scorePlayerTwo: this.state.scorePlayerTwo,
+          answersPlayerOne: this.state.answersPlayerOne,
+          answersPlayerTwo: this.state.answersPlayerTwo,
+          questions: this.state.questions
+        });
+    }, 1500);
   };
 
   randomAndLimit(questionList) {
@@ -77,6 +79,7 @@ class GameBoardScreen extends Component {
     for (var i = 0; i < limit; i++) {
       let randomIndex = Math.floor(Math.random() * numberOfQuestions);
       randomList.push(questionList[randomIndex]);
+      questionList.splice(randomIndex, 1);
     }
     return randomList;
   }
@@ -116,6 +119,7 @@ class GameBoardScreen extends Component {
   };
 
   renderQuestions() {
+    console.log(this.state.questions);
     const question = this.state.questions[this.state.questionsanswers];
     return (
       <View style={styles.questionContainer}>
@@ -152,7 +156,6 @@ class GameBoardScreen extends Component {
   }
 
   render() {
-    console.log(this.state.playerTwo);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
