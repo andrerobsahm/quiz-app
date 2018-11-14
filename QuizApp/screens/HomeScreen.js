@@ -76,11 +76,7 @@ export default class HomeScreen extends React.Component {
 
         <View />
         <View style={styles.linkBoxContainer}>
-          <HomeLinkBox
-            title="Nytt spel"
-            icon={Plus}
-            onPress={() => navigate("NewGame", { playerOne: user.username })}
-          />
+          <HomeLinkBox title="Nytt spel" icon={Plus} />
           <HomeLinkBox
             title="Aktiva spel"
             icon={Star}
@@ -94,7 +90,7 @@ export default class HomeScreen extends React.Component {
           <HomeLinkBox
             title="Vänner"
             icon={Group}
-            onPress={() => navigate("Home")}
+            onPress={() => navigate("Friends", { username: user.username })}
           />
           <HomeLinkBox
             title="Notifikationer"

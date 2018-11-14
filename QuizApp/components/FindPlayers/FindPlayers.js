@@ -28,22 +28,20 @@ export default class FindPlayers extends React.Component {
       });
   };
 
-  componentDidMount() {
-    // this._getAllUsers();
-  }
-
-  // <View>
-  //   <TouchableHighlight onPress={this._getAllUsers}>
-  //     <View>
-  //       <Text>hitta spelare</Text>
-  //     </View>
-  //   </TouchableHighlight>
-  // </View>
-
   _onPress = e => {
     this.props.user.setState({
-      playerTwo: e
+      friends: this.props.user.state.friends.concat([e])
     });
+    setTimeout(() => {
+      base
+        .database()
+        .ref("friends/")
+        .update({
+          username: this.props.user.state.username,
+          uid: base.auth().currentUser.uid,
+          friends: this.props.user.state.friends
+        });
+    }, 1500);
   };
 
   renderSeparator = () => {
@@ -93,14 +91,12 @@ export default class FindPlayers extends React.Component {
   render() {
     return (
       <View>
-        <Text>Här kan du hitta andra spelare:</Text>
         <TouchableHighlight onPress={this._getAllUsers}>
           <View>
-            <Text>hitta spelare</Text>
+            <Text>Hitta vänner</Text>
           </View>
         </TouchableHighlight>
         <ScrollView>{this.getUserRows()}</ScrollView>
-        <Text>Vald spelare : {this.props.user.state.playerTwo}</Text>
       </View>
     );
   }
