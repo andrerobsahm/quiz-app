@@ -53,8 +53,8 @@ export default class SignUpScreen extends React.Component {
         .push({
           email: this.state.email,
           username: this.state.username,
-          uid: base.auth().currentUser.uid
-          // loggedin: true
+          uid: base.auth().currentUser.uid,
+          loggedin: true
         });
       base
         .auth()

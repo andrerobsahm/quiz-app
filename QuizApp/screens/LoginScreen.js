@@ -19,9 +19,10 @@ import base from "../Config/base.js";
 import HomeScreen from "./HomeScreen";
 import SignUpLink from "../components/Links/SignUpLink/SignUpLink";
 import ForgotPassword from "../components/Links/ForgotPassword/ForgotPassword";
-import { WebBrowser } from "expo";
+import * as Elements from "react-native-elements";
 import { MonoText } from "../components/StyledText";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
+import Logo from "../assets/images/logo_black.png";
 
 const backgroundImage = require("../assets/images/background-waves.png");
 
@@ -83,12 +84,21 @@ export default class LoginScreen extends React.Component {
     return (
       <ImageBackground
         source={backgroundImage}
-        imageStyle={{ resizeMode: "stretch" }}
+        imageStyle={{ resizeMode: "cover" }}
         style={styles.backgroundImage}
       >
         <View style={styles.container}>
-          <Text>QUIZ!T</Text>
-          <Text>Utmana dina vänner. Eller dig själv!</Text>
+          <Image
+            style={{
+              height: 40,
+              resizeMode: "contain",
+              alignSelf: "center"
+            }}
+            source={Logo}
+          />
+          <Text style={styles.text}>
+            Utmana dina vänner. Eller bara dig själv!
+          </Text>
           <View>
             <TouchableWithoutFeedback style={styles.container}>
               <View>
@@ -170,5 +180,10 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row"
+  },
+  text: {
+    fontSize: 18,
+    textAlign: "center",
+    color: Colors.grey
   }
 });

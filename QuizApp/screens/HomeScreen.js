@@ -7,6 +7,7 @@ import { MonoText } from "../components/StyledText";
 import HomeLinkBox from "../components/HomeLinkBox/HomeLinkBox";
 
 //Icons
+import Logo from "../assets/images/logo_black.png";
 import Plus from "../assets/icons/plus-orange.png";
 import Group from "../assets/icons/group-orange.png";
 import Level from "../assets/icons/level-orange.png";
@@ -56,6 +57,15 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Image
+          style={{
+            height: 40,
+            resizeMode: "contain",
+            alignSelf: "center"
+          }}
+          source={Logo}
+        />
+
         <View style={styles.innerContainer}>
           <Elements.Avatar
             large
@@ -73,7 +83,6 @@ export default class HomeScreen extends React.Component {
             {user.username}
           </Elements.Text>
         </View>
-
         <View />
         <View style={styles.linkBoxContainer}>
           <HomeLinkBox title="Nytt spel" icon={Plus} />
