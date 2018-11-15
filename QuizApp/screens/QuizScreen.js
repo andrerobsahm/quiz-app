@@ -67,8 +67,15 @@ class QuestionList extends Component {
   };
   _quizFinish = () => {
     if (this.state.questionsanswers === this.state.questions.length - 1) {
+      base
+        .database()
+        .ref("Statistics/")
+        .update({
+          score: this.state.score,
+          uid: base.auth().currentUser.uid
+        });
       setTimeout(() => {
-        this.props.navigation.navigate("Home");
+        this.props.navigation.navigate("Home", { score: score.score });
       }, 2500);
       this.setState({
         questionsanswers: 0

@@ -16,6 +16,7 @@ import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import NewGameScreen from "../screens/NewGameScreen";
 import WalkthroughScreen from "../screens/WalkthroughScreen";
 import FriendsScreen from "../screens/FriendsScreen";
+import StatisticsScreen from "../screens/StatisticsScreen";
 const HomeStack = createStackNavigator({
   Home: HomeScreen
 });
@@ -201,6 +202,22 @@ FriendsStack.navigationOptions = {
     />
   )
 };
+const StatisticsStack = createStackNavigator({
+  Statistics: StatisticsScreen
+});
+StatisticsStack.navigationOptions = {
+  tabBarLabel: "Statistics",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={
+        Platform.OS === "ios"
+          ? `ios-options${focused ? "" : "-outline"}`
+          : "md-options"
+      }
+    />
+  )
+};
 
 export default createBottomTabNavigator({
   LoginStack,
@@ -213,5 +230,6 @@ export default createBottomTabNavigator({
   ForgotPasswordStack,
   NewGameStack,
   WalkthroughStack,
-  FriendsStack
+  FriendsStack,
+  StatisticsStack
 });
