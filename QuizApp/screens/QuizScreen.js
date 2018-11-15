@@ -14,7 +14,8 @@ class QuestionList extends Component {
     questionsanswers: 0,
     score: 0,
     clearTimer: false,
-    timer: 10
+    timer: 10,
+    result: []
   };
 
   componentDidMount() {
@@ -67,15 +68,18 @@ class QuestionList extends Component {
   };
   _quizFinish = () => {
     if (this.state.questionsanswers === this.state.questions.length - 1) {
+      this.setState({
+        result: this.state.result.concat([this.state.score])
+      });
       base
         .database()
         .ref("Statistics/")
         .update({
-          score: this.state.score,
+          result: this.state.score,
           uid: base.auth().currentUser.uid
         });
       setTimeout(() => {
-        this.props.navigation.navigate("Home", { score: score.score });
+        this.props.navigation.navigate("Home", { result: result.result });
       }, 2500);
       this.setState({
         questionsanswers: 0

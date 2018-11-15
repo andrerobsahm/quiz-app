@@ -12,7 +12,7 @@ class StatisticsScreen extends Component {
   state = {
     uid: base.auth().currentUser.uid,
     username: this.props.navigation.state.params.username,
-    score: this.props.navigation.state.params.score
+    result: this.props.navigation.state.params.result
   };
 
   componentDidMount() {}
@@ -25,7 +25,7 @@ class StatisticsScreen extends Component {
       .equalTo(`${this.state.uid}`)
       .on("value", data => {
         const users = Object.values(data.val());
-        this.setState({ score });
+        this.setState({ result });
       });
   }
 
@@ -35,12 +35,12 @@ class StatisticsScreen extends Component {
         <FlatList
           style={styles.listContainer}
           keyExtractor={(score, index) => index.toString()}
-          data={this.state.score}
-          renderItem={({ score }) => (
+          data={this.state.result}
+          renderItem={({ result }) => (
             <View style={styles.listItem}>
               <View>
                 <Text style={styles.userText}>
-                  {score !== undefined && score.toUpperCase()}
+                  {result !== undefined && result.toUpperCase()}
                 </Text>
               </View>
             </View>

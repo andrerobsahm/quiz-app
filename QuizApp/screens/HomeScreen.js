@@ -27,7 +27,7 @@ export default class HomeScreen extends React.Component {
       username: "",
       email: "",
       photoUrl: "",
-      score: this.props.navigation.state.params.score
+      result: this.props.navigation.state.params.result
     };
 
     this._getUser = this._getUser.bind(this);
@@ -96,7 +96,7 @@ export default class HomeScreen extends React.Component {
             title="Statistik"
             icon={Level}
             onPress={() =>
-              navigate("Home", { score: user.score, username: user.username })
+              navigate("Home", { result: user.result, username: user.username })
             }
           />
           <HomeLinkBox
