@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "QuizApp",
-    "description": "A very interesting project.",
-    "slug": "QuizApp",
+    "name": "Quiz!t",
+    "description": "En quiz app",
+    "slug": "Quiz!t",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],
@@ -10,16 +10,14 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/images/background-waves.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     }
