@@ -7,12 +7,18 @@ import {
   StyleSheet,
   TouchableHighlight
 } from "react-native";
+import { LinearGradient } from "expo";
+import Colors from "../../constants/Colors";
 
 export default class AnswersButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      backgroundColor: "blue",
+      backgroundColor: [Colors.pink, Colors.orange],
+      corrrectBackgroundColor: ["green", "green"],
+      incorrectBackgroundColor: ["red", "red"],
+      // answerTrue: false,
+      // answerFalse: false,
       pressed: false
     };
   }
@@ -38,21 +44,26 @@ export default class AnswersButton extends Component {
   _onAnswerPress = e => {
     if (e === this.props.correct) {
       this.setState({
-        backgroundColor: "green"
+        // answerTrue: true,
+        // backgroundColor: ["green", "green"]
       });
       this.props.score();
     } else {
       this.setState({
-        backgroundColor: "red"
+        // answerFalse: true,
+        // backgroundColor: ["red", "red"]
       });
     }
     this.setState({
       pressed: !this.state.pressed
     });
+
     setTimeout(() => {
       this.props.counter();
       this.setState({
-        backgroundColor: "blue"
+        // answerTrue: false,
+        // answerFalse: false,
+        // backgroundColor: [Colors.pink, Colors.orange]
       });
     }, 1000);
   };
@@ -63,6 +74,7 @@ export default class AnswersButton extends Component {
 
   render() {
     console.log(this.props.timer);
+
     return (
       <View>
         {this.props.correct}
@@ -71,21 +83,23 @@ export default class AnswersButton extends Component {
             key={key}
             underlayColor="transparent"
             onPress={() => this._onAnswerPress(option)}
-            style={[
-              {
-                backgroundColor: this.state.backgroundColor,
+          >
+            <LinearGradient
+              colors={this.state.backgroundColor}
+              style={{
                 width: 304,
                 height: 50,
                 borderRadius: 25,
                 marginBottom: 10,
                 marginTop: 10
-              },
-              ...styles.buttoncontainer
-            ]}
-          >
-            <View style={styles.answerTextContainer}>
-              <Text style={styles.answerText}>{option.toUpperCase()}</Text>
-            </View>
+              }}
+              start={[0.1, 0]}
+              end={[0.5, 0]}
+            >
+              <View style={styles.answerTextContainer}>
+                <Text style={styles.answerText}>{option.toUpperCase()}</Text>
+              </View>
+            </LinearGradient>
           </TouchableHighlight>
         ))}
       </View>
@@ -94,7 +108,6 @@ export default class AnswersButton extends Component {
 }
 
 const styles = StyleSheet.create({
-  buttoncontainer: {},
   answerTextContainer: {
     flex: 1,
     alignContent: "center",
@@ -106,5 +119,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 18,
     textAlign: "center"
+  },
+  buttonPress: {
+    color: "blue"
   }
 });

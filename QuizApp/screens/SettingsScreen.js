@@ -29,7 +29,8 @@ export default class SettingsScreen extends React.Component {
       photoUrl: "",
       username: "",
       emailVerified: "",
-      uid: ""
+      uid: "",
+      loggedin: ""
     };
     this.getuser = this.getuser.bind(this);
   }
@@ -44,7 +45,8 @@ export default class SettingsScreen extends React.Component {
         email: user.email,
         photoUrl: user.photoURL,
         uid: user.uid,
-        username: user.username
+        username: user.username,
+        loggedin: user.loggedin
       });
     }
   };
