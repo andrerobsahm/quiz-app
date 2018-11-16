@@ -62,7 +62,6 @@ export default class FindPlayersScreen extends React.Component {
   };
 
   getUserRows() {
-    console.log(this.state.users);
     return (
       <View>
         <FlatList

@@ -12,16 +12,17 @@ class StatisticsScreen extends Component {
   state = {
     uid: base.auth().currentUser.uid,
     username: this.props.navigation.state.params.username,
-    result: []
+    result: false
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this._getScores();
+  }
 
   _getScores() {
     base
       .database()
-      .ref("statistics")
-      .child("result")
+      .ref("statistics/result")
       .on("value", data => {
         const result = Object.values(data.val());
         this.setState({ result });
@@ -31,20 +32,13 @@ class StatisticsScreen extends Component {
   renderScore() {
     return (
       <View style={styles.questionContainer}>
-        <FlatList
-          style={styles.listContainer}
-          keyExtractor={(score, index) => index.toString()}
-          data={this.state.result}
-          renderItem={({ result }) => (
-            <View style={styles.listItem}>
-              <View>
-                <Text style={styles.userText}>
-                  {result !== undefined && result.toUpperCase()}
-                </Text>
-              </View>
+        <Text>Dina resultat:</Text>
+        {this.state.result &&
+          this.state.result.map((score, key) => (
+            <View key={key}>
+              <Text style={styles.answerText}>{score}</Text>
             </View>
-          )}
-        />
+          ))}
       </View>
     );
   }

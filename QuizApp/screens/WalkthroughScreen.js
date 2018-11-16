@@ -13,6 +13,9 @@ import {
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 const { width, height } = Dimensions.get("window");
+import WalkthroughOne from "../assets/images/WalkthroughOne.png";
+import WalkthroughTwo from "../assets/images/WalkthroughTwo.png";
+import WalkthroughThree from "../assets/images/WalkthroughThree.png";
 export default class WalkthroughScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -25,17 +28,17 @@ export default class WalkthroughScreen extends React.Component {
         {
           title: "Spela själv eller mot vänner!",
           text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          image: "friends"
+          image: WalkthroughOne
         },
         {
           title: "Frågor som utmanar!",
           text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          image: "challanges"
+          image: WalkthroughTwo
         },
         {
           title: "Håll koll på din utveckling!",
           text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-          image: "progress"
+          image: WalkthroughThree
         }
       ]
     };
@@ -65,9 +68,27 @@ export default class WalkthroughScreen extends React.Component {
       <ScrollView horizontal={true}>
         {page !== undefined && (
           <View style={styles.container}>
+            <Image
+              style={{
+                height: 400,
+                resizeMode: "contain",
+                alignSelf: "center"
+              }}
+              source={page.image}
+            />
             <Text>{page.title}</Text>
             <Text>{page.text}</Text>
-            <Text>{page.image}</Text>
+            <View style={styles.linecontainer}>
+              <View
+                style={[0 === this.state.index ? styles.active : styles.line]}
+              />
+              <View
+                style={[1 === this.state.index ? styles.active : styles.line]}
+              />
+              <View
+                style={[2 === this.state.index ? styles.active : styles.line]}
+              />
+            </View>
             <Button title="gå vidare" onPress={this.slide} />
           </View>
         )}
@@ -87,6 +108,19 @@ const styles = StyleSheet.create({
   },
   screentext: {
     color: "white",
-    textAlign: "center"
+    textAlign: "left"
+  },
+  linecontainer: {
+    flexDirection: "row"
+  },
+  line: {
+    height: 4,
+    width: 30,
+    marginRight: 5,
+    backgroundColor: "rgba(255,255,255,0.3)"
+  },
+  active: {
+    width: 50,
+    backgroundColor: "white"
   }
 });
