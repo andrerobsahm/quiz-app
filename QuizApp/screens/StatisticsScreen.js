@@ -12,7 +12,7 @@ class StatisticsScreen extends Component {
   state = {
     uid: base.auth().currentUser.uid,
     username: this.props.navigation.state.params.username,
-    result: this.props.navigation.state.params.result
+    result: []
   };
 
   componentDidMount() {}
@@ -20,7 +20,7 @@ class StatisticsScreen extends Component {
   _getScores() {
     base
       .database()
-      .ref("Statistics")
+      .ref("statistics/")
       .orderByKey()
       .equalTo(`${this.state.uid}`)
       .on("value", data => {
@@ -51,6 +51,7 @@ class StatisticsScreen extends Component {
   }
 
   render() {
+    console.log(this.state.result);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>

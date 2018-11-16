@@ -3,7 +3,8 @@ import { ScrollView, View, Text, StyleSheet } from "react-native";
 import AnswersButton from "../components/AnswersButton/AnswersButton";
 import Timer from "../components/Timer/Timer";
 import Colors from "../constants/Colors";
-
+import base from "../Config/base";
+import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 class QuestionList extends Component {
   static navigationOptions = {
     header: null
@@ -15,14 +16,15 @@ class QuestionList extends Component {
     score: 0,
     clearTimer: false,
     timer: 10,
-    result: []
+    result: [],
+    startgame: false
   };
 
-  componentDidMount() {
-    this._getData();
-  }
+  // componentDidMount() {
+  //   this._getData();
+  // }
 
-  _getData() {
+  _getData = () => {
     let data = fetch(
       "https://quiz-app-6a8dd.firebaseio.com/quiz/questions.json?print=pretty"
     )
@@ -30,7 +32,7 @@ class QuestionList extends Component {
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   randomAndLimit(questionList) {
     const limit = 4;
@@ -50,7 +52,8 @@ class QuestionList extends Component {
       console.log("error");
     }
     this.setState({
-      questions: randomList
+      questions: randomList,
+      startgame: true
     });
   };
 
@@ -73,16 +76,18 @@ class QuestionList extends Component {
       });
       base
         .database()
-        .ref("Statistics/")
+        .ref("statistics/")
         .update({
-          result: this.state.score,
+          result: this.state.result,
           uid: base.auth().currentUser.uid
         });
       setTimeout(() => {
-        this.props.navigation.navigate("Home", { result: result.result });
-      }, 2500);
+        this.props.navigation.navigate("Home");
+      }, 3000);
       this.setState({
-        questionsanswers: 0
+        questionsanswers: 0,
+        score: this.state.score,
+        startgame: false
       });
     }
   };
@@ -117,10 +122,15 @@ class QuestionList extends Component {
   }
 
   render() {
+    console.log(this.state.startgame);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
-        <View>{this.renderQuestions()}</View>
+        {this.state.startgame ? (
+          <View>{this.renderQuestions()}</View>
+        ) : (
+          <ButtonComponent title="Starta spel" onPress={this._getData} />
+        )}
       </View>
     );
   }
@@ -131,7 +141,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingTop: 20
-    // backgroundColor: Colors.black
   },
   questionContainer: {
     flex: 1,
@@ -144,7 +153,6 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   question: {
-    //  color: Colors.white,
     fontSize: 30,
     textAlign: "center",
     lineHeight: 39

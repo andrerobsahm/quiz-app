@@ -26,8 +26,8 @@ export default class HomeScreen extends React.Component {
       uid: "",
       username: "",
       email: "",
-      photoUrl: "",
-      result: this.props.navigation.state.params.result
+      photoUrl: ""
+      // result: this.props.navigation.state.params.result
     };
 
     this._getUser = this._getUser.bind(this);
@@ -86,7 +86,11 @@ export default class HomeScreen extends React.Component {
         </View>
         <View />
         <View style={styles.linkBoxContainer}>
-          <HomeLinkBox title="Nytt spel" icon={Plus} />
+          <HomeLinkBox
+            title="Nytt spel"
+            icon={Plus}
+            onPress={() => navigate("NewGame")}
+          />
           <HomeLinkBox
             title="Aktiva spel"
             icon={Star}
@@ -96,7 +100,10 @@ export default class HomeScreen extends React.Component {
             title="Statistik"
             icon={Level}
             onPress={() =>
-              navigate("Home", { result: user.result, username: user.username })
+              navigate("Statistics", {
+                result: user.result,
+                username: user.username
+              })
             }
           />
           <HomeLinkBox

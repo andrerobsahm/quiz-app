@@ -54,7 +54,7 @@ export default class AnswersButton extends Component {
       this.setState({
         backgroundColor: "blue"
       });
-    }, 1000);
+    }, 1500);
   };
 
   progress() {
@@ -62,7 +62,6 @@ export default class AnswersButton extends Component {
   }
 
   render() {
-    console.log(this.props.timer);
     return (
       <View>
         {this.props.correct}

@@ -29,9 +29,7 @@ export default class NewGameScreen extends React.Component {
     this.state = {
       users: false,
       response: "",
-      uid: "",
-      playerOne: this.props.navigation.state.params.playerOne,
-      playerTwo: ""
+      uid: ""
     };
   }
 
@@ -55,9 +53,7 @@ export default class NewGameScreen extends React.Component {
           />
           <ButtonComponent
             title="Spela mot random spelare"
-            onPress={() =>
-              navigate("GameBoard", { playerOne: this.state.playerOne })
-            }
+            onPress={() => navigate("Quiz")}
           />
           <ButtonComponent
             title="Spela mot en vän"
