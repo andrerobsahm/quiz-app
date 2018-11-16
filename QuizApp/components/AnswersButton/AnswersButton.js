@@ -73,11 +73,6 @@ export default class AnswersButton extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-=======
-    console.log(this.props.timer);
-
->>>>>>> andre
     return (
       <View>
         {this.props.correct}
