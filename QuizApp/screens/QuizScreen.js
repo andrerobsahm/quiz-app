@@ -17,7 +17,8 @@ class QuestionList extends Component {
     clearTimer: false,
     timer: 10,
     result: [],
-    startgame: false
+    startgame: false,
+    popUp: false
   };
 
   // componentDidMount() {
@@ -81,16 +82,27 @@ class QuestionList extends Component {
           result: this.state.result,
           uid: base.auth().currentUser.uid
         });
-      setTimeout(() => {
-        this.props.navigation.navigate("Home");
-      }, 3000);
       this.setState({
         questionsanswers: 0,
         score: this.state.score,
-        startgame: false
+        startgame: false,
+        popUp: true
       });
     }
   };
+
+  popUp() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View>
+        <ButtonComponent title="Tillbaka" onPress={() => navigate("Home")} />
+        <Text>
+          Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
+          frågor
+        </Text>
+      </View>
+    );
+  }
   renderQuestions() {
     const question = this.state.questions[this.state.questionsanswers];
     return (
@@ -113,24 +125,22 @@ class QuestionList extends Component {
             <Timer clear={this} />
           </React.Fragment>
         )}
-        <Text>
-          Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
-          frågor
-        </Text>
       </View>
     );
   }
 
   render() {
-    console.log(this.state.startgame);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
         {this.state.startgame ? (
-          <View>{this.renderQuestions()}</View>
+          <View>
+            <View>{this.renderQuestions()}</View>
+          </View>
         ) : (
           <ButtonComponent title="Starta spel" onPress={this._getData} />
         )}
+        {this.state.popUp && this.popUp()}
       </View>
     );
   }

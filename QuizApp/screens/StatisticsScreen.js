@@ -20,11 +20,10 @@ class StatisticsScreen extends Component {
   _getScores() {
     base
       .database()
-      .ref("statistics/")
-      .orderByKey()
-      .equalTo(`${this.state.uid}`)
+      .ref("statistics")
+      .child("result")
       .on("value", data => {
-        const users = Object.values(data.val());
+        const result = Object.values(data.val());
         this.setState({ result });
       });
   }
@@ -55,6 +54,7 @@ class StatisticsScreen extends Component {
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
+        <Text>{this.state.username}</Text>
         <ScrollView>{this.renderScore()}</ScrollView>
       </View>
     );
