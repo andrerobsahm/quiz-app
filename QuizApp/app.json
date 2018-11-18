@@ -2,7 +2,7 @@
   "expo": {
     "name": "Quiz!t",
     "description": "En quiz app",
-    "slug": "Quiz!t",
+    "slug": "quizit",
     "privacy": "public",
     "sdkVersion": "30.0.0",
     "platforms": ["ios", "android"],

@@ -17,7 +17,7 @@ import Header from "../components/Header/Header";
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
-    header: null
+    // header: null
   };
 
   constructor(props) {
@@ -67,7 +67,6 @@ export default class SettingsScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View>
-        <Header onPress={() => navigate("Home")} />
         <Text>Ändra lösenord</Text>
         <Text>
           {this.state.email}

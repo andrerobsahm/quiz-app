@@ -109,7 +109,7 @@ export default class HomeScreen extends React.Component {
           <HomeLinkBox
             title="Vänner"
             icon={Group}
-            onPress={() => navigate("Friends", { username: user.username })}
+            onPress={() => navigate("FindPlayers", { username: user.username })}
           />
           <HomeLinkBox
             title="Notifikationer"
