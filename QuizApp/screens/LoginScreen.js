@@ -178,6 +178,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end"
   },
+  response: {
+    color: Colors.white,
+    textAlign: "center"
+  },
   row: {
     flexDirection: "row"
   },

@@ -19,7 +19,7 @@ import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 
 export default class SignUpScreen extends React.Component {
   static navigationOptions = {
-    header: null
+    // header: null
   };
 
   constructor(props) {
@@ -183,5 +183,9 @@ const styles = StyleSheet.create({
   },
   checkBoxText: {
     color: Colors.orange
+  },
+  response: {
+    color: Colors.white,
+    textAlign: "center"
   }
 });

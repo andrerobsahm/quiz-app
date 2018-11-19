@@ -6,7 +6,7 @@ import base from "../Config/base";
 
 class StatisticsScreen extends Component {
   static navigationOptions = {
-    header: null
+    // header: null
   };
 
   state = {

@@ -20,10 +20,6 @@ import base from "../Config/base";
 import * as Elements from "react-native-elements";
 import Colors from "../constants/Colors";
 export default class NewGameScreen extends React.Component {
-  static navigationOptions = {
-    header: null
-  };
-
   constructor(props) {
     super(props);
     this.state = {
