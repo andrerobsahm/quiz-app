@@ -44,7 +44,6 @@ class StatisticsScreen extends Component {
   }
 
   render() {
-    console.log(this.state.result);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>

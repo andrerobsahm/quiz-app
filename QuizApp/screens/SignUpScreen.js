@@ -49,9 +49,6 @@ export default class SignUpScreen extends React.Component {
       await base
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.password);
-
-      // const user = base.auth().currentUser;
-
       base
         .database()
         .ref("users/")

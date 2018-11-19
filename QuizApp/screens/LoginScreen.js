@@ -87,7 +87,6 @@ export default class LoginScreen extends React.Component {
   };
 
   render() {
-    console.log(this.state.user);
     return (
       <ImageBackground
         source={backgroundImage}
