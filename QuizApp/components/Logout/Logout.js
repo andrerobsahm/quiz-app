@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import base from "../../Config/base.js";
+import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import { Navigator } from "react-navigation";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 export default class Logout extends React.Component {
@@ -45,23 +46,6 @@ export default class Logout extends React.Component {
   }
 
   render() {
-    return (
-      <TouchableWithoutFeedback style={styles.container}>
-        <View>
-          <View>
-            <ButtonComponent title="Logga ut" onPress={this.logout} />
-          </View>
-          <View />
-        </View>
-      </TouchableWithoutFeedback>
-    );
+    return <ButtonComponent title="Logga ut från app" onPress={this.logout} />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 15,
-    backgroundColor: "#fff"
-  }
-});
