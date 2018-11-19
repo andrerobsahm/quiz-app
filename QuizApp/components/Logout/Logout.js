@@ -3,7 +3,6 @@ import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import base from "../../Config/base.js";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import { Navigator } from "react-navigation";
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
 export default class Logout extends React.Component {
   constructor(props) {
     super(props);
