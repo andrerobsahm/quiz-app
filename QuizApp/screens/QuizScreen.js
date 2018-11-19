@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, View, Text, StyleSheet } from "react-native";
+import ProgressBar from "react-native-progress/Bar";
 import AnswersButton from "../components/AnswersButton/AnswersButton";
 import Timer from "../components/Timer/Timer";
 import Colors from "../constants/Colors";
@@ -123,6 +124,15 @@ class QuestionList extends Component {
               timer={this.state.timer}
             />
             <Timer clear={this} />
+            <ProgressBar
+              progress={this.state.timer / 10}
+              width={350}
+              height={5}
+              color={Colors.orange}
+              unfilledColor={Colors.black}
+              borderColor="transparent"
+              borderRadius={0}
+            />
           </React.Fragment>
         )}
       </View>
