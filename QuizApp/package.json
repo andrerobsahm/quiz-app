@@ -14,16 +14,17 @@
   },
   "dependencies": {
     "@expo/samples": "2.1.1",
-    "expo": "^30.0.1",
-    "firebase": "^5.5.4",
+    "expo": "^30.0.2",
+    "firebase": "^5.5.8",
     "npm": "^6.4.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-elements": "^0.19.1",
-    "react-native-firebase": "^5.0.0",
-    "react-native-linear-gradient": "^2.4.2",
+    "react-native-firebase": "^5.1.0",
+    "react-native-linear-gradient": "^2.4.4",
+    "react-native-progress-bar": "^0.1.2",
     "react-native-textinput-effects": "^0.4.2",
-    "react-navigation": "^2.16.0",
+    "react-navigation": "^2.18.2",
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
