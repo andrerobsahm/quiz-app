@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { ScrollView, View, Text, StyleSheet, FlatList } from "react-native";
+import * as Elements from "react-native-elements";
 import FindPlayers from "../components/FindPlayers/FindPlayers";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
@@ -32,11 +33,15 @@ class StatisticsScreen extends Component {
   renderScore() {
     return (
       <View style={styles.scorecontainer}>
-        <Text>Dina resultat:</Text>
+        <Elements.Text h4 style={styles.headline}>
+          Resultat för {this.state.username}
+        </Elements.Text>
         {this.state.result &&
           this.state.result.map((score, key) => (
             <View key={key}>
-              <Text style={styles.answerText}>{score} av 4</Text>
+              <Elements.Badge containerStyle={{ backgroundColor: "violet" }}>
+                <Text>{score} av 4</Text>
+              </Elements.Badge>
             </View>
           ))}
       </View>
@@ -47,14 +52,39 @@ class StatisticsScreen extends Component {
     console.log(this.state.result);
     return (
       <View style={styles.container}>
-        <Text>QUIZ!T</Text>
-        <Text>{this.state.username}</Text>
-        <ScrollView>{this.renderScore()}</ScrollView>
-        {this.state.result && (
-          <View styles={styles.chartcontainer}>
-            <LineChart data={this.state.result} />
+        <Elements.Text h1 style={styles.headline}>
+          Din statistik
+        </Elements.Text>
+        <Text style={styles.paragraph}>
+          Här kan du se hur det har gått i dina matcher och din
+          utvecklingskurva.
+        </Text>
+        <Elements.Divider
+          style={{
+            backgroundColor: Colors.black,
+            width: "30%",
+            height: 3,
+            marginVertical: 10
+          }}
+        />
+        {this.state.result > 0 && (
+          <View>
+            <View>{this.renderScore()}</View>
+            <View style={styles.chartcontainer}>
+              <LineChart data={this.state.result} />
+            </View>
           </View>
         )}
+        : (
+        <View>
+          <Elements.Card>
+            <Text style={styles.paragraph}>
+              Ingen statistik än... Spela ett quiz och kom tillbaks för att föja
+              dina framsteg!
+            </Text>
+          </Elements.Card>
+        </View>
+        ) ) }
       </View>
     );
   }
@@ -63,9 +93,11 @@ class StatisticsScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: Colors.bgWhite,
+    // justifyContent: "space-around",
+    paddingHorizontal: 27,
+    // alignItems: "center",
+    // justifyContent: "center",
+    backgroundColor: Colors.white,
     paddingTop: 20
   },
   scorecontainer: {
@@ -78,7 +110,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     backgroundColor: "white"
   },
-  chartcontainer: {}
+  chartcontainer: {},
+  headline: {
+    marginVertical: 10
+  },
+  paragraph: {
+    fontSize: 18
+  }
 });
 
 export default StatisticsScreen;
