@@ -1,77 +1,59 @@
 import React, { Component } from "react";
-import {
-  ScrollView,
-  View,
-  Text,
-  StyleSheet,
-  TouchableHighlight,
-  FlatList
-} from "react-native";
+import { ScrollView, View, Text, StyleSheet, FlatList } from "react-native";
 import FindPlayers from "../components/FindPlayers/FindPlayers";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
 
 class FriendsScreen extends Component {
   static navigationOptions = {
-    header: null
+    // header: null
   };
 
   state = {
-    questions: [],
-    users: false,
     uid: base.auth().currentUser.uid,
+    username: this.props.navigation.state.params.username,
+    allfriends: false,
     friends: [],
-    allFriends: [],
-    username: this.props.navigation.state.params.username
+    users: false
   };
 
   componentDidMount() {
-    // this._getAllFriends();
+    this._getFriends();
   }
-  _getAllFriends() {
+
+  _getFriends() {
     base
       .database()
-      .ref("friends")
-      .orderByKey()
-      .equalTo(`${this.state.uid}`)
+      .ref("friends/friends")
       .on("value", data => {
-        const users = Object.values(data.val());
-        this.setState({ allFriends });
+        const allfriends = Object.values(data.val());
+        this.setState({ allfriends });
       });
   }
 
   renderFriends() {
     return (
       <View style={styles.questionContainer}>
-        <FlatList
-          style={styles.listContainer}
-          keyExtractor={(friend, index) => index.toString()}
-          data={this.state.allFriends}
-          renderItem={({ friend }) => (
-            <View style={styles.listItem}>
-              <View>
-                <Text style={styles.userText}>
-                  {friend !== undefined && friend.toUpperCase()}
-                </Text>
-              </View>
+        <Text>Dina resultat:</Text>
+        {this.state.allfriends &&
+          this.state.result.map((friend, key) => (
+            <View key={key}>
+              <Text style={styles.answerText}>{friend}</Text>
             </View>
-          )}
-        />
+          ))}
       </View>
     );
   }
 
   render() {
-    console.log(this.state.uid);
+    console.log(this.state.allfriends);
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
         <ScrollView>{this.renderFriends()}</ScrollView>
-        <TouchableHighlight onPress={this._getData}>
-          <View>
-            <FindPlayers user={this} />
-          </View>
-        </TouchableHighlight>
+        <View>
+          <FindPlayers user={this} />
+        </View>
       </View>
     );
   }
@@ -82,7 +64,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     paddingTop: 20
-    // backgroundColor: Colors.black
   },
   questionContainer: {
     flex: 1,
@@ -95,7 +76,6 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   question: {
-    //  color: Colors.white,
     fontSize: 30,
     textAlign: "center",
     lineHeight: 39

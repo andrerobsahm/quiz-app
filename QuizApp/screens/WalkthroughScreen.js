@@ -76,16 +76,16 @@ export default class WalkthroughScreen extends React.Component {
         >
           {page !== undefined && (
             <View style={styles.container}>
-              <Image
-                style={{
-                  height: 400,
-                  resizeMode: "contain",
-                  alignSelf: "center"
-                }}
-                source={page.image}
-              />
-              <Text>{page.title}</Text>
-              <Text>{page.text}</Text>
+              <View style={styles.imgcontainer}>
+                <Image
+                  style={{
+                    height: 550,
+                    resizeMode: "contain",
+                    marginRight: -99
+                  }}
+                  source={page.image}
+                />
+              </View>
               <View style={styles.linecontainer}>
                 <View
                   style={[0 === this.state.index ? styles.active : styles.line]}
@@ -97,7 +97,9 @@ export default class WalkthroughScreen extends React.Component {
                   style={[2 === this.state.index ? styles.active : styles.line]}
                 />
               </View>
-              <Button title="gå vidare" onPress={this.slide} />
+              <Text style={styles.titletext}>{page.title}</Text>
+              <Text style={styles.contenttext}>{page.text}</Text>
+              <Button title="Gå vidare" onPress={this.slide} />
             </View>
           )}
         </LinearGradient>
@@ -114,21 +116,33 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingTop: 100
   },
-  screentext: {
+  imgcontainer: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "center"
+  },
+  titletext: {
     color: "white",
-    textAlign: "left"
+    textAlign: "left",
+    fontSize: 36
+  },
+  contenttext: {
+    color: "white",
+    textAlign: "left",
+    fontSize: 15
   },
   linecontainer: {
     flexDirection: "row"
   },
   line: {
-    height: 4,
+    height: 5,
     width: 30,
     marginRight: 5,
     backgroundColor: "rgba(255,255,255,0.3)"
   },
   active: {
-    width: 50,
+    width: 70,
+    marginRight: 5,
     backgroundColor: "white"
   }
 });
