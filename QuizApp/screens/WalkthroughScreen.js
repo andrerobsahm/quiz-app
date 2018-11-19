@@ -124,15 +124,23 @@ const styles = StyleSheet.create({
   titletext: {
     color: "white",
     textAlign: "left",
-    fontSize: 36
+    fontSize: 36,
+    marginTop: -40,
+    marginBottom: 50
   },
   contenttext: {
     color: "white",
     textAlign: "left",
-    fontSize: 15
+    fontSize: 15,
+    marginTop: -30,
+    marginBottom: 30,
+    marginLeft: -25,
+    width: 280
   },
   linecontainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    marginBottom: 60,
+    marginRight: 170
   },
   line: {
     height: 5,
