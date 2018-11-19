@@ -40,20 +40,28 @@ export default class LoginScreen extends React.Component {
       loggedin: "",
       username: "",
       loggedin: false,
-      secureText: true
+      secureText: true,
+      user: {}
     };
     this.login = this.login.bind(this);
+    this._getUser = this._getUser.bind(this);
   }
 
   componentDidMount() {
-    var user = base.auth().currentUser;
-    if (user !== null) {
-      this.setState({
-        loggedin: true
-      });
-      this.props.navigation.navigate("Home");
-      console.log(user);
-    }
+    this._getUser();
+  }
+  _getUser() {
+    base.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+        this._redirect();
+      } else {
+        this.setState({ user: null });
+      }
+    });
+  }
+  _redirect() {
+    this.props.navigation.navigate("Home");
   }
   async login() {
     try {
@@ -64,9 +72,7 @@ export default class LoginScreen extends React.Component {
       this.setState({
         response: "Logged In!"
       });
-      setTimeout(() => {
-        this.props.navigation.navigate("Home");
-      }, 1500);
+      this._redirect();
     } catch (error) {
       this.setState({
         response: error.toString()
@@ -81,6 +87,7 @@ export default class LoginScreen extends React.Component {
   };
 
   render() {
+    console.log(this.state.user);
     return (
       <ImageBackground
         source={backgroundImage}

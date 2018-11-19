@@ -38,8 +38,13 @@ export default class SignUpScreen extends React.Component {
     this.signup = this.signup.bind(this);
   }
 
+  _redirect() {
+    setTimeout(() => {
+      this.props.navigation.navigate("Walkthrough");
+    }, 600);
+  }
+
   async signup() {
-    console.log("hej");
     try {
       await base
         .auth()
@@ -64,9 +69,7 @@ export default class SignUpScreen extends React.Component {
         response: "Konto skapat"
       });
 
-      setTimeout(() => {
-        this.props.navigation.navigate("Walkthrough");
-      }, 1500);
+      this._redirect();
     } catch (error) {
       this.setState({
         response: error.toString()
