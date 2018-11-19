@@ -13,6 +13,9 @@ import {
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 const { width, height } = Dimensions.get("window");
+import { LinearGradient } from "expo";
+import Colors from "../constants/Colors";
+
 import WalkthroughOne from "../assets/images/WalkthroughOne.png";
 import WalkthroughTwo from "../assets/images/WalkthroughTwo.png";
 import WalkthroughThree from "../assets/images/WalkthroughThree.png";
@@ -66,32 +69,38 @@ export default class WalkthroughScreen extends React.Component {
     console.log(this.state.index);
     return (
       <ScrollView horizontal={true}>
-        {page !== undefined && (
-          <View style={styles.container}>
-            <Image
-              style={{
-                height: 400,
-                resizeMode: "contain",
-                alignSelf: "center"
-              }}
-              source={page.image}
-            />
-            <Text>{page.title}</Text>
-            <Text>{page.text}</Text>
-            <View style={styles.linecontainer}>
-              <View
-                style={[0 === this.state.index ? styles.active : styles.line]}
+        <LinearGradient
+          colors={[Colors.pink, Colors.orange]}
+          start={[0, 1]}
+          end={[0.8, 0]}
+        >
+          {page !== undefined && (
+            <View style={styles.container}>
+              <Image
+                style={{
+                  height: 400,
+                  resizeMode: "contain",
+                  alignSelf: "center"
+                }}
+                source={page.image}
               />
-              <View
-                style={[1 === this.state.index ? styles.active : styles.line]}
-              />
-              <View
-                style={[2 === this.state.index ? styles.active : styles.line]}
-              />
+              <Text>{page.title}</Text>
+              <Text>{page.text}</Text>
+              <View style={styles.linecontainer}>
+                <View
+                  style={[0 === this.state.index ? styles.active : styles.line]}
+                />
+                <View
+                  style={[1 === this.state.index ? styles.active : styles.line]}
+                />
+                <View
+                  style={[2 === this.state.index ? styles.active : styles.line]}
+                />
+              </View>
+              <Button title="gå vidare" onPress={this.slide} />
             </View>
-            <Button title="gå vidare" onPress={this.slide} />
-          </View>
-        )}
+          )}
+        </LinearGradient>
       </ScrollView>
     );
   }
@@ -103,7 +112,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: width,
     justifyContent: "center",
-    alignItems: "center",
     paddingTop: 100
   },
   screentext: {
