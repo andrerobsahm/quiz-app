@@ -79,7 +79,7 @@ class QuestionList extends Component {
       base
         .database()
         .ref("statistics/")
-        .push({
+        .update({
           result: this.state.result,
           uid: base.auth().currentUser.uid
         });

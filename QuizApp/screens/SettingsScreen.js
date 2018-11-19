@@ -75,7 +75,7 @@ export default class SettingsScreen extends React.Component {
         </Text>
         <TouchableWithoutFeedback>
           <TextInput
-            placeholder="change password"
+            placeholder="updatera lösenord"
             changePassword={password => this.setState({ password })}
             autoCapitalize="none"
           />

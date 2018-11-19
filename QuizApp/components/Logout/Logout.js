@@ -1,20 +1,8 @@
 import React from "react";
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-  TextInput,
-  Button,
-  NavigatorIOS
-} from "react-native";
+import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
 import base from "../../Config/base.js";
 import { Navigator } from "react-navigation";
-
+import ButtonComponent from "../ButtonComponent/ButtonComponent";
 export default class Logout extends React.Component {
   constructor(props) {
     super(props);
@@ -61,7 +49,7 @@ export default class Logout extends React.Component {
       <TouchableWithoutFeedback style={styles.container}>
         <View>
           <View>
-            <Button title="Logout" onPress={this.logout} />
+            <ButtonComponent title="Logga ut" onPress={this.logout} />
           </View>
           <View />
         </View>
