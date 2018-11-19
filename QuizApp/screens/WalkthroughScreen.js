@@ -7,6 +7,7 @@ import {
   Dimensions,
   Text,
   Button,
+  TouchableWithoutFeedback,
   TouchableOpacity,
   View
 } from "react-native";
@@ -99,7 +100,15 @@ export default class WalkthroughScreen extends React.Component {
               </View>
               <Text style={styles.titletext}>{page.title}</Text>
               <Text style={styles.contenttext}>{page.text}</Text>
-              <Button title="Gå vidare" onPress={this.slide} />
+              <View style={styles.movenext}>
+                <Button color="white" title="Gå vidare" onPress={this.slide} />
+                <TouchableWithoutFeedback onPress={this.slide}>
+                  <Image
+                    style={styles.movenexticon}
+                    source={require("../assets/icons/arrow-right-white.png")}
+                  />
+                </TouchableWithoutFeedback>
+              </View>
             </View>
           )}
         </LinearGradient>
@@ -136,6 +145,17 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     marginLeft: -25,
     width: 280
+  },
+  movenext: {
+    flexDirection: "row",
+    marginLeft: -190,
+    marginTop: -20,
+    marginBottom: 20
+  },
+  movenexticon: {
+    marginTop: 14,
+    width: 20,
+    marginLeft: 20
   },
   linecontainer: {
     flexDirection: "row",
