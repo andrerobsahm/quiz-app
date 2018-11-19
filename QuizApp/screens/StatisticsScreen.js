@@ -3,7 +3,7 @@ import { ScrollView, View, Text, StyleSheet, FlatList } from "react-native";
 import FindPlayers from "../components/FindPlayers/FindPlayers";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
-
+import LineChart from "../components/Chart/Chart";
 class StatisticsScreen extends Component {
   static navigationOptions = {
     // header: null
@@ -31,12 +31,12 @@ class StatisticsScreen extends Component {
 
   renderScore() {
     return (
-      <View style={styles.questionContainer}>
+      <View style={styles.scorecontainer}>
         <Text>Dina resultat:</Text>
         {this.state.result &&
           this.state.result.map((score, key) => (
             <View key={key}>
-              <Text style={styles.answerText}>{score}</Text>
+              <Text style={styles.answerText}>{score} av 4</Text>
             </View>
           ))}
       </View>
@@ -50,6 +50,11 @@ class StatisticsScreen extends Component {
         <Text>QUIZ!T</Text>
         <Text>{this.state.username}</Text>
         <ScrollView>{this.renderScore()}</ScrollView>
+        {this.state.result && (
+          <View styles={styles.chartcontainer}>
+            <LineChart data={this.state.result} />
+          </View>
+        )}
       </View>
     );
   }
@@ -59,23 +64,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Colors.bgWhite,
     paddingTop: 20
   },
-  questionContainer: {
+  scorecontainer: {
     flex: 1,
     alignItems: "center",
-    paddingTop: 50,
-    justifyContent: "space-around"
+    marginTop: 50,
+    height: "auto",
+    width: 300,
+    borderRadius: 8,
+    justifyContent: "space-around",
+    backgroundColor: "white"
   },
-  category: {
-    fontSize: 14,
-    textAlign: "center"
-  },
-  question: {
-    fontSize: 30,
-    textAlign: "center",
-    lineHeight: 39
-  }
+  chartcontainer: {}
 });
 
 export default StatisticsScreen;
