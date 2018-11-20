@@ -46,7 +46,8 @@ export default class SettingsScreen extends React.Component {
         photoUrl: user.photoURL,
         uid: user.uid,
         username: user.username,
-        loggedin: user.loggedin
+        loggedin: user.loggedin,
+        secureText: true
       });
     }
   };

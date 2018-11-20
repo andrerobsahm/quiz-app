@@ -68,13 +68,26 @@ class QuestionList extends Component {
       this.setState({
         result: this.state.result.concat([this.state.score])
       });
-      base
-        .database()
-        .ref("statistics/")
-        .update({
-          result: this.state.result,
-          uid: base.auth().currentUser.uid
-        });
+
+      if (
+        base
+          .database()
+          .ref("statistics/")
+          .child(base.auth().currentUser.uid)
+      ) {
+        base
+          .database()
+          .ref(`statistics/${base.auth().currentUser.uid}/result`)
+          .push(this.state.score);
+      } else {
+        base
+          .database()
+          .ref("statistics/")
+          .push(base.auth().currentUser.uid)
+          .push(result)
+          .push(this.state.score);
+      }
+
       this.setState({
         questionsanswers: 0,
         score: this.state.score,
