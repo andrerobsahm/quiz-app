@@ -31,7 +31,7 @@ class FriendsScreen extends Component {
     console.log(this.state.allfriends);
     return (
       <View>
-        <Text style={styles.title}>Dina vänner</Text>
+        {this.state.allfriends && <Text style={styles.title}>Dina vänner</Text>}
         {this.state.allfriends &&
           this.state.allfriends.map((friend, key) => (
             <View key={key}>
