@@ -5,6 +5,7 @@ import FindPlayers from "../components/FindPlayers/FindPlayers";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
 import LineChart from "../components/Chart/Chart";
+import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 class StatisticsScreen extends Component {
   state = {
     uid: base.auth().currentUser.uid,
@@ -45,6 +46,7 @@ class StatisticsScreen extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Elements.Text h1 style={styles.headline}>
@@ -77,6 +79,10 @@ class StatisticsScreen extends Component {
               Ingen statistik än... Spela ett quiz och kom tillbaks för att föja
               dina framsteg!
             </Text>
+            <ButtonComponent
+              title="Spela"
+              onPress={() => navigate("NewGame")}
+            />
           </Elements.Card>
         </View>
         ) ) }
