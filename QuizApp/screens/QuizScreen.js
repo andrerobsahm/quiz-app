@@ -139,7 +139,7 @@ class QuestionList extends Component {
             <View>{this.renderQuestions()}</View>
           </View>
         ) : (
-          <View>
+          <View style={styles.linkscontainer}>
             <ButtonComponent title="Starta spel" onPress={this._getData} />
             <ButtonComponent
               title="Tillbaka"
@@ -173,6 +173,10 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: "center",
     lineHeight: 39
+  },
+  linkscontainer: {
+    flex: 1,
+    justifyContent: "center"
   }
 });
 
