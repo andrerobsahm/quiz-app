@@ -16,21 +16,17 @@ class StatisticsScreen extends Component {
     result: false
   };
 
-  componentDidMount() {
-    this._getScores();
-  }
-
   _getScores() {
     base
       .database()
-      .ref("statistics/result")
+      .ref(`statistics/${base.auth().currentUser.uid}/result`)
       .on("value", data => {
         const result = Object.values(data.val());
         this.setState({ result });
       });
   }
 
-  renderScore() {
+  _renderScore() {
     return (
       <View style={styles.scorecontainer}>
         <Elements.Text h4 style={styles.headline}>
@@ -39,11 +35,26 @@ class StatisticsScreen extends Component {
         {this.state.result &&
           this.state.result.map((score, key) => (
             <View key={key}>
-              <Elements.Badge containerStyle={{ backgroundColor: "violet" }}>
-                <Text>{score} av 4</Text>
-              </Elements.Badge>
+              <Text>{score} av 4</Text>
             </View>
           ))}
+      </View>
+    );
+  }
+
+  componentDidMount() {
+    this._getScores();
+  }
+
+  _renderNoScore() {
+    return (
+      <View>
+        <Elements.Card>
+          <Text style={styles.paragraph}>
+            Ingen statistik än... Spela ett quiz och kom tillbaks för att föja
+            dina framsteg!
+          </Text>
+        </Elements.Card>
       </View>
     );
   }
@@ -66,24 +77,17 @@ class StatisticsScreen extends Component {
             marginVertical: 10
           }}
         />
-        {this.state.result > 0 && (
+        {this.state.result ? (
           <View>
-            <View>{this.renderScore()}</View>
+            <View>{this._renderScore()}</View>
             <View style={styles.chartcontainer}>
               <LineChart data={this.state.result} />
             </View>
           </View>
+        ) : (
+          <View>{this._renderNoScore()}</View>
         )}
-        : (
-        <View>
-          <Elements.Card>
-            <Text style={styles.paragraph}>
-              Ingen statistik än... Spela ett quiz och kom tillbaks för att föja
-              dina framsteg!
-            </Text>
-          </Elements.Card>
-        </View>
-        ) ) }
+        )}
       </View>
     );
   }
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 27,
     // alignItems: "center",
     // justifyContent: "center",
-    backgroundColor: Colors.white,
+    // backgroundColor: Colors.white,
     paddingTop: 20
   },
   scorecontainer: {
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
     width: 300,
     borderRadius: 8,
     justifyContent: "space-around",
-    backgroundColor: "white"
+    backgroundColor: Colors.orange
   },
   chartcontainer: {},
   headline: {

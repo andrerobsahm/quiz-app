@@ -15,13 +15,20 @@ export default class AnswersButton extends Component {
     super(props);
     this.state = {
       backgroundColor: [Colors.pink, Colors.orange],
-      corrrectBackgroundColor: ["green", "green"],
-      incorrectBackgroundColor: ["red", "red"],
-      // answerTrue: false,
-      // answerFalse: false,
+      corrrectBgColor: ["green", "green"],
+      incorrectBgColor: ["red", "red"],
+      answerTrue: false,
+      answerFalse: false,
       pressed: false
     };
   }
+
+  _isMounted = true;
+
+  // componentWillUnmount() {
+  //     _isMounted = false;
+  // }
+
   componentDidMount() {
     // if (this.state.pressed) {
     //   clearInterval(this.myTimerInterval);
@@ -34,23 +41,25 @@ export default class AnswersButton extends Component {
       if (this.props.timer === 0) {
         this.progress();
       }
-    }, 1500);
+    }, 1000);
   }
 
   componentWillUnmount() {
     clearInterval(this.myTimerInterval);
+
+    this._isMounted = false;
   }
 
   _onAnswerPress = e => {
     if (e === this.props.correct) {
       this.setState({
-        // answerTrue: true,
+        answerTrue: true
         // backgroundColor: ["green", "green"]
       });
       this.props.score();
     } else {
       this.setState({
-        // answerFalse: true,
+        answerFalse: true
         // backgroundColor: ["red", "red"]
       });
     }
@@ -61,11 +70,11 @@ export default class AnswersButton extends Component {
     setTimeout(() => {
       this.props.counter();
       this.setState({
-        // answerTrue: false,
-        // answerFalse: false,
+        answerTrue: false,
+        answerFalse: false
         // backgroundColor: [Colors.pink, Colors.orange]
       });
-    }, 1500);
+    }, 1000);
   };
 
   progress() {
@@ -83,7 +92,13 @@ export default class AnswersButton extends Component {
             onPress={() => this._onAnswerPress(option)}
           >
             <LinearGradient
-              colors={this.state.backgroundColor}
+              colors={
+                this.state.answerTrue
+                  ? ["green", "green"]
+                  : this.state.backgroundColor && this.state.answerFalse
+                    ? ["red", "red"]
+                    : this.state.backgroundColor
+              }
               style={{
                 width: 304,
                 height: 50,
@@ -118,7 +133,10 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     textAlign: "center"
   },
-  buttonPress: {
-    color: "blue"
+  buttonTrue: {
+    backgroundColor: "green"
+  },
+  buttonFalse: {
+    backgroundColor: "red"
   }
 });

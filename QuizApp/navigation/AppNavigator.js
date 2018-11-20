@@ -55,12 +55,6 @@ const SignedOut = createStackNavigator(
 );
 
 const QuizStack = createStackNavigator({
-  NewGame: {
-    screen: NewGameScreen,
-    navigationOptions: {
-      title: "Nytt spel"
-    }
-  },
   Quiz: {
     screen: QuizScreen,
     navigationOptions: {
@@ -94,6 +88,12 @@ const HomeStack = createStackNavigator(
       screen: FindPlayersScreen,
       navigationOptions: {
         title: "Hitta vänner"
+      }
+    },
+    NewGame: {
+      screen: NewGameScreen,
+      navigationOptions: {
+        title: "Nytt spel"
       }
     }
   },
