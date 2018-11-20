@@ -16,6 +16,8 @@ import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import base from "../Config/base";
 import * as Elements from "react-native-elements";
 import Colors from "../constants/Colors";
+import Headline from "../components/Headline/Headline";
+
 export default class NewGameScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -30,13 +32,10 @@ export default class NewGameScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Elements.Text h1>Nytt spel</Elements.Text>
-        <Text style={styles.p}>
-          VIll du spela mot en kompis? Mot en random spelare? Eller bara för dig
-          själv för att det är kul!?
-        </Text>
-        <Elements.Divider
-          style={{ backgroundColor: Colors.black, width: "30%", height: 3 }}
+        <Headline
+          headline="Nytt spel"
+          paragraph="VIll du spela mot en kompis? Mot en random spelare? Eller bara för dig
+            själv för att det är kul!?"
         />
 
         <View style={styles.navigationContainer}>

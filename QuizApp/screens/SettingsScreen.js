@@ -14,10 +14,9 @@ import {
 import * as Elements from "react-native-elements";
 import base from "../Config/base.js";
 import Colors from "../constants/Colors";
-
+import Headline from "../components/Headline/Headline";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import Logout from "../components/Logout/Logout";
-import Header from "../components/Header/Header";
 
 export default class SettingsScreen extends React.Component {
   constructor(props) {
@@ -68,18 +67,7 @@ export default class SettingsScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Elements.Text h1 style={styles.headline}>
-          Dina inställningar
-        </Elements.Text>
-        <Elements.Divider
-          style={{
-            backgroundColor: Colors.black,
-            width: "30%",
-            height: 3,
-            marginVertical: 10
-          }}
-        />
-
+        <Headline headline="Dina inställningar" />
         <Text>Ändra lösenord för användare med e-post {this.state.email}</Text>
         <Text>
           {this.state.photoURL}

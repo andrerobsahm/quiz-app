@@ -101,7 +101,7 @@ export default class HomeScreen extends React.Component {
             icon={Level}
             onPress={() =>
               navigate("Statistics", {
-                result: user.result,
+                // result: user.result,
                 username: user.username
               })
             }
