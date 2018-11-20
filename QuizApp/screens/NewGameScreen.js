@@ -11,9 +11,6 @@ import {
 import { WebBrowser } from "expo";
 import { MonoText } from "../components/StyledText";
 import Color from "../constants/Colors";
-import PlayGame from "../components/Links/PlayGame/PlayGame";
-import PlayRandom from "../components/Links/PlayRandom/PlayRandom";
-import PlayFriend from "../components/Links/PlayFriend/PlayFriend";
 import Loading from "../components/Loading/Loading";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import base from "../Config/base";

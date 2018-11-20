@@ -5,10 +5,6 @@ import Colors from "../constants/Colors";
 import base from "../Config/base";
 
 class FriendsScreen extends Component {
-  static navigationOptions = {
-    // header: null
-  };
-
   state = {
     uid: base.auth().currentUser.uid,
     username: this.props.navigation.state.params.username,

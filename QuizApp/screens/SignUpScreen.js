@@ -18,10 +18,6 @@ import LoginLink from "../components/Links/LoginLink/LoginLink";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 
 export default class SignUpScreen extends React.Component {
-  static navigationOptions = {
-    // header: null
-  };
-
   constructor(props) {
     super(props);
     this.state = {
@@ -39,9 +35,7 @@ export default class SignUpScreen extends React.Component {
   }
 
   _redirect() {
-    setTimeout(() => {
-      this.props.navigation.navigate("Walkthrough");
-    }, 600);
+    this.props.navigation.navigate("Walkthrough");
   }
 
   async signup() {

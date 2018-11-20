@@ -7,10 +7,6 @@ import Colors from "../constants/Colors";
 import base from "../Config/base";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 class QuestionList extends Component {
-  static navigationOptions = {
-    header: null
-  };
-
   state = {
     questions: [],
     questionsanswers: 0,
@@ -21,10 +17,6 @@ class QuestionList extends Component {
     startgame: false,
     popUp: false
   };
-
-  // componentDidMount() {
-  //   this._getData();
-  // }
 
   _getData = () => {
     let data = fetch(
@@ -93,10 +85,8 @@ class QuestionList extends Component {
   };
 
   popUp() {
-    const { navigate } = this.props.navigation;
     return (
       <View>
-        <ButtonComponent title="Tillbaka" onPress={() => navigate("Home")} />
         <Text>
           Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
           frågor
@@ -140,6 +130,7 @@ class QuestionList extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Text>QUIZ!T</Text>
@@ -148,7 +139,13 @@ class QuestionList extends Component {
             <View>{this.renderQuestions()}</View>
           </View>
         ) : (
-          <ButtonComponent title="Starta spel" onPress={this._getData} />
+          <View>
+            <ButtonComponent title="Starta spel" onPress={this._getData} />
+            <ButtonComponent
+              title="Tillbaka"
+              onPress={() => navigate("Home")}
+            />
+          </View>
         )}
         {this.state.popUp && this.popUp()}
       </View>
