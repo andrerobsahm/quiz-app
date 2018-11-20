@@ -64,11 +64,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.bgWhite,
     paddingHorizontal: 27
   },
-  textContainer: {},
   navigationContainer: {
     alignItems: "center"
-  },
-  p: {
-    fontSize: 18
   }
 });

@@ -25,10 +25,6 @@ export default class AnswersButton extends Component {
 
   _isMounted = true;
 
-  // componentWillUnmount() {
-  //     _isMounted = false;
-  // }
-
   componentDidMount() {
     // if (this.state.pressed) {
     //   clearInterval(this.myTimerInterval);
@@ -46,35 +42,34 @@ export default class AnswersButton extends Component {
 
   componentWillUnmount() {
     clearInterval(this.myTimerInterval);
-
     this._isMounted = false;
   }
 
   _onAnswerPress = e => {
-    if (e === this.props.correct) {
+    if (this._isMounted) {
+      if (e === this.props.correct) {
+        this.setState({
+          answerTrue: true
+        });
+        this.props.score();
+      } else {
+        this.setState({
+          answerFalse: true
+        });
+      }
       this.setState({
-        answerTrue: true
-        // backgroundColor: ["green", "green"]
+        pressed: !this.state.pressed
       });
-      this.props.score();
-    } else {
-      this.setState({
-        answerFalse: true
-        // backgroundColor: ["red", "red"]
-      });
-    }
-    this.setState({
-      pressed: !this.state.pressed
-    });
 
-    setTimeout(() => {
-      this.props.counter();
-      this.setState({
-        answerTrue: false,
-        answerFalse: false
-        // backgroundColor: [Colors.pink, Colors.orange]
-      });
-    }, 1000);
+      setTimeout(() => {
+        this.props.counter();
+        this.setState({
+          answerTrue: false,
+          answerFalse: false,
+          pressed: false
+        });
+      }, 1000);
+    }
   };
 
   progress() {
@@ -93,7 +88,7 @@ export default class AnswersButton extends Component {
           >
             <LinearGradient
               colors={
-                this.state.answerTrue
+                this.state.pressed && option === this.props.correct
                   ? ["green", "green"]
                   : this.state.backgroundColor && this.state.answerFalse
                     ? ["red", "red"]
