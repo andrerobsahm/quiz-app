@@ -16,7 +16,7 @@ import {
 import base from "../../Config/base";
 import { Divider } from "react-native-elements";
 import Colors from "../../constants/Colors";
-
+import ButtonComponent from "../ButtonComponent/ButtonComponent";
 export default class FindPlayers extends React.Component {
   _getAllUsers = () => {
     base
@@ -82,7 +82,6 @@ export default class FindPlayers extends React.Component {
               </View>
             </View>
           )}
-          ItemSeparatorComponent={this.renderSeparator}
         />
       </View>
     );
@@ -90,12 +89,10 @@ export default class FindPlayers extends React.Component {
 
   render() {
     return (
-      <View>
-        <TouchableHighlight onPress={this._getAllUsers}>
-          <View>
-            <Text>Hitta vänner</Text>
-          </View>
-        </TouchableHighlight>
+      <View style={styles.listContainer}>
+        <View style={styles.listItem}>
+          <ButtonComponent title="Hitta Vänner" onPress={this._getAllUsers} />
+        </View>
         <ScrollView>{this.getUserRows()}</ScrollView>
       </View>
     );
@@ -108,10 +105,11 @@ const styles = StyleSheet.create({
     paddingTop: 15
   },
   listContainer: {
+    flex: 1,
     alignContent: "center"
   },
   listItem: {
-    alignContent: "center",
+    alignItems: "center",
     justifyContent: "center"
   },
   userText: {

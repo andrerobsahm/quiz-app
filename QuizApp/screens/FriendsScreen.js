@@ -28,13 +28,14 @@ class FriendsScreen extends Component {
   }
 
   renderFriends() {
+    console.log(this.state.allfriends);
     return (
-      <View style={styles.questionContainer}>
-        <Text>Dina resultat:</Text>
+      <View>
+        <Text style={styles.title}>Dina vänner</Text>
         {this.state.allfriends &&
-          this.state.result.map((friend, key) => (
+          this.state.allfriends.map((friend, key) => (
             <View key={key}>
-              <Text style={styles.answerText}>{friend}</Text>
+              <Text style={styles.friend}>{friend}</Text>
             </View>
           ))}
       </View>
@@ -42,11 +43,9 @@ class FriendsScreen extends Component {
   }
 
   render() {
-    console.log(this.state.allfriends);
     return (
       <View style={styles.container}>
-        <Text>QUIZ!T</Text>
-        <ScrollView>{this.renderFriends()}</ScrollView>
+        <View>{this.renderFriends()}</View>
         <View>
           <FindPlayers user={this} />
         </View>
@@ -61,14 +60,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 20
   },
-  questionContainer: {
-    flex: 1,
-    alignItems: "center",
-    paddingTop: 50,
-    justifyContent: "space-around"
+  title: {
+    fontSize: 24,
+    textAlign: "center"
   },
-  category: {
-    fontSize: 14,
+  friend: {
+    fontSize: 18,
     textAlign: "center"
   },
   question: {

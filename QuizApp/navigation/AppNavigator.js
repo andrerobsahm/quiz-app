@@ -90,8 +90,8 @@ const HomeStack = createStackNavigator(
         title: "Statistik"
       }
     },
-    FindPlayers: {
-      screen: FindPlayersScreen,
+    Friends: {
+      screen: FriendsScreen,
       navigationOptions: {
         title: "Hitta vänner"
       }
