@@ -8,6 +8,7 @@ import {
   Button
 } from "react-native";
 import * as Elements from "react-native-elements";
+import ProgressCircle from "react-native-progress/Circle";
 import FindPlayers from "../components/FindPlayers/FindPlayers";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
@@ -22,7 +23,7 @@ class StatisticsScreen extends Component {
     result: false
   };
 
-  _isMounted = true;
+  _isMounted = false;
 
   _getScores() {
     base
@@ -30,17 +31,29 @@ class StatisticsScreen extends Component {
       .ref(`statistics/${base.auth().currentUser.uid}/result`)
       .on("value", data => {
         const result = Object.values(data.val());
-        this.setState({ result });
+        this._isMounted && this.setState({ result });
       });
   }
 
+  _getSum(total, num) {
+    return total + num;
+  }
+
   _renderScore() {
-    statistics = this.state.result;
+    const statistics = this.state.result;
+    const score = statistics.reduce(function(prev, cur) {
+      let sum = (prev + cur) / 10;
+      return sum.toFixed(2);
+    });
+
+    console.log(score);
     return (
       <View style={styles.scorecontainer}>
         <Elements.Text h4 style={styles.headline}>
           Resultat för {this.state.username}
         </Elements.Text>
+        <ProgressCircle showsText={true} progress={score} size={80} animated />
+
         {statistics &&
           statistics.map((score, key) => (
             <View key={key}>
@@ -52,15 +65,12 @@ class StatisticsScreen extends Component {
   }
 
   componentDidMount() {
-    if (this._isMounted) {
-      this._getScores();
-    }
+    this._isMounted = true;
+    this._getScores();
   }
 
   componentWillUnmount() {
-    if (this._isMounted) {
-      this._isMounted = false;
-    }
+    this._isMounted = false;
   }
 
   _renderNoScore() {
@@ -86,9 +96,11 @@ class StatisticsScreen extends Component {
           paragraph="Här kan du se hur det har gått i dina matcher och din
           utvecklingskurva."
         />
-        {this.state.result ? (
+        {this._isMounted && this.state.result ? (
           <View>
-            <View>{this._renderScore()}</View>
+            <ScrollView>
+              <View>{this._renderScore()}</View>
+            </ScrollView>
             <View style={styles.chartcontainer}>
               <LineChart data={this.state.result} />
             </View>
@@ -113,19 +125,15 @@ const styles = StyleSheet.create({
     paddingTop: 20
   },
   scorecontainer: {
-    flex: 1,
     alignItems: "center",
     marginTop: 50,
-    height: "auto",
+    height: 300,
     width: 300,
-    borderRadius: 8,
-    justifyContent: "space-around",
-    backgroundColor: Colors.orange
+    borderRadius: 8
+    // justifyContent: "space-around",
+    // backgroundColor: Colors.orange
   },
   chartcontainer: {},
-  headline: {
-    marginVertical: 10
-  },
   paragraph: {
     fontSize: 18
   }

@@ -21,11 +21,11 @@ export default class AnswersButton extends Component {
       answerFalse: false,
       pressed: false
     };
+    this._isMounted = false;
   }
 
-  _isMounted = true;
-
   componentDidMount() {
+    this._isMounted = true;
     // if (this.state.pressed) {
     //   clearInterval(this.myTimerInterval);
     //   this.myTimer();
@@ -41,35 +41,37 @@ export default class AnswersButton extends Component {
   }
 
   componentWillUnmount() {
-    clearInterval(this.myTimerInterval);
     this._isMounted = false;
+    clearInterval(this.myTimerInterval);
   }
 
   _onAnswerPress = e => {
-    if (this._isMounted) {
-      if (e === this.props.correct) {
+    if (e === this.props.correct) {
+      this._isMounted &&
         this.setState({
           answerTrue: true
         });
-        this.props.score();
-      } else {
+      this.props.score();
+    } else {
+      this._isMounted &&
         this.setState({
           answerFalse: true
         });
-      }
+    }
+    this._isMounted &&
       this.setState({
         pressed: !this.state.pressed
       });
 
-      setTimeout(() => {
-        this.props.counter();
+    setTimeout(() => {
+      this.props.counter();
+      this._isMounted &&
         this.setState({
           answerTrue: false,
           answerFalse: false,
           pressed: false
         });
-      }, 1000);
-    }
+    }, 1000);
   };
 
   progress() {
@@ -89,9 +91,11 @@ export default class AnswersButton extends Component {
             <LinearGradient
               colors={
                 this.state.pressed && option === this.props.correct
-                  ? ["green", "green"]
-                  : this.state.backgroundColor && this.state.answerFalse
-                    ? ["red", "red"]
+                  ? ["#48AD01", "#0FE81E"]
+                  : this.state.backgroundColor &&
+                    this.state.pressed &&
+                    option !== this.props.correct
+                    ? ["#D10000", "#FF0000"]
                     : this.state.backgroundColor
               }
               style={{
