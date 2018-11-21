@@ -5,6 +5,8 @@ import {
   createBottomTabNavigator
 } from "react-navigation";
 
+import { Image } from "react-native";
+
 // import MainTabNavigator from "./MainTabNavigator";
 import Colors from "../constants/Colors";
 
@@ -19,6 +21,12 @@ import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import FriendsScreen from "../screens/FriendsScreen";
 import NewGameScreen from "../screens/NewGameScreen";
 import QuizScreen from "../screens/QuizScreen";
+
+const logo = require("../assets/images/logo_black.png");
+
+const LogoTitle = () => (
+  <Image source={logo} style={{ height: 18, resizeMode: "contain" }} />
+);
 
 const SignedOut = createStackNavigator(
   {
@@ -99,6 +107,7 @@ const HomeStack = createStackNavigator(
   },
   {
     navigationOptions: {
+      headerTitle: <LogoTitle />,
       headerTintColor: Colors.black,
       headerStyle: {
         backgroundColor: Colors.white
