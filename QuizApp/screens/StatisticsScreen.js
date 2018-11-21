@@ -43,23 +43,24 @@ class StatisticsScreen extends Component {
     const statistics = this.state.result;
     const score = statistics.reduce(function(prev, cur) {
       let sum = (prev + cur) / 10;
-      return sum.toFixed(2);
+      return +sum.toFixed(2);
     });
-
-    console.log(score);
     return (
       <View style={styles.scorecontainer}>
         <Elements.Text h4 style={styles.headline}>
           Resultat för {this.state.username}
         </Elements.Text>
-        <ProgressCircle showsText={true} progress={score} size={80} animated />
-
-        {statistics &&
-          statistics.map((score, key) => (
-            <View key={key}>
-              <Text>{score} av 4</Text>
-            </View>
-          ))}
+        <ProgressCircle
+          showsText={true}
+          progress={score}
+          size={80}
+          animated={true}
+        />
+        <View style={styles.lastmatchcontainer}>
+          <Text style={styles.lastmatchtext}>
+            Senaste matchpoäng : {statistics.slice(-1)[0]} av 4
+          </Text>
+        </View>
       </View>
     );
   }
@@ -133,9 +134,23 @@ const styles = StyleSheet.create({
     // justifyContent: "space-around",
     // backgroundColor: Colors.orange
   },
-  chartcontainer: {},
+  chartcontainer: {
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  headline: {
+    marginBottom: 30
+  },
   paragraph: {
     fontSize: 18
+  },
+  lastmatchcontainer: {
+    marginTop: 50,
+    marginLeft: "10%",
+    justifyContent: "center"
+  },
+  lastmatchtext: {
+    fontSize: 20
   }
 });
 
