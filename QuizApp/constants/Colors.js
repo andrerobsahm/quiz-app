@@ -21,7 +21,7 @@ const colors = {
   red: "#ff2b2b",
   lightred: "#fc5555",
   green: "#629b60",
-  lightgreen: "#b2e2b1"
+  lightgreen: "#92e595"
 };
 
 export default colors;
