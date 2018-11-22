@@ -59,7 +59,7 @@ class StatisticsScreen extends Component {
             <Text>{statistics.slice(-1)[0]} av 4</Text>
           </Elements.Badge>
         </View>
-        <Text style={styles.lastmatchtext}>Din svarsfrekvens</Text>
+        <Text style={styles.lastmatchtext}>Antal rätta svar</Text>
         <ProgressCircle
           showsText={true}
           progress={score}
@@ -130,14 +130,17 @@ const styles = StyleSheet.create({
   },
   scorecontainer: {
     alignItems: "center",
-    marginTop: 50,
-    height: 300,
-    width: 300,
-    borderRadius: 8
+    marginTop: 30,
+    paddingVertical: 10,
+    marginHorizontal: 27,
+    borderRadius: 8,
+    backgroundColor: Colors.bgWhite
   },
   chartcontainer: {
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: Colors.bgWhite,
+    marginHorizontal: 27
   },
   headline: {
     marginBottom: 30
