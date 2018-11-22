@@ -48,7 +48,8 @@ const SignedOut = createStackNavigator(
     navigationOptions: {
       headerTintColor: Colors.white,
       headerStyle: {
-        backgroundColor: Colors.black
+        backgroundColor: Colors.black,
+        borderBottomColor: Colors.black
       }
     }
   }
