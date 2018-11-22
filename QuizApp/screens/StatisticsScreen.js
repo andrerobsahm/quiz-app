@@ -26,10 +26,6 @@ class StatisticsScreen extends Component {
       });
   }
 
-  _getSum(total, num) {
-    return total + num;
-  }
-
   _renderScore() {
     const statistics = this.state.result;
     const score = statistics.reduce(function(prev, cur) {
