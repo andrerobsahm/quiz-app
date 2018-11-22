@@ -61,7 +61,7 @@ export default class LoginScreen extends React.Component {
     });
   }
   _redirect() {
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("Quiz");
   }
   async login() {
     try {

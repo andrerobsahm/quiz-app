@@ -27,7 +27,7 @@ export default class Timer extends Component {
     return (
       <View>
         <View>
-          <Text>{this.props.clear.state.timer}</Text>
+          <Text style={{ color: "white" }}>{this.props.clear.state.timer}</Text>
         </View>
       </View>
     );

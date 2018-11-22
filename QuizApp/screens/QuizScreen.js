@@ -124,8 +124,8 @@ class QuestionList extends Component {
 
   popUp() {
     return (
-      <View>
-        <Text style={{ textAlign: "center" }}>
+      <View style={styles.popup}>
+        <Text style={styles.popuptext}>
           Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
           frågor
         </Text>
@@ -238,6 +238,22 @@ const styles = StyleSheet.create({
     height: "100%",
     flex: 1,
     backgroundColor: Colors.black
+  },
+  popup: {
+    backgroundColor: Colors.pink,
+    height: 150,
+    borderRadius: 5,
+    marginTop: 50,
+    shadowColor: Colors.orange,
+    shadowRadius: 0,
+    shadowOpacity: 2,
+    shadowOffset: { width: 3, height: 6 },
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  popuptext: {
+    color: Colors.white,
+    fontSize: 20
   }
 });
 
