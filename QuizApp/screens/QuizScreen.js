@@ -189,10 +189,12 @@ class QuestionList extends Component {
             </View>
           ) : (
             <View style={styles.linkscontainer}>
-              <ButtonComponent
-                title="Starta nytt spel"
-                onPress={this._getData}
-              />
+              <Text style={styles.gametitle}>Är du redo?</Text>
+              <Text style={styles.gametext}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+                auctor purus, sed gravida tellus. Integer tincidunt ante ipsum.
+              </Text>
+              <ButtonComponent title="BÖRJA SPELA" onPress={this._getData} />
               <ButtonComponent
                 title="Tillbaka till profil"
                 onPress={() => navigate("Home")}
@@ -231,7 +233,20 @@ const styles = StyleSheet.create({
   },
   linkscontainer: {
     flex: 1,
+    alignItems: "center",
     justifyContent: "center"
+  },
+  gametitle: {
+    color: Colors.white,
+    fontSize: 36,
+    marginBottom: 15
+  },
+  gametext: {
+    color: Colors.white,
+    textAlign: "center",
+    fontSize: 15,
+    width: 300,
+    marginBottom: 30
   },
   backgroundImage: {
     width: "100%",
