@@ -26,7 +26,7 @@ export default class SignUpScreen extends React.Component {
       password: "",
       response: "",
       loggedin: "",
-      // uid: "",
+      uid: "",
       secureText: true,
       checked: false
     };
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-around",
-    paddingTop: 100,
+    paddingTop: 40,
     backgroundColor: Colors.black
   },
   h1: {

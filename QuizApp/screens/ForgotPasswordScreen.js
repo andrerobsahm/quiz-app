@@ -1,7 +1,6 @@
 import "react-native";
 import React from "react";
 import {
-  AppRegistry,
   Text,
   View,
   StyleSheet,
@@ -28,9 +27,13 @@ export default class ForgotPasswordScreen extends React.Component {
       .sendPasswordResetEmail(this.state.email)
       .then(function() {
         console.log("email sent to" + `${this.state.email}`);
+        this.setState({
+          response: `email sent to + ${this.state.email}`
+        });
       });
     this.setState({
-      email: ""
+      email: "",
+      response: ""
     }).catch(function(error) {
       console.log(error);
     });
@@ -53,6 +56,7 @@ export default class ForgotPasswordScreen extends React.Component {
                 onPress={this._onForgotPress}
               />
             </View>
+            <Text style={styles.response}>{this.state.response}</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -64,7 +68,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: Colors.black
   },
   input: {
     height: 50,
