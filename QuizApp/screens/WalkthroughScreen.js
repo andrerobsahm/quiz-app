@@ -31,17 +31,18 @@ export default class WalkthroughScreen extends React.Component {
       pages: [
         {
           title: "Spela själv eller mot vänner!",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          text:
+            "Utmana vänner eller dig själv, du behöver aldrig vänta på andra",
           image: WalkthroughOne
         },
         {
           title: "Frågor som utmanar!",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          text: "Flera tusentals unika frågor från vår databas",
           image: WalkthroughTwo
         },
         {
           title: "Håll koll på din utveckling!",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          text: "Med statistik får du din utveckling lättöverskådligt",
           image: WalkthroughThree
         }
       ]
