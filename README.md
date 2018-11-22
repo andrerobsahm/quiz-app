@@ -6,7 +6,11 @@
 
 A quiz-app built in [React native](https://github.com/facebook/react-native) and [firebase](https://firebase.com/).
 
-Super-awesome quiz-app - under progress.
+Super-awesome quiz-app - under progress more features coming up.
+
+```sh
+  Create an account and start playing!
+```
 
 ### Setup
 
@@ -30,6 +34,6 @@ Super-awesome quiz-app - under progress.
 
 ## License
 
-Copyright (c) QUIZ!.
+Copyright (c) QUIZ!T.
 All Rights Reserved. Unauthorized copying of this file, via any
 medium is strictly prohibited. Proprietary and confidential.
