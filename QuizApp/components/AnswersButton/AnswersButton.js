@@ -16,7 +16,7 @@ export default class AnswersButton extends Component {
     this.state = {
       backgroundColor: [Colors.pink, Colors.orange],
       corrrectBgColor: ["green", "green"],
-      incorrectBgColor: ["red", "red"],
+      incorrectBgColor: [Colors.red, Colors.pink],
       answerTrue: false,
       answerFalse: false,
       pressed: false
@@ -91,11 +91,11 @@ export default class AnswersButton extends Component {
             <LinearGradient
               colors={
                 this.state.pressed && option === this.props.correct
-                  ? ["#48AD01", "#0FE81E"]
+                  ? [Colors.green, Colors.lightgreen]
                   : this.state.backgroundColor &&
                     this.state.pressed &&
                     option !== this.props.correct
-                    ? ["#D10000", "#FF0000"]
+                    ? [Colors.red, Colors.lightred]
                     : this.state.backgroundColor
               }
               style={{

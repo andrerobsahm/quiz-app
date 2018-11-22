@@ -17,7 +17,11 @@ const colors = {
   grey: "#191C27",
   black: "#151515",
   orange: "#FF8960",
-  pink: "#FF62A5"
+  pink: "#FF62A5",
+  red: "#ff2b2b",
+  lightred: "#fc5555",
+  green: "#629b60",
+  lightgreen: "#b2e2b1"
 };
 
 export default colors;
