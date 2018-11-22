@@ -16,6 +16,7 @@ const colors = {
   bgWhite: "#F5F5F5",
   grey: "#191C27",
   black: "#151515",
+  grey: "#2b2b2b",
   orange: "#FF8960",
   pink: "#FF62A5",
   red: "#ff2b2b",

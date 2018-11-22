@@ -61,8 +61,8 @@ const QuizStack = createStackNavigator({
       headerTitle: <LogoWhite />,
       headerTintColor: Colors.white,
       headerStyle: {
-        backgroundColor: Colors.black,
-        borderBottomColor: Colors.black
+        backgroundColor: Colors.grey,
+        borderBottomColor: Colors.grey
       }
     }
   }
