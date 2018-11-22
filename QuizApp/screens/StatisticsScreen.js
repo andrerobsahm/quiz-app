@@ -45,22 +45,29 @@ class StatisticsScreen extends Component {
       let sum = (prev + cur) / 10;
       return +sum.toFixed(2);
     });
+
     return (
       <View style={styles.scorecontainer}>
         <Elements.Text h4 style={styles.headline}>
-          Resultat för {this.state.username}
+          Resultat för {this.state.username}!
         </Elements.Text>
+        <View style={styles.lastmatchcontainer}>
+          <Text style={styles.lastmatchtext}>Din senaste matchpoäng</Text>
+          <Elements.Badge
+            containerStyle={{ backgroundColor: Colors.orange, height: 25 }}
+          >
+            <Text>{statistics.slice(-1)[0]} av 4</Text>
+          </Elements.Badge>
+        </View>
+        <Text style={styles.lastmatchtext}>Din svarsfrekvens</Text>
         <ProgressCircle
           showsText={true}
           progress={score}
-          size={80}
+          size={120}
+          thickness={5}
           animated={true}
+          color={Colors.orange}
         />
-        <View style={styles.lastmatchcontainer}>
-          <Text style={styles.lastmatchtext}>
-            Senaste matchpoäng : {statistics.slice(-1)[0]} av 4
-          </Text>
-        </View>
       </View>
     );
   }
@@ -91,7 +98,7 @@ class StatisticsScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Headline
           headline="Din Statistik"
           paragraph="Här kan du se hur det har gått i dina matcher och din
@@ -99,9 +106,9 @@ class StatisticsScreen extends Component {
         />
         {this._isMounted && this.state.result ? (
           <View>
-            <ScrollView>
+            <View>
               <View>{this._renderScore()}</View>
-            </ScrollView>
+            </View>
             <View style={styles.chartcontainer}>
               <LineChart data={this.state.result} />
             </View>
@@ -110,7 +117,7 @@ class StatisticsScreen extends Component {
           <View>{this._renderNoScore()}</View>
         )}
         )}
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -118,12 +125,8 @@ class StatisticsScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "space-around",
-    paddingHorizontal: 27,
-    // alignItems: "center",
-    // justifyContent: "center",
-    // backgroundColor: Colors.white,
-    paddingTop: 20
+    paddingTop: 20,
+    backgroundColor: Colors.white
   },
   scorecontainer: {
     alignItems: "center",
@@ -131,8 +134,6 @@ const styles = StyleSheet.create({
     height: 300,
     width: 300,
     borderRadius: 8
-    // justifyContent: "space-around",
-    // backgroundColor: Colors.orange
   },
   chartcontainer: {
     alignItems: "center",
@@ -145,9 +146,9 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   lastmatchcontainer: {
-    marginTop: 50,
-    marginLeft: "10%",
-    justifyContent: "center"
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center"
   },
   lastmatchtext: {
     fontSize: 20

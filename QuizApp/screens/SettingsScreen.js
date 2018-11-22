@@ -68,22 +68,33 @@ export default class SettingsScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Headline headline="Dina inställningar" />
-        <Text>Ändra lösenord för användare med e-post {this.state.email}</Text>
-        <Text>
-          {this.state.photoURL}
-          {this.state.username}
-        </Text>
-        <TouchableWithoutFeedback>
-          <TextInput
-            placeholder="Nytt lösenord"
-            secureTextEntry={this.state.secureText}
-            onChangeText={password => this.setState({ password })}
-            autoCapitalize="none"
-            style={styles.input}
+        <View style={styles.containerInner}>
+          <Text>
+            Ändra lösenord för användare med e-post: {this.state.email}
+          </Text>
+          <Text>
+            {this.state.photoURL}
+            {this.state.username}
+          </Text>
+          <TouchableWithoutFeedback>
+            <TextInput
+              placeholder="Nytt lösenord"
+              secureTextEntry={this.state.secureText}
+              onChangeText={password => this.setState({ password })}
+              autoCapitalize="none"
+              style={styles.input}
+            />
+          </TouchableWithoutFeedback>
+          <ButtonComponent
+            title="Ändra lösenord"
+            onPress={this.changePassword}
           />
-        </TouchableWithoutFeedback>
-        <ButtonComponent title="Ändra lösenord" onPress={this.changePassword} />
-        <Logout navigation={this.props.navigation} />
+          <Logout navigation={this.props.navigation} style={styles.logout} />
+        </View>
+        <View style={styles.version}>
+          <Text style={styles.versionText}>Quiz!t 2018</Text>
+          <Text style={styles.versionText}>Version 1.0.0</Text>
+        </View>
       </View>
     );
   }
@@ -92,14 +103,12 @@ export default class SettingsScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 27,
     paddingTop: 20,
-
-    // justifyContent: "space-around",
-    paddingHorizontal: 27,
-    // alignItems: "center",
-    // justifyContent: "center",
     backgroundColor: Colors.white
+  },
+  containerInner: {
+    alignItems: "center",
+    marginTop: 40
   },
   input: {
     height: 50,
@@ -126,5 +135,15 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     fontSize: 18
+  },
+
+  version: {
+    position: "absolute",
+    bottom: 5,
+    alignSelf: "center"
+  },
+  versionText: {
+    fontSize: 12,
+    textAlign: "center"
   }
 });

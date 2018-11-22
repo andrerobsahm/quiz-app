@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 import * as Elements from "react-native-elements";
 
 const Headline = props => (
-  <View>
+  <View style={styles.container}>
     <Elements.Text h1 style={styles.headline}>
       {props.headline}
     </Elements.Text>
@@ -14,6 +14,9 @@ const Headline = props => (
 );
 
 const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 27
+  },
   headline: {
     marginVertical: 10
   },
