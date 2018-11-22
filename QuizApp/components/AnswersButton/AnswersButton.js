@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   answerText: {
-    // color: Colors.white,
+    color: Colors.white,
     fontSize: 15,
     fontWeight: "600",
     lineHeight: 18,
