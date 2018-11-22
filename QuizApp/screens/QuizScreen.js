@@ -131,6 +131,7 @@ class QuestionList extends Component {
       </View>
     );
   }
+
   renderQuestions() {
     const question = this.state.questions[this.state.questionsanswers];
     return (
@@ -185,10 +186,7 @@ class QuestionList extends Component {
           ) : (
             <View style={styles.linkscontainer}>
               <Text style={styles.gametitle}>Är du redo?</Text>
-              <Text style={styles.gametext}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-                auctor purus, sed gravida tellus. Integer tincidunt ante ipsum.
-              </Text>
+              <Text style={styles.gametext}>Då kör vi!</Text>
               <ButtonComponent title="Börja spela" onPress={this._getData} />
               <ButtonComponent
                 title="Tillbaka till profil"
@@ -239,7 +237,7 @@ const styles = StyleSheet.create({
   gametext: {
     color: Colors.white,
     textAlign: "center",
-    fontSize: 15,
+    fontSize: 20,
     width: 300,
     marginBottom: 30
   },
