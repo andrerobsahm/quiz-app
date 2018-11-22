@@ -67,7 +67,6 @@ export default class WalkthroughScreen extends React.Component {
 
   render() {
     const page = this.state.pages[this.state.index];
-    console.log(this.state.index);
     return (
       <ScrollView horizontal={true}>
         <LinearGradient
@@ -134,8 +133,10 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "left",
     fontSize: 36,
+    width: 300,
     marginTop: -40,
-    marginBottom: 50
+    marginBottom: 50,
+    marginLeft: -15
   },
   contenttext: {
     color: "white",
