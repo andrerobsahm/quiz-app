@@ -22,34 +22,26 @@ import FriendsScreen from "../screens/FriendsScreen";
 import NewGameScreen from "../screens/NewGameScreen";
 import QuizScreen from "../screens/QuizScreen";
 
-const logo = require("../assets/images/logo_black.png");
+const logoBlack = require("../assets/images/logo_black.png");
+const logoWhite = require("../assets/images/logo_white.png");
 
-const LogoTitle = () => (
-  <Image source={logo} style={{ height: 18, resizeMode: "contain" }} />
+const LogoBlack = () => (
+  <Image source={logoBlack} style={{ height: 18, resizeMode: "contain" }} />
+);
+const LogoWhite = () => (
+  <Image source={logoWhite} style={{ height: 18, resizeMode: "contain" }} />
 );
 
 const SignedOut = createStackNavigator(
   {
     Login: {
-      screen: LoginScreen,
-      navigationOptions: {
-        title: "Logga In"
-      }
+      screen: LoginScreen
     },
     SignUp: {
-      screen: SignUpScreen,
-      navigationOptions: {
-        title: "Registrera dig",
-        headerTitleStyle: {
-          fontWeight: "bold"
-        }
-      }
+      screen: SignUpScreen
     },
     ForgotPassword: {
-      screen: ForgotPasswordScreen,
-      navigationOptions: {
-        title: "Begär nytt lösenord"
-      }
+      screen: ForgotPasswordScreen
     }
   },
   {
@@ -66,7 +58,12 @@ const QuizStack = createStackNavigator({
   Quiz: {
     screen: QuizScreen,
     navigationOptions: {
-      title: "Quiz"
+      headerTitle: <LogoWhite />,
+      headerTintColor: Colors.white,
+      headerStyle: {
+        backgroundColor: Colors.black,
+        borderBottomColor: Colors.black
+      }
     }
   }
 });
@@ -74,42 +71,27 @@ const QuizStack = createStackNavigator({
 const HomeStack = createStackNavigator(
   {
     Home: {
-      screen: HomeScreen,
-      navigationOptions: {
-        // headerMode: "none"
-        title: "Profil"
-      }
+      screen: HomeScreen
     },
     Settings: {
-      screen: SettingsScreen,
-      navigationOptions: {
-        title: "Inställningar"
-      }
+      screen: SettingsScreen
     },
     Statistics: {
-      screen: StatisticsScreen,
-      navigationOptions: {
-        title: "Statistik"
-      }
+      screen: StatisticsScreen
     },
     Friends: {
-      screen: FriendsScreen,
-      navigationOptions: {
-        title: "Hitta vänner"
-      }
+      screen: FriendsScreen
     },
     NewGame: {
-      screen: NewGameScreen,
-      navigationOptions: {
-        title: "Nytt spel"
-      }
+      screen: NewGameScreen
     }
   },
   {
     navigationOptions: {
-      headerTitle: <LogoTitle />,
+      headerTitle: <LogoBlack />,
       headerTintColor: Colors.black,
       headerStyle: {
+        borderBottomColor: Colors.white,
         backgroundColor: Colors.white
       }
     }

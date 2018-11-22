@@ -4,7 +4,8 @@ import {
   View,
   Text,
   StyleSheet,
-  ImageBackground
+  ImageBackground,
+  Image
 } from "react-native";
 import ProgressBar from "react-native-progress/Bar";
 import AnswersButton from "../components/AnswersButton/AnswersButton";
@@ -13,6 +14,7 @@ import Colors from "../constants/Colors";
 import base from "../Config/base";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 const backgroundImage = require("../assets/images/background-waves-black.png");
+const logoWhite = require("../assets/images/logo_white.png");
 
 class QuestionList extends Component {
   state = {
@@ -123,7 +125,7 @@ class QuestionList extends Component {
   popUp() {
     return (
       <View>
-        <Text>
+        <Text style={{ textAlign: "center" }}>
           Du fick {this.state.score} rätta svar av {this.state.questions.length}{" "}
           frågor
         </Text>
@@ -137,6 +139,10 @@ class QuestionList extends Component {
         {this._isMounted &&
           question !== undefined && (
             <React.Fragment>
+              <Image
+                source={logoWhite}
+                style={{ height: 18, resizeMode: "contain" }}
+              />
               <View>
                 <Text style={styles.category}>
                   KATEGORI: {question.category}
@@ -183,9 +189,12 @@ class QuestionList extends Component {
             </View>
           ) : (
             <View style={styles.linkscontainer}>
-              <ButtonComponent title="Starta spel" onPress={this._getData} />
               <ButtonComponent
-                title="Tillbaka"
+                title="Starta nytt spel"
+                onPress={this._getData}
+              />
+              <ButtonComponent
+                title="Tillbaka till profil"
                 onPress={() => navigate("Home")}
               />
               {this.state.popUp && this.popUp()}
@@ -208,18 +217,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingTop: 50,
     justifyContent: "space-around"
-    // backgroundColor: Colors.black
   },
   category: {
     fontSize: 14,
-    textAlign: "center"
-    // color: Colors.white
+    textAlign: "center",
+    color: Colors.white
   },
   question: {
     fontSize: 30,
     textAlign: "center",
-    lineHeight: 39
-    // color: Colors.white
+    lineHeight: 39,
+    color: Colors.white
   },
   linkscontainer: {
     flex: 1,
@@ -228,7 +236,8 @@ const styles = StyleSheet.create({
   backgroundImage: {
     width: "100%",
     height: "100%",
-    flex: 1
+    flex: 1,
+    backgroundColor: Colors.black
   }
 });
 
