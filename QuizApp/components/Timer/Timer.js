@@ -1,6 +1,5 @@
-import "react-native";
 import React, { Component } from "react";
-import { AppRegistry, Text, View, StyleSheet } from "react-native";
+import { Text, View } from "react-native";
 
 export default class Timer extends Component {
   componentDidMount() {
@@ -23,6 +22,7 @@ export default class Timer extends Component {
   componentWillUnmount() {
     clearInterval(this.myInterval);
   }
+
   render() {
     return (
       <View>
@@ -33,5 +33,3 @@ export default class Timer extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({});

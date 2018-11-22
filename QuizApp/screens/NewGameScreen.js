@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-around",
-    backgroundColor: Color.bgWhite,
+    backgroundColor: Color.white,
     paddingHorizontal: 27
   },
   navigationContainer: {

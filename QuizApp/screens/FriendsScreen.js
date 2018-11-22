@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, View, Text, StyleSheet, FlatList } from "react-native";
+import { ScrollView, View, Text, StyleSheet } from "react-native";
 import FindPlayers from "../components/FindPlayers/FindPlayers";
 import Colors from "../constants/Colors";
 import base from "../Config/base";

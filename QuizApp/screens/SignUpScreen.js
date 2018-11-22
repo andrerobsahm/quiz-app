@@ -1,15 +1,11 @@
 import React from "react";
 import {
   Image,
-  Platform,
   StyleSheet,
   Text,
-  TouchableOpacity,
-  TouchableHighlight,
   TouchableWithoutFeedback,
   View,
-  TextInput,
-  Button
+  TextInput
 } from "react-native";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
