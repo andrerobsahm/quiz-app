@@ -2,11 +2,9 @@ import React from "react";
 import { WebBrowser } from "expo";
 import {
   Image,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   TextInput,
   View

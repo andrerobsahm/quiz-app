@@ -1,12 +1,5 @@
-import "react-native";
 import React, { Component } from "react";
-import {
-  AppRegistry,
-  Text,
-  View,
-  StyleSheet,
-  TouchableHighlight
-} from "react-native";
+import { Text, View, StyleSheet, TouchableHighlight } from "react-native";
 import { LinearGradient } from "expo";
 import Colors from "../../constants/Colors";
 
@@ -15,10 +8,6 @@ export default class AnswersButton extends Component {
     super(props);
     this.state = {
       backgroundColor: [Colors.pink, Colors.orange],
-      corrrectBgColor: ["green", "green"],
-      incorrectBgColor: [Colors.red, Colors.pink],
-      answerTrue: false,
-      answerFalse: false,
       pressed: false
     };
     this._isMounted = false;
@@ -26,13 +15,7 @@ export default class AnswersButton extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    // if (this.state.pressed) {
-    //   clearInterval(this.myTimerInterval);
-    //   this.myTimer();
-    // } else {
-    //   this.myTimer();
-    // }
-    // this.myTimer();
+
     this.myTimerInterval = setInterval(() => {
       if (this.props.timer === 0) {
         this.progress();
@@ -47,17 +30,9 @@ export default class AnswersButton extends Component {
 
   _onAnswerPress = e => {
     if (e === this.props.correct) {
-      this._isMounted &&
-        this.setState({
-          answerTrue: true
-        });
       this.props.score();
-    } else {
-      this._isMounted &&
-        this.setState({
-          answerFalse: true
-        });
     }
+
     this._isMounted &&
       this.setState({
         pressed: !this.state.pressed
@@ -67,11 +42,9 @@ export default class AnswersButton extends Component {
       this.props.counter();
       this._isMounted &&
         this.setState({
-          answerTrue: false,
-          answerFalse: false,
           pressed: false
         });
-    }, 1000);
+    }, 1500);
   };
 
   progress() {
@@ -131,11 +104,5 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     lineHeight: 18,
     textAlign: "center"
-  },
-  buttonTrue: {
-    backgroundColor: "green"
-  },
-  buttonFalse: {
-    backgroundColor: "red"
   }
 });

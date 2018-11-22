@@ -1,19 +1,10 @@
 import React, { Component } from "react";
-import {
-  ScrollView,
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Button
-} from "react-native";
+import { ScrollView, View, Text, StyleSheet, Button } from "react-native";
 import * as Elements from "react-native-elements";
 import ProgressCircle from "react-native-progress/Circle";
-import FindPlayers from "../components/FindPlayers/FindPlayers";
 import Colors from "../constants/Colors";
 import base from "../Config/base";
 import LineChart from "../components/Chart/Chart";
-import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 import Headline from "../components/Headline/Headline";
 
 class StatisticsScreen extends Component {

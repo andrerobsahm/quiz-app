@@ -5,8 +5,7 @@ import {
   View,
   StyleSheet,
   TouchableWithoutFeedback,
-  TextInput,
-  Button
+  TextInput
 } from "react-native";
 import Colors from "../constants/Colors";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";

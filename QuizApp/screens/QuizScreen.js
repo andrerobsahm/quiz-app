@@ -14,7 +14,6 @@ import Colors from "../constants/Colors";
 import base from "../Config/base";
 import ButtonComponent from "../components/ButtonComponent/ButtonComponent";
 const backgroundImage = require("../assets/images/background-waves-black.png");
-const logoWhite = require("../assets/images/logo_white.png");
 
 class QuestionList extends Component {
   state = {
@@ -138,10 +137,6 @@ class QuestionList extends Component {
         {this._isMounted &&
           question !== undefined && (
             <React.Fragment>
-              <Image
-                source={logoWhite}
-                style={{ height: 18, resizeMode: "contain" }}
-              />
               <View>
                 <Text style={styles.category}>
                   KATEGORI: {question.category}
@@ -193,7 +188,7 @@ class QuestionList extends Component {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
                 auctor purus, sed gravida tellus. Integer tincidunt ante ipsum.
               </Text>
-              <ButtonComponent title="BÖRJA SPELA" onPress={this._getData} />
+              <ButtonComponent title="Börja spela" onPress={this._getData} />
               <ButtonComponent
                 title="Tillbaka till profil"
                 onPress={() => navigate("Home")}
@@ -255,14 +250,14 @@ const styles = StyleSheet.create({
   },
   popup: {
     backgroundColor: Colors.orange,
-    height: 150,
+    height: 120,
+    paddingHorizontal: 10,
     borderRadius: 5,
     marginTop: 50,
-    width: 290,
-    shadowColor: Colors.pink,
+    shadowColor: Colors.grey,
     shadowRadius: 0,
     shadowOpacity: 2,
-    shadowOffset: { width: 3, height: 6 },
+    shadowOffset: { width: 6, height: 6 },
     alignItems: "center",
     justifyContent: "center"
   },
