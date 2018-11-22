@@ -1,10 +1,10 @@
 import React from "react";
-import { LineChart, Grid, AreaChart, YAxis } from "react-native-svg-charts";
+import { Grid, AreaChart, YAxis } from "react-native-svg-charts";
 import { View } from "react-native";
 import * as shape from "d3-shape";
 import Colors from "../../constants/Colors";
 
-export default class LineChartExample extends React.PureComponent {
+export default class LineChart extends React.PureComponent {
   render() {
     const contentInset = { top: 20, bottom: 20 };
 

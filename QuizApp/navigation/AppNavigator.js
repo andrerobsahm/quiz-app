@@ -1,13 +1,6 @@
 import React from "react";
-import { createSwitchNavigator } from "react-navigation";
-import {
-  createStackNavigator,
-  createBottomTabNavigator
-} from "react-navigation";
-
 import { Image } from "react-native";
-
-// import MainTabNavigator from "./MainTabNavigator";
+import { createStackNavigator } from "react-navigation";
 import Colors from "../constants/Colors";
 
 import LoginScreen from "../screens/LoginScreen";
@@ -16,7 +9,6 @@ import WalkthroughScreen from "../screens/WalkthroughScreen";
 import HomeScreen from "../screens/HomeScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import StatisticsScreen from "../screens/StatisticsScreen";
-import FindPlayersScreen from "../screens/FindPlayersScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import FriendsScreen from "../screens/FriendsScreen";
 import NewGameScreen from "../screens/NewGameScreen";
@@ -34,15 +26,9 @@ const LogoWhite = () => (
 
 const SignedOut = createStackNavigator(
   {
-    Login: {
-      screen: LoginScreen
-    },
-    SignUp: {
-      screen: SignUpScreen
-    },
-    ForgotPassword: {
-      screen: ForgotPasswordScreen
-    }
+    Login: { screen: LoginScreen },
+    SignUp: { screen: SignUpScreen },
+    ForgotPassword: { screen: ForgotPasswordScreen }
   },
   {
     navigationOptions: {
@@ -71,21 +57,11 @@ const QuizStack = createStackNavigator({
 
 const HomeStack = createStackNavigator(
   {
-    Home: {
-      screen: HomeScreen
-    },
-    Settings: {
-      screen: SettingsScreen
-    },
-    Statistics: {
-      screen: StatisticsScreen
-    },
-    Friends: {
-      screen: FriendsScreen
-    },
-    NewGame: {
-      screen: NewGameScreen
-    }
+    Home: { screen: HomeScreen },
+    Settings: { screen: SettingsScreen },
+    Statistics: { screen: StatisticsScreen },
+    Friends: { screen: FriendsScreen },
+    NewGame: { screen: NewGameScreen }
   },
   {
     navigationOptions: {
@@ -113,10 +89,3 @@ const AppNavigator = createStackNavigator(
 );
 
 export default AppNavigator;
-
-// export default createSwitchNavigator({
-//   // You could add another route here for authentication.
-//   // Read more at https://reactnavigation.org/docs/en/auth-flow.html
-//   Main: MainTabNavigator,
-//
-// });
