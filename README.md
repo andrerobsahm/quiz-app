@@ -6,13 +6,30 @@
 
 A quiz-app built in [React native](https://github.com/facebook/react-native) and [firebase](https://firebase.com/).
 
-### Designer
+Super-awesome quiz-app - under progress.
 
-[Erica Glimsholt](http://www.ericaglimsholt.com/)
+### Setup
+
+- Download or clone the project
+- Navigate with the command prompt to the filter/filter folder of the project
+- Run commands:
+
+```sh
+  $ npm install
+  $ npm start
+```
 
 ### Authors
 
 [André Robsahm](https://github.com/andrerobsahm) <br/>
 [Kajsa Taipale](https://github.com/kajsataipale)
 
-_Yrgo Göteborg, 2018_
+### Designer
+
+[Erica Glimsholt](http://www.ericaglimsholt.com/)
+
+## License
+
+Copyright (c) QUIZ!.
+All Rights Reserved. Unauthorized copying of this file, via any
+medium is strictly prohibited. Proprietary and confidential.
