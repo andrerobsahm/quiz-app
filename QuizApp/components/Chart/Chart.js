@@ -1,18 +1,30 @@
 import React from "react";
-import { LineChart, Grid, AreaChart } from "react-native-svg-charts";
+import { LineChart, Grid, AreaChart, YAxis } from "react-native-svg-charts";
 import { View } from "react-native";
 import * as shape from "d3-shape";
 import Colors from "../../constants/Colors";
 
 export default class LineChartExample extends React.PureComponent {
   render() {
+    const contentInset = { top: 20, bottom: 20 };
+
     return (
-      <View>
+      <View style={{ paddingVertical: 20, flexDirection: "row" }}>
+        <YAxis
+          data={this.props.data}
+          contentInset={contentInset}
+          svg={{
+            fill: "grey",
+            fontSize: 10
+          }}
+          numberOfTicks={4}
+          formatLabel={value => `${value}`}
+        />
         <AreaChart
-          style={{ height: 200, width: 300 }}
+          style={{ height: 200, width: 250 }}
           data={this.props.data}
           svg={{ stroke: Colors.orange }}
-          contentInset={{ top: 20, bottom: 20 }}
+          contentInset={{ top: 20, bottom: 0 }}
           curve={shape.curveNatural}
         >
           <Grid />
