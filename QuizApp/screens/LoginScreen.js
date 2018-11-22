@@ -143,7 +143,7 @@ export default class LoginScreen extends React.Component {
             <ForgotPassword navigation={this.props.navigation} />
           </View>
           <View style={styles.row}>
-            <Text style={{ color: Colors.grey }}>Har du inget konto? </Text>
+            <Text style={{ color: Colors.offWhite }}>Har du inget konto? </Text>
             <SignUpLink navigation={this.props.navigation} />
           </View>
         </View>
@@ -194,6 +194,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     textAlign: "center",
-    color: Colors.grey
+    marginTop: 50,
+    marginBottom: -30,
+    color: Colors.bgWhite
   }
 });
