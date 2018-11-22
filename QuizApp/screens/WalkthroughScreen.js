@@ -17,9 +17,9 @@ const { width, height } = Dimensions.get("window");
 import { LinearGradient } from "expo";
 import Colors from "../constants/Colors";
 
-import WalkthroughOne from "../assets/images/WalkthroughOne.jpg";
-import WalkthroughTwo from "../assets/images/WalkthroughTwo.jpg";
-import WalkthroughThree from "../assets/images/WalkthroughThree.jpg";
+import WalkthroughOne from "../assets/images/WalkthroughOneCropped.jpg";
+import WalkthroughTwo from "../assets/images/WalkthroughTwoCropped.jpg";
+import WalkthroughThree from "../assets/images/WalkthroughThreeCropped.jpg";
 export default class WalkthroughScreen extends React.Component {
   static navigationOptions = {
     header: null
