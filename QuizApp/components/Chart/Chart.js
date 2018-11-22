@@ -17,14 +17,14 @@ export default class LineChart extends React.PureComponent {
             fill: "grey",
             fontSize: 10
           }}
-          numberOfTicks={4}
+          numberOfTicks={6}
           formatLabel={value => `${value}`}
         />
         <AreaChart
-          style={{ height: 200, width: 250 }}
+          style={{ height: 200, width: 260 }}
           data={this.props.data}
           svg={{ stroke: Colors.orange }}
-          contentInset={{ top: 20, bottom: 0 }}
+          contentInset={{ top: 25, bottom: 10 }}
           curve={shape.curveNatural}
         >
           <Grid />

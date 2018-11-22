@@ -35,18 +35,18 @@ class StatisticsScreen extends Component {
 
     return (
       <View style={styles.scorecontainer}>
-        <Elements.Text h4 style={styles.headline}>
-          Resultat för {this.state.username}!
-        </Elements.Text>
         <View style={styles.lastmatchcontainer}>
           <Text style={styles.lastmatchtext}>Din senaste matchpoäng</Text>
           <Elements.Badge
-            containerStyle={{ backgroundColor: Colors.orange, height: 25 }}
+            containerStyle={{
+              backgroundColor: Colors.orange,
+              height: 25
+            }}
           >
             <Text>{statistics.slice(-1)[0]} av 4</Text>
           </Elements.Badge>
         </View>
-        <Text style={styles.lastmatchtext}>Antal rätta svar</Text>
+        <Text style={styles.lastmatchtext}>Procentuellt rätta svar</Text>
         <ProgressCircle
           showsText={true}
           progress={score}
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
   },
   scorecontainer: {
     alignItems: "center",
+    alignContent: "space-between",
     marginTop: 30,
     paddingVertical: 10,
     marginHorizontal: 27,
@@ -129,16 +130,14 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.bgWhite,
     marginHorizontal: 27
   },
-  headline: {
-    marginBottom: 30
-  },
   paragraph: {
     fontSize: 18
   },
   lastmatchcontainer: {
     flex: 1,
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    marginVertical: 25
   },
   lastmatchtext: {
     fontSize: 20
