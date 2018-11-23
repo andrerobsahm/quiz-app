@@ -80,9 +80,9 @@ export default class WalkthroughScreen extends React.Component {
               <View style={styles.imgcontainer}>
                 <Image
                   style={{
-                    height: 550,
+                    height: 400,
                     resizeMode: "contain",
-                    marginRight: -99
+                    marginRight: -98
                   }}
                   source={page.image}
                 />
@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
   imgcontainer: {
     flex: 1,
     justifyContent: "flex-start",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 10
   },
   titletext: {
     color: "white",
@@ -137,7 +138,7 @@ const styles = StyleSheet.create({
     width: 300,
     marginTop: -40,
     marginBottom: 50,
-    marginLeft: -15
+    marginRight: -55
   },
   contenttext: {
     color: "white",
@@ -145,12 +146,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginTop: -30,
     marginBottom: 30,
-    marginLeft: -25,
+    marginRight: -35,
     width: 280
   },
   movenext: {
     flexDirection: "row",
-    marginLeft: -190,
+    marginLeft: -120,
     marginTop: -20,
     marginBottom: 20
   },
@@ -162,7 +163,8 @@ const styles = StyleSheet.create({
   linecontainer: {
     flexDirection: "row",
     marginBottom: 60,
-    marginRight: 170
+    marginTop: 30,
+    marginRight: 78
   },
   line: {
     height: 5,

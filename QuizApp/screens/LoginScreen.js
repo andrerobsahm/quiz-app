@@ -47,13 +47,17 @@ export default class LoginScreen extends React.Component {
     this._getUser = this._getUser.bind(this);
   }
 
+  _isMounted = false;
+
   componentDidMount() {
+    this._isMounted = true;
     this._getUser();
   }
+
   _getUser() {
     base.auth().onAuthStateChanged(user => {
       if (user) {
-        this.setState({ user });
+        this._isMounted && this.setState({ user });
         this._redirect();
       } else {
         this.setState({ user: null });
@@ -69,9 +73,10 @@ export default class LoginScreen extends React.Component {
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password);
 
-      this.setState({
-        response: "Logged In!"
-      });
+      this._isMounted &&
+        this.setState({
+          response: "Logged In!"
+        });
       this._redirect();
     } catch (error) {
       this.setState({
@@ -85,6 +90,14 @@ export default class LoginScreen extends React.Component {
       secureText: !this.state.secureText
     });
   };
+
+  componentWillUnmount() {
+    this._isMounted = false;
+    this.setState({
+      user: {},
+      response: ""
+    });
+  }
 
   render() {
     return (
@@ -132,9 +145,6 @@ export default class LoginScreen extends React.Component {
 
                 <View>
                   <ButtonComponent title="Logga in" onPress={this.login} />
-                </View>
-                <View>
-                  <Text style={styles.response}>{this.state.response}</Text>
                 </View>
               </View>
             </TouchableWithoutFeedback>
